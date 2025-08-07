@@ -836,9 +836,9 @@ document.getElementById('bookingForm').addEventListener('submit', async function
         
         // Prepare the payload for the Netlify function
         const payload = {
-            name: data.name,
+            name: `${data.firstName} ${data.lastName}`,
             email: data.email,
-            phone: data.phone || '',
+            phone: data.phoneNumber || '',
             date: date,
             time: time,
             message: data.message || '',
