@@ -14,7 +14,7 @@ exports.handler = async (event, context) => {
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
     // Parse the request body
-    const { name, email, phone, date, time, message } = JSON.parse(event.body);
+    const { name, email, phone, date, time, location, businessName, message, additionalInfo, referralSource } = JSON.parse(event.body);
 
     // Validate required fields
     if (!name || !email || !date || !time) {
@@ -31,17 +31,21 @@ exports.handler = async (event, context) => {
       Phone: ${phone || 'Not provided'}
       Date: ${date}
       Time: ${time}
-      Message: ${message || 'No additional message'}
+      Location: ${location}
+      Business Name: ${businessName}
+      Overview Message: ${message || 'No additional message'}
+      Additional Information: ${additionalInfo || 'No additional information'}
+      Referral Source: ${referralSource}
     `;
 
     // Email to the user (booking confirmation)
     const userEmail = {
       to: email,
       from: process.env.ADMIN_EMAIL, // This should be your verified sender email
-      subject: 'Consultation Booking Confirmation',
+      subject: 'Velvet & Edge Solutions Consultation Booking Confirmation',
       text: `Dear ${name},
 
-Thank you for booking a consultation with us!
+Thank you for booking a consultation with Velvet & Edge!
 
 Your booking details:
 ${bookingDetails}
@@ -49,7 +53,7 @@ ${bookingDetails}
 We will contact you shortly to confirm your appointment.
 
 Best regards,
-HR Consulting Team`,
+Velvet & Edge Solutions Team`,
       html: `
         <h2>Consultation Booking Confirmation</h2>
         <p>Dear ${name},</p>
@@ -62,11 +66,15 @@ HR Consulting Team`,
           <li><strong>Phone:</strong> ${phone || 'Not provided'}</li>
           <li><strong>Date:</strong> ${date}</li>
           <li><strong>Time:</strong> ${time}</li>
-          <li><strong>Message:</strong> ${message || 'No additional message'}</li>
-        </ul>
+          <li><strong>Location:</strong> ${location}</li>
+          <li><strong>Business Name:</strong> ${businessName}</li>
+          <li><strong>Overview Message:</strong> ${message || 'No additional message'}</li>
+          <li><strong>Additional Information:</strong> ${additionalInfo || 'No additional information'}</li>
+          <li><strong>Referral Source:</strong> ${referralSource}</li>
+       </ul>
         
         <p>We will contact you shortly to confirm your appointment.</p>
-        <p>Best regards,<br>HR Consulting Team</p>
+        <p>Best regards,<br>Velvet & Edge Solutions Team</p>
       `
     };
 
@@ -92,8 +100,11 @@ Please follow up with the client to confirm the appointment.`,
           <li><strong>Phone:</strong> ${phone || 'Not provided'}</li>
           <li><strong>Date:</strong> ${date}</li>
           <li><strong>Time:</strong> ${time}</li>
-          <li><strong>Message:</strong> ${message || 'No additional message'}</li>
-        </ul>
+          <li><strong>Business Name::</strong> ${businessName}</li>
+          <li><strong>Please share an overview regarding the support you are seeking:</strong> <br> ${message || 'No additional message'}</li>
+          <li><strong>Please share anything that will help prepare for our meeting:</strong> <br> ${additionalInfo || 'No additional information'}</li>
+          <li><strong>Where did they hear about us?</strong> ${referralSource}</li>
+          </ul>
         
         <p>Please follow up with the client to confirm the appointment.</p>
       `

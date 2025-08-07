@@ -841,9 +841,11 @@ document.getElementById('bookingForm').addEventListener('submit', async function
             phone: data.phoneNumber || '',
             date: date,
             time: time,
-            message: data.message || '',
+            location: data.platform,
+            businessName: data.businessName,
+            message: data.supportOverview || '',
+            additionalInfo: data.additionalInfo,
             // Additional booking details
-            platform: data.platform,
             referralSource: data.referralSource
         };
         
