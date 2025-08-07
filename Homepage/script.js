@@ -802,34 +802,158 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-document.getElementById('booking-form').addEventListener('submit', async function (e) {
-  e.preventDefault();
-
-  const form = e.target;
-  const formData = {
-    name: form.name.value,
-    email: form.email.value,
-    date: form.date.value,
-    message: form.message.value
-  };
-
-  try {
-    const response = await fetch('/.netlify/functions/send-email', {
-      method: 'POST',
-      body: JSON.stringify(formData),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-
-    const result = await response.json();
-
-    document.getElementById('response-message').textContent = result.message;
-  } catch (error) {
-    document.getElementById('response-message').textContent = 'Something went wrong. Please try again.';
-    console.error(error);
-  }
+// Handle form submission with SendGrid integration
+document.getElementById('bookingForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    // Show loading state
+    const submitButton = this.querySelector('button[type="submit"]');
+    const originalButtonText = submitButton.textContent;
+    submitButton.textContent = 'Sending...';
+    submitButton.disabled = true;
+    
+    try {
+        // Collect form data
+        const formData = new FormData(this);
+        const data = {};
+        
+        for (let [key, value] of formData.entries()) {
+            data[key] = value;
+        }
+        
+        // Get the selected appointment date/time from the calendar
+        const appointmentDateTime = document.getElementById('appointmentDateTime').textContent;
+        
+        // Parse the appointment date/time to extract date and time separately
+        const appointmentParts = appointmentDateTime.split(', ');
+        const time = appointmentParts[0]; // e.g., "11:00 am"
+        const date = appointmentParts.slice(1).join(', '); // e.g., "Monday, August 11, 2025"
+        
+        // Handle custom referral source
+        if (data.referralSource === 'other') {
+            data.referralSource = data.customReferralSource || 'Other';
+        }
+        
+        // Prepare the payload for the Netlify function
+        const payload = {
+            name: data.name,
+            email: data.email,
+            phone: data.phone || '',
+            date: date,
+            time: time,
+            message: data.message || '',
+            // Additional booking details
+            platform: data.platform,
+            referralSource: data.referralSource
+        };
+        
+        console.log('Sending booking data:', payload);
+        
+        // Send to Netlify function
+        const response = await fetch('/.netlify/functions/send-booking-email', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload)
+        });
+        
+        const result = await response.json();
+        
+        if (response.ok && result.success) {
+            // Success - show confirmation
+            alert('Booking confirmed successfully!\n\nYou should receive a confirmation email shortly.');
+            
+            // Close all modals
+            document.querySelectorAll('.modal-overlay').forEach(modal => {
+                modal.classList.remove('show');
+            });
+            
+            // Reset form
+            this.reset();
+            
+            // Reset any custom input visibility
+            const customInput = document.getElementById('customInput');
+            if (customInput) {
+                customInput.classList.remove('show');
+            }
+            
+            // Reset calendar selection
+            document.querySelectorAll('.calendar-day.selected').forEach(cell => {
+                cell.classList.remove('selected');
+                cell.style.backgroundColor = '';
+                cell.style.color = '';
+            });
+            
+            // Reset appointment display
+            document.getElementById('appointmentDateTime').textContent = '';
+            
+        } else {
+            // Error from function
+            throw new Error(result.error || 'Failed to send booking confirmation');
+        }
+        
+    } catch (error) {
+        console.error('Booking submission error:', error);
+        
+        // Show error message to user
+        alert(`Sorry, there was an error processing your booking: ${error.message}\n\nPlease try again or contact us directly.`);
+        
+    } finally {
+        // Reset button state
+        submitButton.textContent = originalButtonText;
+        submitButton.disabled = false;
+    }
 });
+
+// Enhanced setAppointmentTime function to work with the form
+function setAppointmentTime(time, date) {
+    const appointmentEl = document.getElementById('appointmentDateTime');
+    appointmentEl.textContent = `${time}, ${date}`;
+}
+
+// Update the handleNextClick function to ensure proper data flow
+function handleNextClick(day, month, year, time) {
+    // Format the date and time
+    const appointmentEl = document.getElementById('appointmentDateTime');
+    const selectedDate = new Date(year, month, day);
+    const weekday = selectedDate.toLocaleString('en-US', { weekday: 'long' });
+    const monthName = selectedDate.toLocaleString('en-US', { month: 'long' });
+
+    // Inject formatted string into the #appointmentDateTime element
+    appointmentEl.textContent = `${time}, ${weekday}, ${monthName} ${day}, ${year}`;
+
+    // Hide current modal
+    document.querySelector('.modal-overlay.time-picker').classList.remove('show');
+
+    // Show next modal (the form)
+    document.querySelector('.modal-overlay.form-step').classList.add('show');
+}
+
+// Add form validation helper
+function validateBookingForm(formData) {
+    const required = ['name', 'email'];
+    const missing = [];
+    
+    required.forEach(field => {
+        if (!formData[field] || formData[field].trim() === '') {
+            missing.push(field);
+        }
+    });
+    
+    // Email validation
+    if (formData.email && !formData.email.includes('@')) {
+        missing.push('valid email');
+    }
+    
+    // Check if appointment time is selected
+    const appointmentDateTime = document.getElementById('appointmentDateTime').textContent;
+    if (!appointmentDateTime || appointmentDateTime.trim() === '') {
+        missing.push('appointment time');
+    }
+    
+    return missing;
+}
 
 
 
