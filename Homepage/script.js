@@ -802,6 +802,36 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+document.getElementById('booking-form').addEventListener('submit', async function (e) {
+  e.preventDefault();
+
+  const form = e.target;
+  const formData = {
+    name: form.name.value,
+    email: form.email.value,
+    date: form.date.value,
+    message: form.message.value
+  };
+
+  try {
+    const response = await fetch('/.netlify/functions/send-email', {
+      method: 'POST',
+      body: JSON.stringify(formData),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+
+    const result = await response.json();
+
+    document.getElementById('response-message').textContent = result.message;
+  } catch (error) {
+    document.getElementById('response-message').textContent = 'Something went wrong. Please try again.';
+    console.error(error);
+  }
+});
+
+
 
     /*WHAT WE DELIVER  SECTION */
 (function() {
