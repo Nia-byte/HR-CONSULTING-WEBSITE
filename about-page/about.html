@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velvet & Edge - Contact</title>
+     <link rel="stylesheet" href="about.css" />
+    </head>
+<body>
+<!--  NavBar AND HEROSECTION-->
+
+<header>
+         <nav>
+             <div class="logo" href="/Homepage/index.html">
+                      VELVET & EDGE<span>SOLUTIONS</span>
+             </div>
+                  <ul class="nav-links">
+                      <li><a href="/index.html">Home</a></li>
+                      <li><a href="/about-page/about.html">About</a></li>
+                      <li><a href="/contact-page/contact.html" class="color:#dc4c94">Contact</a></li>
+                  </ul>
+                  <a  class="book-call-btn" id="bookCallBtn">Book a Call</a>
+                  <div class="loading-dots" id="loadingDots">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+                  <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+           </nav>
+
+  <!-- Mobile Menu Overlay - EXACT recreation -->
+    <div class="mobile-menu-overlay" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <div class="mobile-menu-logo">
+                VELVET & EDGE
+                <small>SOLUTIONS</small>
+            </div>
+            <button class="close-btn-2" onclick="toggleMobileMenu()">×</button>
+        </div>
+
+        <nav class="mobile-menu-nav">
+            <a href="/index.html" onclick="toggleMobileMenu()">Home</a>
+            <a href="/about-page/about.html" onclick="toggleMobileMenu()">About</a>
+            <a href="/contact-page/contact.html" onclick="toggleMobileMenu()">Contact</a>
+        </nav>
+
+        <div class="mobile-menu-cta">
+            <button class="mobile-book-call-btn" onclick="document.getElementById('bookCallBtn').click()">Book a Call</button>
+        </div>
+
+        <div class="mobile-menu-footer">
+            <button class="social-btn facebook"></button>
+            <button class="social-btn linkedin"></button>
+        </div>
+    </div>
+
+
+
+       </header>
+
+
+    <div class="container">
+        <div class="content">
+            <div class="text-section">
+                
+                <h1 class="main-heading">
+                    About <br> <span class="highlight">Velvet & Edge Solutions</span> 
+                </h1>
+                <button class="cta-button" onclick="bookCall()">Book a Call</button>
+            </div>
+            
+           <div class="geometric-section">
+    <div class="hero-image-section">
+        <img src="/images/IMG_8956_PhotoGrid.png" alt="Velvet & Edge Solutions Team" class="hero-image">
+    </div>
+    
+</div>
+        </div>
+    </div>
+
+    <!--
+    <div class="floating-dot-1"></div>
+    <div class="floating-dot-2"></div>
+    -->
+
+<!-- ABOUT US SECOND SECTION -->
+ <div class="content-2">
+ <div class="container-2">
+        <div class="header-text">
+            We'll let our journey tell the story.
+        </div>
+        
+        <div class="milestones-grid">
+            <div class="milestone-card">
+                <div class="milestone-title">Established in</div>
+                <div class="year-badge">2017</div>
+                
+                <div class="milestone-number">7</div>
+                <div class="milestone-title">Years</div>
+                <div class="milestone-description">of great HR consulting success</div>
+            </div>
+            
+            <div class="milestone-card primary">
+                <div class="milestone-number">100+</div>
+                <div class="milestone-title">Professionals Placed</div>
+                <div class="milestone-description">at top companies across Gauteng</div>
+            </div>
+            
+            <div class="milestone-card secondary">
+                <div class="milestone-number">100%</div>
+                <div class="milestone-title">Black Women Owned</div>
+                <div class="milestone-description"> Full-Service HR Consulting Company</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- ABOUT US FOURTH SECTION -->
+  <div class="container-4">
+        
+        <div class="content-4">
+            <div class="mvv-container">
+                <!-- Mission -->
+                <div class="mvv-item">
+                    <svg class="icon" viewBox="0 0 33 33">
+                        <path d="M31.9854 10.5955C32.8984 13.0514 33.2032 15.692 32.8736 18.2913C32.544 20.8907 31.5899 23.3716 30.0928 25.522C28.5956 27.6724 26.6001 29.4282 24.2766 30.6394C21.9532 31.8507 19.371 32.4813 16.7508 32.4773C14.1547 32.4799 11.5958 31.8602 9.2886 30.6701C6.98137 29.48 4.99302 27.7542 3.49022 25.6373C1.98741 23.5204 1.01393 21.0741 0.651367 18.5035C0.288803 15.9328 0.547719 13.3127 1.40642 10.8627C2.26511 8.41279 3.69857 6.20435 5.58664 4.42255C7.47472 2.64074 9.76239 1.33747 12.2579 0.621969C14.7535 -0.0935276 17.3842 -0.200405 19.9295 0.310295C22.4749 0.820996 24.8607 1.93439 26.8871 3.55717L29.91 0.534318C30.249 0.195287 30.7088 0.00482089 31.1883 0.0048209C31.6678 0.00482091 32.1276 0.195287 32.4666 0.534318C32.8057 0.87335 32.9961 1.33318 32.9961 1.81264C32.9961 2.2921 32.8057 2.75193 32.4666 3.09096L23.1274 12.4152L18.0291 17.5285C17.6886 17.8646 17.2293 18.0531 16.7508 18.0531C16.2723 18.0531 15.813 17.8646 15.4725 17.5285C15.3042 17.3608 15.1708 17.1616 15.0797 16.9422C14.9886 16.7228 14.9417 16.4877 14.9417 16.2501C14.9417 16.0126 14.9886 15.7774 15.0797 15.5581C15.1708 15.3387 15.3042 15.1395 15.4725 14.9718L19.0819 11.3624C18.1858 10.9372 17.1902 10.7663 16.2036 10.8683C15.2171 10.9703 14.2775 11.3414 13.4875 11.941C12.6974 12.5406 12.0873 13.3457 11.7236 14.2685C11.3599 15.1912 11.2567 16.1961 11.4253 17.1735C11.5938 18.1509 12.0275 19.0632 12.6792 19.8109C13.3309 20.5586 14.1754 21.1129 15.1206 21.4133C16.0659 21.7138 17.0754 21.7488 18.0392 21.5146C19.003 21.2803 19.8839 20.7858 20.5858 20.0851C21.3363 19.3261 21.8486 18.3643 22.0596 17.3179C22.1692 16.8633 22.451 16.469 22.8457 16.218C23.2403 15.9671 23.717 15.8792 24.1752 15.9727C24.6334 16.0663 25.0373 16.3341 25.302 16.7197C25.5666 17.1053 25.6712 17.5786 25.5938 18.0398C25.269 19.6375 24.5175 21.1174 23.419 22.3222C22.3204 23.527 20.916 24.4116 19.355 24.8821C17.7939 25.3526 16.1346 25.3913 14.5532 24.9942C12.9719 24.5971 11.5278 23.7789 10.3742 22.6267C9.1139 21.3648 8.25577 19.7577 7.90826 18.0083C7.56074 16.259 7.73942 14.4459 8.42173 12.7981C9.10404 11.1503 10.2594 9.74156 11.7418 8.74995C13.2242 7.75834 14.9673 7.22827 16.7508 7.2267C18.5201 7.22508 20.2509 7.74277 21.7287 8.71557L24.3155 6.12885C21.8826 4.31635 18.8781 3.4411 15.8525 3.66343C12.8268 3.88577 9.98257 5.19081 7.84078 7.33947C5.699 9.48814 4.40308 12.3366 4.19044 15.3629C3.9778 18.3892 4.86268 21.3909 6.68296 23.8179C8.50325 26.245 11.1371 27.9349 14.1019 28.5782C17.0667 29.2214 20.1641 28.7749 22.8265 27.3204C25.4889 25.8659 27.5381 23.5008 28.5988 20.6585C29.6594 17.8161 29.6604 14.6867 28.6016 11.8437C28.4357 11.3969 28.4532 10.9026 28.6505 10.4686C28.8477 10.0347 29.2086 9.69646 29.6543 9.52768C30.1051 9.36201 30.6032 9.38128 31.0398 9.5813C31.4765 9.78132 31.8164 10.1459 31.9854 10.5955Z" fill="currentColor"/>
+                    </svg>
+                    <h2 class="mvv-title">Mission</h2>
+                    <p class="mvv-text">Velvet and Edge Solutions aims to be one of the leading engineering firm by 2030 that implies its projects life cycle capabilities to optimize clients fixed capital investment by focusing its expertise and capacity on delivering sustainable and fit for purpose projects.</p>
+                </div>
+
+                <!-- Vision -->
+                <div class="mvv-item">
+                    <svg class="icon" viewBox="0 0 37 26">
+                        <path d="M18.5003 3.83333C21.5649 3.82314 24.5701 4.67797 27.1705 6.29954C29.7709 7.92111 31.861 10.2436 33.2003 13C30.4503 18.6167 24.8337 22.1667 18.5003 22.1667C12.167 22.1667 6.55033 18.6167 3.80033 13C5.13969 10.2436 7.22971 7.92111 9.83012 6.29954C12.4305 4.67797 15.4358 3.82314 18.5003 3.83333ZM18.5003 0.5C10.167 0.5 3.05033 5.68333 0.166992 13C3.05033 20.3167 10.167 25.5 18.5003 25.5C26.8337 25.5 33.9503 20.3167 36.8337 13C33.9503 5.68333 26.8337 0.5 18.5003 0.5ZM18.5003 8.83333C19.6054 8.83333 20.6652 9.27232 21.4466 10.0537C22.228 10.8351 22.667 11.8949 22.667 13C22.667 14.1051 22.228 15.1649 21.4466 15.9463C20.6652 16.7277 19.6054 17.1667 18.5003 17.1667C17.3953 17.1667 16.3354 16.7277 15.554 15.9463C14.7726 15.1649 14.3337 14.1051 14.3337 13C14.3337 11.8949 14.7726 10.8351 15.554 10.0537C16.3354 9.27232 17.3953 8.83333 18.5003 8.83333ZM18.5003 5.5C14.367 5.5 11.0003 8.86667 11.0003 13C11.0003 17.1333 14.367 20.5 18.5003 20.5C22.6337 20.5 26.0003 17.1333 26.0003 13C26.0003 8.86667 22.6337 5.5 18.5003 5.5Z" fill="currentColor"/>
+                    </svg>
+                    <h2 class="mvv-title">Vision</h2>
+                    <p class="mvv-text">Velvet and Edge strives to always maintain sound business relations and high ethical standards all the while also providing sustainable and innovative solutions to the built environment. Professional and timely application of target specific objectives helps Leondi's Engineers to consistently deliver to the satisfaction of our clientele.</p>
+                </div>
+
+                <!-- Values -->
+                <div class="mvv-item">
+                    <svg class="icon" viewBox="0 0 33 30">
+                        <path d="M27.5837 0.75H5.41699L0.666992 10.25L16.5003 29.25L32.3337 10.25L27.5837 0.75ZM12.732 8.66667L15.107 3.91667H17.8937L20.2687 8.66667H12.732ZM14.917 11.8333V22.41L6.11366 11.8333H14.917ZM18.0837 11.8333H26.887L18.0837 22.41V11.8333ZM27.9953 8.66667H23.7995L21.4245 3.91667H25.6203L27.9953 8.66667ZM7.38033 3.91667H11.5762L9.20116 8.66667H5.00533L7.38033 3.91667Z" fill="currentColor"/>
+                    </svg>
+                    <h2 class="mvv-title">Integrity</h2>
+                    <p class="mvv-text">We abide by the rules and regulations of business society. We believe that communicating ethically and morally towards our customers is essential to corporate growth and strength.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+<!-- ABOUT US THIRD SECTION -->
+ <div class="container-3">
+        <div class="left-section-3">
+            <h1>A Better Way to Build Sustainable HR Solutions</h1>
+            <a href="#" class="cta-button-3">Book a call</a>
+        </div>
+
+        <div class="right-section-3">
+            <div class="content-block">
+                <h2>Built-In Excellence</h2>
+                <p>Velvet and Edge Solutions' journey began in 2017 with a Gauteng-based office, ensuring the best business practices and development, optimal client interactions, and ideal service delivery in South Africa.</p>
+            </div>
+
+            <div class="content-block">
+                <h2>Strategic Partnerships</h2>
+                <p>We are entirely owned and managed by a black woman. With over a decade of experience, our commitment to excellence is reflected in our delivery of viable and sustainable projects, leveraging our collective knowledge, skills, and expertise.</p>
+            </div>
+
+            <div class="content-block">
+                <h2>Future-Ready Solutions</h2>
+                <p>At Velvet and Edge, we believe that great organizations are built at the intersection of strategic insight and human connection. We are a full-service HR consultancy that partners with businesses to unlock the full potential of their people and performance.</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+<!-- ABOUT US FIFTH SECTION -->
+ <div class="container-5">
+        <div class="left-section-5">
+            <div class="card-5">
+                <h3>CETA Accredited Excellence</h3>
+                <p>As a CETA Accredited company, we are experts in training and development. Our well-trained assessors and moderators engage delegates at their comfort level.</p>
+            </div>
+
+            <div class="card-5">
+                <h3>NQF Compliant Training</h3>
+                <p>All training material is compiled using a modular competency system in line with the NQF, ensuring effective training implementation and knowledge preservation.</p>
+            </div>
+
+            <div class="card-5">
+                <h3>Professional Training Areas</h3>
+                <div class="training-areas">
+                    <ul>
+                        <li>Microsoft Certification</li>
+                        <li>Oracle Systems</li>
+                        <li>Health and Safety</li>
+                    </ul>
+                    <ul>
+                        <li>SAP Training</li>
+                        <li>ICT Development</li>
+                        <li>Professional Skills</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-section-5">
+            <h1 class="main-title-5">Training & Skills Development</h1>
+            <p class="description">
+                Dedicated team of highly trained consultants passionate about translating workplace challenges into accessible, flexible, and comprehensive HR solutions.
+            </p>
+          
+        </div>
+    </div>
+    
+
+
+
+
+<!-- ABOUT US SIXTH SECTION -->
+  <div class="container-6">
+        <div class="left-section-6">
+            <h1>Recruitment Services</h1>
+            <p>Professional recruitment service in permanent and temporary placements across various industries.</p>
+           
+        </div>
+
+        <div class="right-section-6">
+            <div class="card-6">
+                <h3>Top-Tier IT Professionals</h3>
+                <p>We are uniquely positioned to supply top-tier IT professionals for contract or long-term engagements, offering robust support including SAP modules, cloud platforms (AWS), cybersecurity, and emerging technologies.</p>
+            </div>
+
+            <div class="card-6">
+                <h3>Industry Specialization</h3>
+                <div class="specialization-grid">
+                    <div class="specialization-item">IT, Media & Communications</div>
+                    <div class="specialization-item">SAP, Oracle and Microsoft</div>
+                    <div class="specialization-item">Agriculture</div>
+                    <div class="specialization-item">Engineering & Mining</div>
+                    <div class="specialization-item">Health and Safety</div>
+                    <div class="specialization-item">Construction</div>
+                </div>
+            </div>
+
+            <div class="card-6">
+                <h3>Flexible Engagement Models</h3>
+                <p>We offer remote, on-site, hybrid, and managed team delivery options with pre-vetted, certified talent and inclusive hiring strategies.</p>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--ABOUT SECTION SEVENTH-->
+  <div class="hr-consulting-container">
+        <div class="hr-consulting-header">
+            <h1 class="hr-consulting-title">Human Resource Consulting</h1>
+            <p class="hr-consulting-subtitle">
+                Comprehensive HR solutions addressing human resource management tasks and decisions in 
+                partnership with expert HR professionals on semi-permanent or ad hoc basis.
+            </p>
+        </div>
+
+        <div class="hr-cards-container">
+            <div class="hr-card" data-hr-delay="0">
+                <div class="hr-card-icon strategic">
+                    <svg width="100%" height="100%" viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <mask id="assignment-turned-in_mask0-320-3852" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="41" height="40">
+                            <rect x="0.5" width="40" height="40" fill="#D9D9D9"></rect>
+                        </mask>
+                        <g mask="url(#assignment-turned-in_mask0-320-3852)">
+                            <path d="M18.1667 26.75L29.9167 15L27.5833 12.6666L18.1667 22.0833L13.4167 17.3333L11.0833 19.6666L18.1667 26.75ZM8.83333 35C7.91667 35 7.13194 34.6736 6.47917 34.0208C5.82639 33.368 5.5 32.5833 5.5 31.6666V8.33329C5.5 7.41663 5.82639 6.6319 6.47917 5.97913C7.13194 5.32635 7.91667 4.99996 8.83333 4.99996H15.8333C16.1944 3.99996 16.7986 3.1944 17.6458 2.58329C18.4931 1.97218 19.4444 1.66663 20.5 1.66663C21.5556 1.66663 22.5069 1.97218 23.3542 2.58329C24.2014 3.1944 24.8056 3.99996 25.1667 4.99996H32.1667C33.0833 4.99996 33.8681 5.32635 34.5208 5.97913C35.1736 6.6319 35.5 7.41663 35.5 8.33329V31.6666C35.5 32.5833 35.1736 33.368 34.5208 34.0208C33.8681 34.6736 33.0833 35 32.1667 35H8.83333ZM8.83333 31.6666H32.1667V8.33329H8.83333V31.6666ZM20.5 7.08329C20.8611 7.08329 21.1597 6.96524 21.3958 6.72913C21.6319 6.49301 21.75 6.1944 21.75 5.83329C21.75 5.47218 21.6319 5.17357 21.3958 4.93746C21.1597 4.70135 20.8611 4.58329 20.5 4.58329C20.1389 4.58329 19.8403 4.70135 19.6042 4.93746C19.3681 5.17357 19.25 5.47218 19.25 5.83329C19.25 6.1944 19.3681 6.49301 19.6042 6.72913C19.8403 6.96524 20.1389 7.08329 20.5 7.08329Z" fill="white"></path>
+                        </g>
+                    </svg>
+                </div>
+                <h3 class="hr-card-title">Strategic Planning</h3>
+                <ul class="hr-card-list">
+                    <li>Annual workplace skills plans</li>
+                    <li>HR and remuneration strategies</li>
+                    <li>Benchmarking HR policies</li>
+                    <li>Employment equity reports</li>
+                </ul>
+            </div>
+
+            <div class="hr-card" data-hr-delay="200">
+                <div class="hr-card-icon systems">
+                    <svg width="100%" height="100%" viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <mask id="travel-explore_mask0-320-3840" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="41" height="40">
+                            <rect x="0.5" width="40" height="40" fill="#D9D9D9"></rect>
+                        </mask>
+                        <g mask="url(#travel-explore_mask0-320-3840)">
+                            <path d="M20.5002 36.6667C18.1946 36.6667 16.0279 36.2292 14.0002 35.3542C11.9724 34.4792 10.2085 33.2917 8.7085 31.7917C7.2085 30.2917 6.021 28.5278 5.146 26.5C4.271 24.4723 3.8335 22.3056 3.8335 20C3.8335 17.6945 4.271 15.5278 5.146 13.5C6.021 11.4723 7.2085 9.70837 8.7085 8.20837C10.2085 6.70837 11.9724 5.52087 14.0002 4.64587C16.0279 3.77087 18.1946 3.33337 20.5002 3.33337C24.5557 3.33337 28.1043 4.60421 31.146 7.14587C34.1877 9.68754 36.0835 12.875 36.8335 16.7084H33.4168C32.8891 14.6806 31.9377 12.8681 30.5627 11.2709C29.1877 9.67365 27.5002 8.47226 25.5002 7.66671V8.33337C25.5002 9.25004 25.1738 10.0348 24.521 10.6875C23.8682 11.3403 23.0835 11.6667 22.1668 11.6667H18.8335V15C18.8335 15.4723 18.6738 15.8681 18.3543 16.1875C18.0349 16.507 17.6391 16.6667 17.1668 16.6667H13.8335V20H17.1668V25H15.5002L7.50016 17C7.41683 17.5 7.34044 18 7.271 18.5C7.20155 19 7.16683 19.5 7.16683 20C7.16683 23.6389 8.44461 26.7639 11.0002 29.375C13.5557 31.9862 16.7224 33.3056 20.5002 33.3334V36.6667ZM35.6668 35.8334L30.3335 30.5C29.7502 30.8334 29.1252 31.1112 28.4585 31.3334C27.7918 31.5556 27.0835 31.6667 26.3335 31.6667C24.2502 31.6667 22.4793 30.9375 21.021 29.4792C19.5627 28.0209 18.8335 26.25 18.8335 24.1667C18.8335 22.0834 19.5627 20.3125 21.021 18.8542C22.4793 17.3959 24.2502 16.6667 26.3335 16.6667C28.4168 16.6667 30.1877 17.3959 31.646 18.8542C33.1043 20.3125 33.8335 22.0834 33.8335 24.1667C33.8335 24.9167 33.7224 25.625 33.5002 26.2917C33.2779 26.9584 33.0002 27.5834 32.6668 28.1667L38.0002 33.5L35.6668 35.8334ZM26.3335 28.3334C27.5002 28.3334 28.4863 27.9306 29.2918 27.125C30.0974 26.3195 30.5002 25.3334 30.5002 24.1667C30.5002 23 30.0974 22.0139 29.2918 21.2084C28.4863 20.4028 27.5002 20 26.3335 20C25.1668 20 24.1807 20.4028 23.3752 21.2084C22.5696 22.0139 22.1668 23 22.1668 24.1667C22.1668 25.3334 22.5696 26.3195 23.3752 27.125C24.1807 27.9306 25.1668 28.3334 26.3335 28.3334Z" fill="white"></path>
+                        </g>
+                    </svg>
+                </div>
+                <h3 class="hr-card-title">Systems & Processes</h3>
+                <ul class="hr-card-list">
+                    <li>HR information system design</li>
+                    <li>Workflow process automation</li>
+                    <li>Job evaluation systems</li>
+                    <li>HR policies and procedures</li>
+                </ul>
+            </div>
+
+            <div class="hr-card" data-hr-delay="400">
+                <div class="hr-card-icon people">
+                    <svg width="100%" height="100%" viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <mask id="hail_mask0-320-3858" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="41" height="40">
+                            <rect x="0.5" width="40" height="40" fill="#D9D9D9"></rect>
+                        </mask>
+                        <g mask="url(#hail_mask0-320-3858)">
+                            <path d="M7.1665 36.6667V26.6667H12.1665V36.6667H7.1665ZM15.4998 36.6667V16.8334C14.1109 17.3056 13.2082 18.1737 12.7915 19.4375C12.3748 20.7014 12.1665 22 12.1665 23.3334H8.83317C8.83317 19.7778 9.87484 16.9445 11.9582 14.8334C14.0415 12.7223 16.8887 11.6667 20.4998 11.6667C23.2776 11.6667 25.3609 10.9792 26.7498 9.60421C28.1387 8.22921 28.8332 6.13893 28.8332 3.33337H32.1665C32.1665 5.77782 31.6457 7.96532 30.604 9.89587C29.5623 11.8264 27.8609 13.1945 25.4998 14V36.6667H22.1665V26.6667H18.8332V36.6667H15.4998ZM20.4998 10C19.5832 10 18.7984 9.67365 18.1457 9.02087C17.4929 8.3681 17.1665 7.58337 17.1665 6.66671C17.1665 5.75004 17.4929 4.96532 18.1457 4.31254C18.7984 3.65976 19.5832 3.33337 20.4998 3.33337C21.4165 3.33337 22.2012 3.65976 22.854 4.31254C23.5068 4.96532 23.8332 5.75004 23.8332 6.66671C23.8332 7.58337 23.5068 8.3681 22.854 9.02087C22.2012 9.67365 21.4165 10 20.4998 10Z" fill="white"></path>
+                        </g>
+                    </svg>
+                </div>
+                <h3 class="hr-card-title">People Management</h3>
+                <ul class="hr-card-list">
+                    <li>Job description development</li>
+                    <li>Salary and pay structures</li>
+                    <li>Staff training programs</li>
+                    <li>HR reporting systems</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!--ABOUT SECTION EIGHTH-->
+   <div class="container-8">
+        <div class="left-section-8">
+            <h1 class="main-heading-8">Change Management</h1>
+            <p class="description-8">
+                Specialists in executing highly complex change projects that address multi-functional problems with our multidisciplinary domain knowledge.
+            </p>
+            
+        </div>
+
+        <div class="right-section-8">
+            <div class="service-card-8 primary card-1">
+                <h3 class="service-title-8">Business Transformation</h3>
+                <p class="service-description-8">
+                    Technology business management, target operating model design and implementation, and process automation expertise.
+                </p>
+            </div>
+
+           
+                <div class="service-card-8 secondary card-2">
+                    <h3 class="service-title-8">Cost Excellence</h3>
+                    <p class="service-description-8">
+                        Cost transformation including cost transparency, strategic revenue enhancement, and fee structure optimization.
+                    </p>
+                </div>
+
+                <div class="service-card-8 primary card-3">
+                    <h3 class="service-title-8">Collaborative Approach</h3>
+                    <p class="service-description-8">
+                        We take a strong collaborative approach to every project, working as lead consultants on major change initiatives at large institutions.
+                    </p>
+                </div>
+           
+        </div>
+    </div>
+
+
+
+
+    
+       <!-- Modal -->
+    <div class="modal-overlay time-picker" id="modalOverlay">
+        <div class="modal">
+            <button class="close-btn" id="closeBtn">&times;</button>
+            
+            <div class="modal-header">
+               
+                
+                <div class="consultant-avatar"> 
+                    <img src="/images/IMG_8956_PhotoGrid.png" alt="Logo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                </div>
+                
+                <div class="modal-title">Velvet & Edge Solutions</div>
+                <h2 class="modal-heading">Consultation Call</h2>
+                
+                <div class="duration">
+                    <div class="clock-icon"></div>
+                    5 min
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <p class="description-text">
+                    A quick call to explore your HR or recruitment needs and goals and see how we can help.
+                </p>
+
+               <div class="calendar-section">
+                    <h3>Select a Date & Time</h3>
+                    
+                    <div class="calendar-container full-width" id="calendarContainer">
+                        <div class="calendar-left">
+                            <div class="calendar-header">
+                                <button class="calendar-nav" id="prevMonth">&lt;</button>
+                                <div class="calendar-month" id="currentMonth">August 2025</div>
+                                <button class="calendar-nav" id="nextMonth">&gt;</button>
+                            </div>
+
+                            <div class="calendar-grid" id="calendarGrid">
+                                <!-- Calendar will be generated by JavaScript -->
+                            </div>
+
+                            <div class="timezone">
+                                <div class="globe-icon"></div>
+                                Central Africa Time (14:20)
+                            </div>
+                        </div>
+                        
+                        <div class="time-selection" id="timeSelection">
+                            <div class="selected-date" id="selectedDate"></div>
+                            <div class="time-slots" id="timeSlots"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay form-step">
+            <div class="modal">
+                <button class="close-btn" >&times;</button>
+                <button class="back-btn" >
+                   <span>←</span>
+
+                </button>
+                
+                <div class="modal-header">
+                   <div class="consultant-avatar"> 
+                    <img src="/images/IMG_8956_PhotoGrid.png" alt="Logo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                </div>
+                
+                <div class="modal-title">Velvet & Edge Solutions</div>
+                <h2 class="modal-heading">Consultation Call</h2>
+                    
+                    <div class="appointment-details">
+                        <div class="appointment-info">
+                            <div class="clock-icon"></div>
+                            5 min
+                        </div>
+                        <div class="appointment-info" id="appointmentDateTime">
+                            00:00 - 00:30, Friday, August 15, 2025
+                        </div>
+                        <div class="appointment-info">
+                            <div class="globe-icon"></div>
+                            Central Africa Time
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-body">
+                    <p class="description-text">
+                        A quick call to explore your HR or recruitment needs and goals and see how we can help.
+                    </p>
+                    
+                    <p class="connection-method">
+                        Choose your preferred method to connect -- phone call or video conference.
+                    </p>
+
+                    <form id="bookingForm">
+                        <h3 class="form-title">Enter Details</h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label required">First Name</label>
+                                <input type="text" class="form-input" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label required">Last Name</label>
+                                <input type="text" class="form-input" name="lastName" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label required">Email</label>
+                            <input type="email" class="form-input" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="button" class="add-guests-btn" onclick="alert('Add guests functionality')">Add Guests</button>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label required">Location</label>
+                            <div class="radio-group">
+                                <div class="radio-option">
+                                    <input type="radio" class="radio-input" name="platform" value="teams" id="teams">
+                                    <label for="teams" class="radio-label">
+                                        <div class="platform-icon teams-icon">T</div>
+                                        Microsoft Teams
+                                    </label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" class="radio-input" name="platform" value="zoom" id="zoom">
+                                    <label for="zoom" class="radio-label">
+                                        <div class="platform-icon zoom-icon">Z</div>
+                                        Zoom
+                                    </label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" class="radio-input" name="platform" value="phone" id="phone">
+                                    <label for="phone" class="radio-label">
+                                        <div class="platform-icon phone-icon" style="color: black;">📞</div>
+                                        Phone call
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label required">Phone Number</label>
+                            <div class="phone-input-container">
+                                <div class="country-flag">🇿🇦</div>
+                                <input type="tel" class="phone-number-input" name="phoneNumber" placeholder="Phone number" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Business Name (if applicable)</label>
+                            <textarea class="form-textarea" name="businessName" rows="3"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label required">Please share an overview regarding the support you are seeking.</label>
+                            <textarea class="form-textarea" name="supportOverview" rows="4" required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Please share anything that will help prepare for our meeting.</label>
+                            <textarea class="form-textarea" name="additionalInfo" rows="4"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label required">How did you hear about Evoke HR & Immigration?</label>
+                            <div class="radio-group">
+                                <div class="radio-option">
+                                    <input type="radio" class="radio-input" name="referralSource" value="google" id="google">
+                                    <label for="google" class="radio-label">Google</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" class="radio-input" name="referralSource" value="linkedin" id="linkedin">
+                                    <label for="linkedin" class="radio-label">LinkedIn</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" class="radio-input" name="referralSource" value="referral" id="referral">
+                                    <label for="referral" class="radio-label">Referral</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" class="radio-input" name="referralSource" value="other" id="other">
+                                    <label for="other" class="radio-label">Other</label>
+                                </div>
+                            </div>
+                            <div class="custom-input" id="customInput">
+                                <input type="text" class="form-input" name="otherSource" placeholder="Please specify">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">If Referral, please share who referred you.</label>
+                            <input type="text" class="form-input" name="referralPerson" placeholder="Referral source">
+                        </div>
+
+                        <div class="terms-text">
+                            By proceeding, you confirm that you have read and agree to 
+                            <a href="#" onclick="alert('Terms of Use')">Calendly's Terms of Use</a> and 
+                            <a href="#" onclick="alert('Privacy Notice')">Privacy Notice</a>.
+                        </div>
+
+                        <button type="submit" class="submit-btn">Schedule Event</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!--FAQS SECTION-->
+     <div class="container-11">
+        <div class="header-11">
+            <h1 class="title-11">Frequently Asked Questions</h1>
+            <div class="pink-line-11"></div>
+            <p class="subtitle-11">Get answers to the most common questions about our HR consulting services and expertise.</p>
+        </div>
+
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(0)">
+                    <span class="question-text">What industries do you specialize in for recruitment?</span>
+                    <svg class="chevron" id="chevron-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </div>
+                <div class="faq-answer" id="answer-0">
+                    <div class="answer-text">
+                        We specialize in IT, Media & Communications, SAP/Oracle/Microsoft, Agriculture, Engineering & Mining, Health and Safety, and Construction Industries. Our consultants receive monthly upskilling to stay current with industry trends and requirements.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(1)">
+                    <span class="question-text">Are you CETA accredited for training programs?</span>
+                    <svg class="chevron" id="chevron-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </div>
+                <div class="faq-answer" id="answer-1">
+                    <div class="answer-text">
+                        Yes, we are fully CETA accredited and offer comprehensive training programs across various industries. Our accreditation ensures that all training meets national standards and provides valuable skills development opportunities.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(2)">
+                    <span class="question-text">What engagement models do you offer for recruitment services?</span>
+                    <svg class="chevron" id="chevron-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </div>
+                <div class="faq-answer" id="answer-2">
+                    <div class="answer-text">
+                        We offer flexible engagement models including permanent placement, contract staffing, executive search, and retained search services. Each model is tailored to meet specific client needs and project requirements.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(3)">
+                    <span class="question-text">How long has Velvet and Edge Solutions been operating?</span>
+                    <svg class="chevron" id="chevron-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </div>
+                <div class="faq-answer" id="answer-3">
+                    <div class="answer-text">
+                        Velvet and Edge Solutions has been operating for over 8 years, building a strong reputation in the HR consulting industry with a track record of successful placements and satisfied clients across multiple sectors.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+       <div class="contact-section-11">
+            <p class="contact-text-11">Have a question that's not answered here?</p>
+            <a href="/contact-page/contact.html" class="contact-button-11">Contact Us</a>
+        </div>
+
+    </div>
+
+
+    <!-- FOOTER SECTION -->
+  
+  <footer class="footer-10">
+        <div class="container-10">
+            <!-- Top Section -->
+            <div class="footer-top-10">
+                <div class="footer-logo-10">
+                    <img src="/images/V&E LOGO (1).PNG" alt="Velvet & Edge Solutions Logo" >
+                </div>
+                
+                <div class="footer-contact-10">
+                    <a href="tel:(+27) 73 843 9365 " class="contact-item-10">
+                        <svg class="contact-icon-10" viewBox="0 0 12 12">
+                            <path d="M10.77 11.4001C9.51998 11.4001 8.28498 11.1276 7.06498 10.5826C5.84498 10.0376 4.73498 9.2651 3.73498 8.2651C2.73498 7.2651 1.96248 6.1551 1.41748 4.9351C0.872476 3.7151 0.599976 2.4801 0.599976 1.2301C0.599976 1.0501 0.659976 0.900098 0.779976 0.780098C0.899976 0.660098 1.04998 0.600098 1.22998 0.600098H3.65998C3.79998 0.600098 3.92498 0.647598 4.03498 0.742598C4.14498 0.837598 4.20998 0.950098 4.22998 1.0801L4.61998 3.1801C4.63998 3.3401 4.63498 3.4751 4.60498 3.5851C4.57498 3.6951 4.51998 3.7901 4.43998 3.8701L2.98498 5.3401C3.18498 5.7101 3.42248 6.0676 3.69748 6.4126C3.97248 6.7576 4.27498 7.0901 4.60498 7.4101C4.91498 7.7201 5.23998 8.0076 5.57998 8.2726C5.91998 8.5376 6.27998 8.7801 6.65998 9.0001L8.06998 7.5901C8.15998 7.5001 8.27748 7.4326 8.42248 7.3876C8.56748 7.3426 8.70998 7.3301 8.84998 7.3501L10.92 7.7701C11.06 7.8101 11.175 7.8826 11.265 7.9876C11.355 8.0926 11.4 8.2101 11.4 8.3401V10.7701C11.4 10.9501 11.34 11.1001 11.22 11.2201C11.1 11.3401 10.95 11.4001 10.77 11.4001Z"/>
+                        </svg>
+                        (+27) 73 843 9365 
+                    </a>
+                    
+                    <a href="mailto:info@velvetandedge.co.za " class="contact-item-10">
+                        <svg class="contact-icon-10" viewBox="0 0 16 16">
+                            <path d="M2.66665 13.3332C2.29998 13.3332 1.98609 13.2026 1.72498 12.9415C1.46387 12.6804 1.33331 12.3665 1.33331 11.9998V3.99984C1.33331 3.63317 1.46387 3.31928 1.72498 3.05817C1.98609 2.79706 2.29998 2.6665 2.66665 2.6665H13.3333C13.7 2.6665 14.0139 2.79706 14.275 3.05817C14.5361 3.31928 14.6666 3.63317 14.6666 3.99984V11.9998C14.6666 12.3665 14.5361 12.6804 14.275 12.9415C14.0139 13.2026 13.7 13.3332 13.3333 13.3332H2.66665ZM7.99998 8.6665L13.3333 5.33317V3.99984L7.99998 7.33317L2.66665 3.99984V5.33317L7.99998 8.6665Z"/>
+                        </svg>
+                        info@velvetandedge.co.za
+                    </a>
+                    
+                    <div class="contact-item-10">
+                        <svg class="contact-icon-10" viewBox="0 0 16 16">
+                            <path d="M7.99996 8.00016C8.36663 8.00016 8.68052 7.86961 8.94163 7.6085C9.20274 7.34738 9.33329 7.0335 9.33329 6.66683C9.33329 6.30016 9.20274 5.98627 8.94163 5.72516C8.68052 5.46405 8.36663 5.3335 7.99996 5.3335C7.63329 5.3335 7.3194 5.46405 7.05829 5.72516C6.79718 5.98627 6.66663 6.30016 6.66663 6.66683C6.66663 7.0335 6.79718 7.34738 7.05829 7.6085C7.3194 7.86961 7.63329 8.00016 7.99996 8.00016ZM7.99996 14.6668C6.21107 13.1446 4.87496 11.7307 3.99163 10.4252C3.10829 9.11961 2.66663 7.91127 2.66663 6.80016C2.66663 5.1335 3.20274 3.80572 4.27496 2.81683C5.34718 1.82794 6.58885 1.3335 7.99996 1.3335C9.41107 1.3335 10.6527 1.82794 11.725 2.81683C12.7972 3.80572 13.3333 5.1335 13.3333 6.80016C13.3333 7.91127 12.8916 9.11961 12.0083 10.4252C11.125 11.7307 9.78885 13.1446 7.99996 14.6668Z"/>
+                        </svg>
+                       1126 Blue Hills Cnr. Madrill & Drill Street. Midrand 
+                    </div>
+                </div>
+                
+                <div class="social-links-10">
+                    <a href="https://www.facebook.com/evokehrandimmigration" class="social-link-10" target="_blank" aria-label="Facebook">
+                        <svg class="social-icon-10" viewBox="0 0 17 16">
+                            <path d="M14.8333 7.7074C14.8333 4.00301 11.8486 1 8.16667 1C4.48477 1 1.5 4.00301 1.5 7.7074C1.5 11.0552 3.93789 13.8301 7.125 14.3333V9.64627H5.43229V7.7074H7.125V6.22968C7.125 4.54864 8.12033 3.62008 9.64307 3.62008C10.3725 3.62008 11.1354 3.75109 11.1354 3.75109V5.40174H10.2948C9.46667 5.40174 9.20833 5.91881 9.20833 6.44927V7.7074H11.0573L10.7617 9.64627H9.20833V14.3333C12.3955 13.8301 14.8333 11.0553 14.8333 7.7074Z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.linkedin.com/company/evokehr-immigration/" class="social-link-10" target="_blank" aria-label="LinkedIn">
+                        <svg class="social-icon-10" viewBox="0 0 17 16">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M3.5 2.16162C2.94771 2.16162 2.5 2.60933 2.5 3.16162V13.1616C2.5 13.7139 2.94771 14.1616 3.5 14.1616H13.5C14.0523 14.1616 14.5 13.7139 14.5 13.1616V3.16162C14.5 2.60933 14.0523 2.16162 13.5 2.16162H3.5ZM6.18051 4.8301C6.18426 5.4676 5.70707 5.86041 5.14082 5.8576C4.60738 5.85479 4.14238 5.4301 4.14519 4.83104C4.14801 4.2676 4.59332 3.81479 5.17176 3.82791C5.75863 3.84104 6.18426 4.27135 6.18051 4.8301ZM8.68647 6.66946H7.00647H7.00553V12.376H8.78113V12.2429C8.78113 11.9896 8.78093 11.7363 8.78073 11.4829C8.7802 10.807 8.7796 10.1304 8.78307 9.45475C8.784 9.29069 8.79147 9.12009 8.83367 8.96349C8.99207 8.37849 9.51807 8.00069 10.1049 8.09355C10.4818 8.15255 10.7311 8.37102 10.8361 8.72635C10.9009 8.94849 10.9299 9.18755 10.9327 9.41915C10.9403 10.1176 10.9393 10.816 10.9382 11.5144C10.9378 11.761 10.9374 12.0076 10.9374 12.2542V12.3751H12.7187V12.2382C12.7187 11.9369 12.7185 11.6356 12.7183 11.3344C12.718 10.5814 12.7176 9.82835 12.7196 9.07509C12.7205 8.73475 12.684 8.39916 12.6005 8.07009C12.4759 7.58069 12.2181 7.17569 11.799 6.88322C11.5018 6.67508 11.1755 6.54102 10.8109 6.52602C10.7693 6.52429 10.7275 6.52203 10.6854 6.51976C10.4989 6.50968 10.3094 6.49944 10.1311 6.53539C9.62113 6.63758 9.17307 6.87102 8.8346 7.28255C8.79527 7.32975 8.7568 7.37769 8.6994 7.44922L8.68647 7.46542V6.66946ZM4.28776 12.3779H6.05495V6.67317H4.28776V12.3779Z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Middle Section -->
+            <div class="footer-middle-10">
+            <div class="navigation-sections-10">
+                <div class="footer-column-10">
+                    <h3>Company</h3>
+                    <div class="footer-links-10">
+                        <a href="/about" class="footer-link-10">About Us</a>
+                        <a href="/#my-process" class="footer-link-10">Vision & Mission</a>
+                        <a href="/career-opportunities" class="footer-link-10">Organisational Structure</a>
+                        <a href="/contact" class="footer-link-10">Contact</a>
+                    </div>
+                </div>
+                
+                <div class="footer-column-10">
+                    <h3>Our Services</h3>
+                    <div class="footer-links-10">
+                        <a href="/individuals#immigrate-to-canada" class="footer-link-10">Recruitment & Placements</a>
+                        <a href="/individuals#work-in-canada" class="footer-link-10">HR Consulting</a>
+                        <a href="/individuals#study-in-canada" class="footer-link-10">Change Management</a>
+                        <a href="/individuals#visit-canada" class="footer-link-10">Training & Skills Development</a>
+                        <a href="/individuals#family-sponsorship" class="footer-link-10">Workforce Planning</a>
+                    </div>
+                </div>
+                
+                <div class="footer-column-10">
+                    <h3>Industries We Serve</h3>
+                    <div class="footer-links-10">
+                        <a class="footer-link-10">IT & Communications</a>
+                        <a class="footer-link-10">Engineering & Mining</a>
+                        <a class="footer-link-10">Agriculture</a>
+                        <a class="footer-link-10">Health & Safety</a>
+                        <a class="footer-link-10">Construction</a>
+                        <a class="footer-link-10">SAP, Oracle & Microsoft Ecosystems</a>
+                    </div>
+                </div>
+            </div>
+                <div class="footer-column-10">
+                    <div class="newsletter-10">
+                        <h3>Stay up to date on everything<br>HR & Recruitment</h3>
+                        <form class="newsletter-form-10" id="newsletter-form">
+                            <input type="email" class="newsletter-input-10" placeholder="Enter your email" required>
+                            <button type="submit" class="newsletter-btn-10">Subscribe</button>
+                        </form>
+                        <p class="newsletter-disclaimer-10">By subscribing, you agree to our Privacy Policy and consent to receive updates from us.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Logo Strip 
+        <div class="logo-strip">
+            <div class="logo-carousel">
+                <div class="logo-item">
+                    <img src="https://cdn.prod.website-files.com/65d51eb143bfb48995b2811c/65dd6dae0686d071fce3f58c_evoke-hr-immigration-rcic-logo.png" alt="RCIC">
+                </div>
+                <div class="logo-item">
+                    <img src="https://cdn.prod.website-files.com/65d51eb143bfb48995b2811c/6717159a66413a7cd68bb2b3_Chilliwack%20Chamber%20Commerce.webp" alt="Chilliwack Chamber of Commerce">
+                </div>
+                <div class="logo-item">
+                    <img src="https://cdn.prod.website-files.com/65d51eb143bfb48995b2811c/65dd6daeee3822b9d0653369_evoke-hr-immigration-shrm-scp-logo.webp" alt="SHRM-SCP">
+                </div>
+                <div class="logo-item">
+                    <img src="https://cdn.prod.website-files.com/65d51eb143bfb48995b2811c/65dd6daed6a7185024ecc03e_evoke-hr-immigration-cphr-logo.webp" alt="CPHR">
+                </div>
+                <div class="logo-item">
+                    <img src="https://cdn.prod.website-files.com/65d51eb143bfb48995b2811c/6683655728d81c94734a622c_Evoke%20HR%20-%20CPHR%20Industry%20Partner%20Member.webp" alt="CPHR Industry Partner">
+                </div>
+                <div class="logo-item">
+                    <img src="https://cdn.prod.website-files.com/65d51eb143bfb48995b2811c/6716fc7fea319ed4ef6101fe_Three%20Best%20Seal%20v2.avif" alt="Three Best Rated">
+                </div>
+                 Duplicate for seamless loop 
+                <div class="logo-item">
+                    <img src="https://cdn.prod.website-files.com/65d51eb143bfb48995b2811c/65dd6dae0686d071fce3f58c_evoke-hr-immigration-rcic-logo.png" alt="RCIC">
+                </div>
+                <div class="logo-item">
+                    <img src="https://cdn.prod.website-files.com/65d51eb143bfb48995b2811c/6717159a66413a7cd68bb2b3_Chilliwack%20Chamber%20Commerce.webp" alt="Chilliwack Chamber of Commerce">
+                </div>
+                <div class="logo-item">
+                    <img src="https://cdn.prod.website-files.com/65d51eb143bfb48995b2811c/65dd6daeee3822b9d0653369_evoke-hr-immigration-shrm-scp-logo.webp" alt="SHRM-SCP">
+                </div>
+                <div class="logo-item">
+                    <img src="https://cdn.prod.website-files.com/65d51eb143bfb48995b2811c/65dd6daed6a7185024ecc03e_evoke-hr-immigration-cphr-logo.webp" alt="CPHR">
+                </div>
+                <div class="logo-item">
+                    <img src="https://cdn.prod.website-files.com/65d51eb143bfb48995b2811c/6683655728d81c94734a622c_Evoke%20HR%20-%20CPHR%20Industry%20Partner%20Member.webp" alt="CPHR Industry Partner">
+                </div>
+                <div class="logo-item">
+                    <img src="https://cdn.prod.website-files.com/65d51eb143bfb48995b2811c/6716fc7fea319ed4ef6101fe_Three%20Best%20Seal%20v2.avif" alt="Three Best Rated">
+                </div>
+            </div>
+        </div>
+        -->
+        
+        <!-- Bottom Section -->
+        <div class="footer-bottom-10">
+            <div class="container-10">
+                <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; color: white;">
+                    <p>© <span id="current-year">2025</span> Velvet & Edge Solutions. Built by Nia Diale®</sup></p>
+                    <a href="/privacy-policy"> Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <script src="/about-page/about-script.js"></script>
+</body>
+</html>

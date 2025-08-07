@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hero Contact Section</title>
+     <link rel="stylesheet" href="/contact-page/contact.css" />
+    </head>
+<body>
+<!--  NavBar-->
+ <header>
+         <nav>
+             <div class="logo" href="/Homepage/index.html">
+                      VELVET & EDGE<span>SOLUTIONS</span>
+             </div>
+                  <ul class="nav-links">
+                      <li><a href="/index.html">Home</a></li>
+                      <li><a href="/about-page/about.html">About</a></li>
+                      <li><a href="/contact-page/contact.html">Contact</a></li>
+                  </ul>
+                  <a  class="book-call-btn" id="bookCallBtn">Book a Call</a>
+                  <div class="loading-dots" id="loadingDots">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+                  <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+           </nav>
+
+<!-- Mobile Menu Overlay - EXACT recreation -->
+    <div class="mobile-menu-overlay" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <div class="mobile-menu-logo">
+                VELVET & EDGE
+                <small>SOLUTIONS</small>
+            </div>
+            <button class="close-btn-2" onclick="toggleMobileMenu()">×</button>
+        </div>
+
+        <nav class="mobile-menu-nav">
+            <a href="/index.html" onclick="toggleMobileMenu()">Home</a>
+            <a href="/about-page/about.html" onclick="toggleMobileMenu()">About</a>
+            <a href="/contact-page/contact.html" onclick="toggleMobileMenu()">Contact</a>
+        </nav>
+
+        <div class="mobile-menu-cta">
+            <button class="mobile-book-call-btn" onclick="document.getElementById('bookCallBtn').click()">Book a Call</button>
+        </div>
+
+        <div class="mobile-menu-footer">
+            <button class="social-btn facebook"></button>
+            <button class="social-btn linkedin"></button>
+        </div>
+    </div>
+
+
+
+       </header>
+
+       <!--  HEROSECTION-->
+    <div class="hero-container">
+        <div class="content-wrapper">
+            <div class="left-section">
+                <h3>Let's Talk</h3>
+                <h1>Ready to Take<br>the Next Step?</h1>
+                <p>Have a question? We're here to help!</p>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon"></div>
+                        <span> (+27) 73 843 9365 </span>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"></div>
+                        <span>info@velvetandedge.co.za</span>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"></div>
+                        <span>1126 Blue Hills Cnr. Madrill & Drill Street, Midrand </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <form>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="text" placeholder="Full Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Email Address" required>
+                        </div>
+                    </div>
+
+                    <div class="radio-group">
+                        <span style="font-size: 14px; color: #666;">I am an:</span>
+                        <div class="radio-item">
+                            <input type="radio" id="individual" name="type" value="individual" checked>
+                            <label for="individual">Individual</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="organization" name="type" value="organization">
+                            <label for="organization">Organization / Business</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <textarea placeholder="Your Message" required></textarea>
+                    </div>
+
+                   <br>
+                    <br>
+                     <br>
+                     
+
+                    <button type="submit" class="submit-btn">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+   <!-- Modal -->
+    <div class="modal-overlay time-picker" id="modalOverlay">
+        <div class="modal">
+            <button class="close-btn" id="closeBtn">&times;</button>
+            
+            <div class="modal-header">
+               
+                
+                <div class="consultant-avatar"> 
+                    <img src="/images/IMG_8956_PhotoGrid.png" alt="Logo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                </div>
+                
+                <div class="modal-title">Velvet & Edge Solutions</div>
+                <h2 class="modal-heading">Consultation Call</h2>
+                
+                <div class="duration">
+                    <div class="clock-icon"></div>
+                    5 min
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <p class="description-text">
+                    A quick call to explore your HR or recruitment needs and goals and see how we can help.
+                </p>
+
+               <div class="calendar-section">
+                    <h3>Select a Date & Time</h3>
+                    
+                    <div class="calendar-container full-width" id="calendarContainer">
+                        <div class="calendar-left">
+                            <div class="calendar-header">
+                                <button class="calendar-nav" id="prevMonth">&lt;</button>
+                                <div class="calendar-month" id="currentMonth">August 2025</div>
+                                <button class="calendar-nav" id="nextMonth">&gt;</button>
+                            </div>
+
+                            <div class="calendar-grid" id="calendarGrid">
+                                <!-- Calendar will be generated by JavaScript -->
+                            </div>
+
+                            <div class="timezone">
+                                <div class="globe-icon"></div>
+                                Central Africa Time (14:20)
+                            </div>
+                        </div>
+                        
+                        <div class="time-selection" id="timeSelection">
+                            <div class="selected-date" id="selectedDate"></div>
+                            <div class="time-slots" id="timeSlots"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay form-step">
+            <div class="modal">
+                <button class="close-btn" >&times;</button>
+                <button class="back-btn" >
+                   <span>←</span>
+
+                </button>
+                
+                <div class="modal-header">
+                   <div class="consultant-avatar"> 
+                    <img src="/images/IMG_8956_PhotoGrid.png" alt="Logo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                </div>
+                
+                <div class="modal-title">Velvet & Edge Solutions</div>
+                <h2 class="modal-heading">Consultation Call</h2>
+                    
+                    <div class="appointment-details">
+                        <div class="appointment-info">
+                            <div class="clock-icon"></div>
+                            5 min
+                        </div>
+                        <div class="appointment-info" id="appointmentDateTime">
+                            00:00 - 00:30, Friday, August 15, 2025
+                        </div>
+                        <div class="appointment-info">
+                            <div class="globe-icon"></div>
+                            Central Africa Time
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-body">
+                    <p class="description-text">
+                        A quick call to explore your HR or recruitment needs and goals and see how we can help.
+                    </p>
+                    
+                    <p class="connection-method">
+                        Choose your preferred method to connect -- phone call or video conference.
+                    </p>
+
+                    <form id="bookingForm">
+                        <h3 class="form-title">Enter Details</h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label required">First Name</label>
+                                <input type="text" class="form-input" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label required">Last Name</label>
+                                <input type="text" class="form-input" name="lastName" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label required">Email</label>
+                            <input type="email" class="form-input" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="button" class="add-guests-btn" onclick="alert('Add guests functionality')">Add Guests</button>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label required">Location</label>
+                            <div class="radio-group">
+                                <div class="radio-option">
+                                    <input type="radio" class="radio-input" name="platform" value="teams" id="teams">
+                                    <label for="teams" class="radio-label">
+                                        <div class="platform-icon teams-icon">T</div>
+                                        Microsoft Teams
+                                    </label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" class="radio-input" name="platform" value="zoom" id="zoom">
+                                    <label for="zoom" class="radio-label">
+                                        <div class="platform-icon zoom-icon">Z</div>
+                                        Zoom
+                                    </label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" class="radio-input" name="platform" value="phone" id="phone">
+                                    <label for="phone" class="radio-label">
+                                        <div class="platform-icon phone-icon" style="color: black;">📞</div>
+                                        Phone call
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label required">Phone Number</label>
+                            <div class="phone-input-container">
+                                <div class="country-flag">🇿🇦</div>
+                                <input type="tel" class="phone-number-input" name="phoneNumber" placeholder="Phone number" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Business Name (if applicable)</label>
+                            <textarea class="form-textarea" name="businessName" rows="3"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label required">Please share an overview regarding the support you are seeking.</label>
+                            <textarea class="form-textarea" name="supportOverview" rows="4" required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Please share anything that will help prepare for our meeting.</label>
+                            <textarea class="form-textarea" name="additionalInfo" rows="4"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label required">How did you hear about Evoke HR & Immigration?</label>
+                            <div class="radio-group">
+                                <div class="radio-option">
+                                    <input type="radio" class="radio-input" name="referralSource" value="google" id="google">
+                                    <label for="google" class="radio-label">Google</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" class="radio-input" name="referralSource" value="linkedin" id="linkedin">
+                                    <label for="linkedin" class="radio-label">LinkedIn</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" class="radio-input" name="referralSource" value="referral" id="referral">
+                                    <label for="referral" class="radio-label">Referral</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" class="radio-input" name="referralSource" value="other" id="other">
+                                    <label for="other" class="radio-label">Other</label>
+                                </div>
+                            </div>
+                            <div class="custom-input" id="customInput">
+                                <input type="text" class="form-input" name="otherSource" placeholder="Please specify">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">If Referral, please share who referred you.</label>
+                            <input type="text" class="form-input" name="referralPerson" placeholder="Referral source">
+                        </div>
+
+                        <div class="terms-text">
+                            By proceeding, you confirm that you have read and agree to 
+                            <a href="#" onclick="alert('Terms of Use')">Calendly's Terms of Use</a> and 
+                            <a href="#" onclick="alert('Privacy Notice')">Privacy Notice</a>.
+                        </div>
+
+                        <button type="submit" class="submit-btn">Schedule Event</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<script src="/contact-page/contact.js"></script>
+
+    
+</body>
+</html>
