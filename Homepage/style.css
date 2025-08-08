@@ -13,9 +13,9 @@
         }
 
         .container {
-            max-width: 2500px;
+            max-width: none;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 40px;
         }
 
         /* Header */
@@ -191,32 +191,74 @@ html {
     margin-right: 20px;
 }
 
-        /* Hero Section - Exactly like Image 1 */
-  .hero {
-    max-width: 3000px;
-    margin: 0 auto;
-    height: 600px;
-    justify-content: center;
-    border-radius: 25px;
-    overflow: hidden;
-    
-    position: relative;
+       /* Hero Section - Exactly like Image 1 */
+
+ .container-90 {
+            display: flex;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+            max-width: 1500px;
+            margin: 0 auto;
+            background: white;
+        }
+
+
+.content-90 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    width: 100%;
+    align-items: center;
+    }
+
+.text-section-90 {
+    padding-right: 2rem;
 }
 
-.hero-container {
-    width: 100%;
-    background: transparent;
-    border-radius: 25px;
-    display: grid;
-    grid-template-columns: 47% 52%;  /* Extended content area */
-      grid-template-rows: 3fr 1fr;
-    min-height: 600px;
-    overflow: hidden;
-    height: 100%;
+
+.geometric-section-90 {
     position: relative;
-    
-    animation: fadeInScale 1.2s ease 0.1s both;
+    height: 35rem;
+    width: 130%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-bottom: 150px;
+    margin-left: -170px;
 }
+
+.hero-image-section-90 {
+    width: 100%;
+    height: 100%;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px -10px hsl(330 65% 58% / 0.15);
+    overflow: hidden;
+}
+
+.hero-image-90 {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    border-radius: 1rem;
+    transform: scale(0.95);
+    animation: fadeInScale 1s ease 0.8s forwards;
+    border-radius: 0.5rem;
+     opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+}
+
+
+ 
+
 
 .hero-content {
    padding: 50px 40px 30px 60px;
@@ -227,31 +269,11 @@ html {
     justify-content: center;
     border-top-left-radius: 25px;
     position: relative;
-    background:white;
+    margin-top: -100px; /* Changed from -190px to move down */
+    transform: translateY(0px); /* Changed from -60px to move down */
 }
 
-.hero-image-section {
-    background:  white;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    position: relative;
-    overflow: hidden;
-    border-top-right-radius: 25px;
-    border-bottom-right-radius: 25px;
-    grid-row: 1 / 3;
-    grid-column: 2 / 3;
-    padding: 0;
-}
 
-.hero-image {
-    width: 120%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    transform: scale(0.95) translateX(20px); 
-    animation: fadeInScale 1s ease 0.8s forwards;
-}
 
 .location-tag {
    background: #FDF2F8;
@@ -342,7 +364,7 @@ html {
 
 
 .description-section {
-    background: white;
+   
      padding: 10px 60px; 
     grid-column: 1 / 2;
     grid-row: 2;
@@ -351,14 +373,16 @@ html {
     justify-content: center;
     position: relative;
     border-bottom-left-radius: 0; /* Remove border radius for full-screen effect */
-   
+  margin-bottom: 50px; /* Changed from -90px to give space for button */
+     transform: translateY(160px); /* Changed from 100px to move down less */
+    min-height: 200px; /* Add minimum height for the button */
 }
 .description {
     color: #333333;
     font-size: 25px;
     font-weight: 400;
     line-height: 1.6;
-    margin-bottom: 50px;
+     margin-bottom: 80px;
     opacity: 0;
     transform: translateY(30px);
     animation: slideUp 1s ease 0.1s forwards;
@@ -370,9 +394,10 @@ html {
 
 /* Repositioned CTA Button */
 .floating-cta {
-    position: absolute;
-    bottom: 40px;
-    right: -60px; /* Position it between description and image */
+   position: absolute;
+    bottom: 60px; /* Distance from bottom of container */
+    left: 40%; /* Center horizontally */
+    transform: translateX(-50%); /* Perfect center alignment */
     background: linear-gradient(135deg, hsl(330 65% 58%) 0%, hsl(330 65% 52%) 100%);
     color: white;
     padding: 16px 32px;
@@ -386,14 +411,19 @@ html {
     z-index: 20;
     transition: all 0.3s ease;
     white-space: nowrap;
+
+    /* Add these properties to control size */
+    display: inline-block;
+    width: auto;
+    min-width: fit-content;
+    max-width: 150px; /* Prevents it from getting too wide */
+    text-align: center;
 }
 
 .floating-cta:hover {
     transform: translateY(-1px);
     box-shadow: 0 15px 40px -10px hsl(330 65% 58% / 0.4);
 }
-
-
 
 
 /* Animations */
@@ -660,6 +690,323 @@ html {
     }
 }
 
+/* MacBook Pro 16" (2560px and above) */
+@media (min-width: 2560px) {
+    .hero {
+        max-width: 2400px;
+        height: 800px;
+        margin: 40px auto;
+    }
+
+    .hero-container {
+        grid-template-columns: 50% 50%;
+        min-height: 800px;
+        max-width: 2400px;
+        margin: 0 auto;
+        margin-bottom: -190px;
+    }
+
+    .hero-content {
+        padding: 80px 60px 40px 80px;
+        justify-content: center;
+    }
+
+    .location-tag {
+        font-size: 16px;
+        padding: 10px 20px;
+        margin-top: -180px;
+        margin-bottom: -30px;
+    }
+
+    .main-heading,
+    .sub-heading,
+    .second-sub-heading {
+        font-size: 85px;
+        line-height: 1.05;
+        margin-bottom: -50px;
+    }
+
+    .main-heading {
+        margin-top: 40px;
+    }
+
+    .sub-heading {
+        margin-top: 95px;
+    }
+
+    .second-sub-heading {
+        margin-top: 95px;
+        margin-bottom: -120px;
+    }
+
+    .description-section {
+        padding: 20px 80px 60px;
+    }
+
+    .description {
+        font-size: 28px;
+        line-height: 1.7;
+        margin-bottom: 60px;
+    }
+
+    .hero-image-section {
+        padding: 40px;
+    }
+
+    .hero-image {
+        width: 110%;
+        height: 110%;
+        transform: scale(1.1) translateX(10px);
+    }
+
+    .floating-cta {
+        right: -80px;
+        bottom: 60px;
+        padding: 20px 40px;
+        font-size: 18px;
+    }
+}
+
+/* MacBook Pro 14" (1512px - 2559px) */
+@media (min-width: 1512px) and (max-width: 2559px) {
+     .hero {
+        max-width: 95vw; /* Use viewport width for maximum width */
+        width: 95vw;
+        height: 1000px;
+        margin: 30px auto;
+    }
+
+    .hero-container {
+        grid-template-columns: 52% 48%;
+        min-height: 1000px;
+        width: 100%;
+        max-width: none; /* Remove any width restrictions */
+        margin-bottom: -20px;
+    }
+
+    .hero-content {
+        padding: 70px 50px 35px 70px;
+        justify-content: center;
+    }
+
+    .location-tag {
+        font-size: 15px;
+        padding: 9px 18px;
+        margin-top: -160px;
+        margin-bottom: -25px;
+    }
+
+    .main-heading,
+    .sub-heading,
+    .second-sub-heading {
+        font-size: 75px;
+        line-height: 1.08;
+        margin-bottom: -45px;
+    }
+
+    .main-heading {
+        margin-top: 35px;
+    }
+
+    .sub-heading {
+        margin-top: 90px;
+    }
+
+    .second-sub-heading {
+        margin-top: 90px;
+        margin-bottom: -110px;
+    }
+
+    .description-section {
+        padding: 15px 70px 50px;
+    }
+
+    .description {
+        font-size: 26px;
+        line-height: 1.6;
+        margin-bottom: 55px;
+    }
+
+    .hero-image-section {
+        padding: 30px;
+    }
+
+    .hero-image {
+        width: 115%;
+        height: 105%;
+        transform: scale(1.05) translateX(15px);
+    }
+
+    .floating-cta {
+        right: -70px;
+        bottom: 50px;
+        padding: 18px 36px;
+        font-size: 17px;
+    }
+}
+
+/* MacBook Pro 13" (1280px - 1511px) */
+@media (min-width: 1280px) and (max-width: 1511px) {
+    .hero {
+        max-width: 1200px;
+        height: 650px;
+        margin: 20px auto;
+    }
+
+    .hero-container {
+        grid-template-columns: 54% 46%;
+        min-height: 650px;
+    }
+
+    .hero-content {
+        padding: 60px 45px 30px 60px;
+        justify-content: center;
+    }
+
+    .location-tag {
+        font-size: 14px;
+        padding: 8px 16px;
+        margin-top: -140px;
+        margin-bottom: -20px;
+    }
+
+    .main-heading,
+    .sub-heading,
+    .second-sub-heading {
+        font-size: 65px;
+        line-height: 1.1;
+        margin-bottom: -40px;
+    }
+
+    .main-heading {
+        margin-top: 30px;
+    }
+
+    .sub-heading {
+        margin-top: 80px;
+    }
+
+    .second-sub-heading {
+        margin-top: 80px;
+        margin-bottom: -100px;
+    }
+
+    .description-section {
+        padding: 10px 60px 45px;
+    }
+
+    .description {
+        font-size: 24px;
+        line-height: 1.6;
+        margin-bottom: 50px;
+    }
+
+    .hero-image-section {
+        padding: 25px;
+    }
+
+    .hero-image {
+        width: 120%;
+        height: 100%;
+        transform: scale(1) translateX(20px);
+    }
+
+    .floating-cta {
+        right: -60px;
+        bottom: 45px;
+        padding: 16px 32px;
+        font-size: 17px;
+    }
+}
+
+/* Standard Desktop (1025px - 1279px) */
+@media (min-width: 1025px) and (max-width: 1279px) {
+    .hero {
+        max-width: 1000px;
+        height: 600px;
+        margin: 15px auto;
+    }
+
+    .hero-container {
+        grid-template-columns: 56% 44%;
+        min-height: 600px;
+    }
+
+    .hero-content {
+        padding: 50px 40px 25px 50px;
+    }
+
+    .location-tag {
+        margin-top: -120px;
+        margin-bottom: -15px;
+    }
+
+    .main-heading,
+    .sub-heading,
+    .second-sub-heading {
+        font-size: 58px;
+        margin-bottom: -35px;
+    }
+
+    .main-heading {
+        margin-top: 25px;
+    }
+
+    .sub-heading {
+        margin-top: 75px;
+    }
+
+    .second-sub-heading {
+        margin-top: 75px;
+        margin-bottom: -90px;
+    }
+
+    .description-section {
+        padding: 5px 50px 40px;
+    }
+
+    .description {
+        font-size: 22px;
+        margin-bottom: 45px;
+    }
+
+    .hero-image {
+        width: 125%;
+        height: 95%;
+    }
+
+    .floating-cta {
+        right: -50px;
+        bottom: 40px;
+    }
+}
+
+/* Ensure proper centering for all MacBook sizes */
+@media (min-width: 1025px) {
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .hero {
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        border-radius: 25px;
+    }
+
+    /* Better image positioning and scaling */
+    .hero-image-section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    .hero-image {
+        object-fit: cover;
+        object-position: center center;
+    }
+}
 
 
 
