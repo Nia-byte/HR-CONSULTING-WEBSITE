@@ -475,6 +475,79 @@ html {
     }
 }
 
+@media (max-width: 430px){
+
+     /* Image section - move to top under navbar */
+    .geometric-section {
+        height: 300px;
+        width: 100%;
+        margin: 20px 0;
+        margin-left: 0;
+        margin-top: 80px;
+    }
+
+   .hero-image-section {
+        width: 100%;
+        height: 90%;
+        border-radius: 15px;
+    }
+
+    .hero-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 15px;
+    }
+
+     .main-heading {
+        font-size: 2.5rem;
+        margin-left: 0;
+        margin-top: 0px;
+        text-align: center;
+        position: static; /* Reset any positioning */
+        top: auto;
+    }
+    
+    .cta-button {
+        margin-left: 0;
+        display: inline-block;
+       
+        top: -200px; /* Moves button up without affecting layout flow */
+        margin-top: 0; /* Reset margin-top */
+    }
+    
+
+}
+
+
+/* Mobile devices - 390px */
+@media (max-width: 390px) {
+  .hero-image-section {
+        width: 100%;
+        height: 80%;
+        border-radius: 15px;
+    }
+
+ .main-heading {
+        font-size: 2.5rem;
+        margin-left: 0;
+        margin-top: 0px;
+        text-align: center;
+        position: static; /* Reset any positioning */
+        top: auto;
+    }
+    
+    .cta-button {
+        margin-left: 0;
+        display: inline-block;
+        top: -200px; /* Moves button up without affecting layout flow */
+        margin-top: 0; /* Reset margin-top */
+    }
+}
+
+
+
+
 
 
 
