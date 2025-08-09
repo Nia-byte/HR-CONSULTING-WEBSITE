@@ -1367,6 +1367,7 @@ html {
     .container-5 {
         padding: 20px 10px;
         gap: 30px;
+        margin-bottom: 60px;
     }
     
     .main-title-5 {
@@ -1931,6 +1932,10 @@ html {
         }
 
         @media (max-width: 480px) {
+
+              .hr-consulting-container  {
+                margin-top: 100px !important;
+             }
             .hr-consulting-title {
                 font-size: 2rem;
             }
@@ -3644,18 +3649,7 @@ html {
 
         }
 
-        /* Decorative curved arrow - EXACT from image */
-        .mobile-menu-cta::after {
-            content: '';
-            position: absolute;
-            top: -30px;
-            right: -10px;
-            width: 120px;
-            height: 80px;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" fill="none"><path d="M20 60 Q60 20 100 45" stroke="white" stroke-width="2.5" fill="none" opacity="0.8"/><path d="M92 38 L100 45 L95 52" stroke="white" stroke-width="2.5" fill="none" opacity="0.8"/></svg>');
-            background-repeat: no-repeat;
-            background-size: contain;
-        }
+       
 
         /* Social media buttons - EXACT styling from image */
         .mobile-menu-footer {
