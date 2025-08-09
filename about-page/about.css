@@ -546,6 +546,52 @@ html {
 }
 
 
+/* MacBook Pro 14" (1512px - 2559px) */
+@media (min-width: 1512px) and (max-width: 2559px) {
+
+     .container {
+        padding: 1rem;
+        margin-top: 190px;
+        height: 900px;
+    }
+     .hero-image-section {
+        width: 100%;
+        height: 100%;
+        border-radius: 15px;
+    }
+
+    .hero-image {
+        width: 100%;
+        height: 100%;
+        object-fit: fill ;
+        border-radius: 15px;
+    }
+
+     .main-heading {
+        font-size: 3.6rem;
+        margin-left: 0;
+        margin-top: 0px;
+        text-align: center;
+        position: static; /* Reset any positioning */
+        top: auto;
+    }
+    
+    .cta-button {
+        margin-left: 0;
+        display: inline-block;
+        top: -200px; /* Moves button up without affecting layout flow */
+        margin-top: 0; /* Reset margin-top */
+        left: 310px !important;
+    }
+
+    .container-2{
+        width: 4000px !important;
+    }
+
+
+}
+
+
 
 
 
