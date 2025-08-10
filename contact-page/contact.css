@@ -450,7 +450,466 @@ html {
         padding: 8px 10px;
     }
 
-        }
+}
+
+/* Mobile devices - 430px and below */
+@media (max-width: 430px) {
+    .hero-container {
+        padding: 30px 20px;
+        margin: 10px;
+        border-radius: 16px;
+    }
+    
+    .content-wrapper {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .left-section h1 {
+        font-size: 36px;
+        line-height: 1.2;
+    }
+    
+    .form-section {
+        padding: 20px;
+        border-radius: 12px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-bottom: 15px;
+    }
+    
+    .form-group {
+        width: 100%;
+    }
+    
+    input, textarea {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 12px 14px;
+        font-size: 14px;
+    }
+    
+    textarea {
+        min-height: 80px;
+    }
+    
+    .radio-group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 15px;
+    }
+    
+    .captcha {
+        flex-wrap: wrap;
+        margin: 15px 0;
+    }
+    
+    .submit-btn {
+        width: 100%;
+        padding: 14px;
+        font-size: 15px;
+    }
+}
+
+/* iPhone 14 Pro Max - 430px */
+@media (max-width: 430px) and (min-width: 415px) {
+    .hero-container {
+        padding: 35px 25px;
+    }
+    
+    .left-section h1 {
+        font-size: 38px;
+    }
+    
+    .form-section {
+        padding: 22px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    input, textarea {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 12px 14px;
+    }
+}
+
+/* iPhone 12 Pro, 13 Pro - 390px */
+@media (max-width: 414px) and (min-width: 391px) {
+    .hero-container {
+        padding: 30px 20px;
+    }
+    
+    .left-section h1 {
+        font-size: 34px;
+    }
+    
+    .contact-info {
+        gap: 10px;
+    }
+    
+    .form-section {
+        padding: 18px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-bottom: 15px;
+    }
+    
+    input, textarea {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 11px 14px;
+        font-size: 14px;
+    }
+    
+    .radio-group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    
+    .submit-btn {
+        width: 100%;
+        padding: 13px;
+    }
+}
+
+/* iPhone 6/7/8 Plus - 414px */
+@media (max-width: 414px) and (min-width: 376px) {
+    .hero-container {
+        padding: 32px 22px;
+    }
+    
+    .left-section h1 {
+        font-size: 36px;
+    }
+    
+    .form-section {
+        padding: 20px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-bottom: 15px;
+    }
+    
+    input, textarea {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 12px 14px;
+        font-size: 14px;
+    }
+    
+    .radio-group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    
+    .submit-btn {
+        width: 100%;
+        padding: 14px;
+    }
+}
+
+/* iPhone X/11/12/13 - 375px */
+@media (max-width: 375px) and (min-width: 361px) {
+    .hero-container {
+        padding: 25px 18px;
+    }
+    
+    .left-section h1 {
+        font-size: 32px;
+        margin-bottom: 25px;
+    }
+    
+    .left-section p {
+        font-size: 15px;
+        margin-bottom: 30px;
+    }
+    
+    .form-section {
+        padding: 16px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin-bottom: 14px;
+    }
+    
+    input, textarea {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 11px 13px;
+        font-size: 14px;
+    }
+    
+    textarea {
+        min-height: 75px;
+    }
+    
+    .radio-group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 14px;
+    }
+    
+    .captcha {
+        margin: 14px 0;
+        flex-wrap: wrap;
+    }
+    
+    .submit-btn {
+        width: 100%;
+        padding: 13px;
+        font-size: 15px;
+    }
+}
+
+/* Samsung Galaxy S8+ - 360px */
+@media (max-width: 360px) and (min-width: 321px) {
+    .hero-container {
+        padding: 25px 16px;
+    }
+    
+    .left-section h1 {
+        font-size: 30px;
+    }
+    
+    .left-section h3 {
+        font-size: 15px;
+    }
+    
+    .contact-item {
+        font-size: 13px;
+    }
+    
+    .form-section {
+        padding: 15px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin-bottom: 12px;
+    }
+    
+    input, textarea {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+    
+    textarea {
+        min-height: 70px;
+    }
+    
+    .radio-group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 12px;
+    }
+    
+    .radio-group label {
+        font-size: 13px;
+    }
+    
+    .captcha {
+        margin: 12px 0;
+        flex-wrap: wrap;
+    }
+    
+    .captcha-text {
+        font-size: 13px;
+    }
+    
+    .submit-btn {
+        width: 100%;
+        padding: 12px;
+        font-size: 14px;
+    }
+}
+
+/* iPhone 5/SE - 320px */
+@media (max-width: 320px) {
+    .hero-container {
+        padding: 20px 15px;
+        margin: 5px;
+        border-radius: 12px;
+    }
+    
+    .content-wrapper {
+        gap: 25px;
+    }
+    
+    .left-section h1 {
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+    
+    .left-section h3 {
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+    
+    .left-section p {
+        font-size: 14px;
+        margin-bottom: 25px;
+    }
+    
+    .form-section {
+        padding: 12px;
+        width: 100%;
+        box-sizing: border-box;
+        border-radius: 10px;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        margin-bottom: 10px;
+    }
+    
+    .form-group {
+        width: 100%;
+        margin-bottom: 8px;
+    }
+    
+    .contact-info {
+        gap: 8px;
+    }
+    
+    .contact-item {
+        font-size: 12px;
+    }
+    
+    .contact-icon {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .contact-icon::after {
+        width: 6px;
+        height: 6px;
+    }
+    
+    input, textarea {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 10px 12px;
+        font-size: 13px;
+        border-radius: 6px;
+    }
+    
+    textarea {
+        min-height: 65px;
+    }
+    
+    .submit-btn {
+        width: 100%;
+        padding: 12px 20px;
+        font-size: 14px;
+        border-radius: 6px;
+    }
+    
+    .captcha {
+        margin: 10px 0;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .captcha-text {
+        font-size: 12px;
+    }
+    
+    .captcha-box {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .radio-group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        margin-bottom: 10px;
+    }
+    
+    .radio-group label {
+        font-size: 12px;
+    }
+    
+    .radio-item {
+        gap: 6px;
+    }
+    
+    .radio-item input[type="radio"] {
+        width: 14px;
+        height: 14px;
+    }
+}
+
+/* Pixel 6 Pro - 412px */
+@media (max-width: 412px) and (min-width: 391px) {
+    .hero-container {
+        padding: 30px 20px;
+    }
+    
+    .left-section h1 {
+        font-size: 35px;
+    }
+    
+    .form-section {
+        padding: 18px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-bottom: 15px;
+    }
+    
+    input, textarea {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 12px 14px;
+        font-size: 14px;
+    }
+    
+    .radio-group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    
+    .submit-btn {
+        width: 100%;
+        padding: 14px;
+    }
+}
 
 
 
@@ -1032,15 +1491,15 @@ html {
         }
 
         .teams-icon {
-            background-color: #464EB8;
+            background-color: white;
         }
 
         .zoom-icon {
-            background-color: #2D8CFF;
+            background-color: white;
         }
 
         .phone-icon {
-            background-color: #34C759;
+            background-color: white;
         }
 
         .add-guests-btn {
@@ -1132,6 +1591,350 @@ html {
         .custom-input.show {
             display: block;
         }
+
+                
+/* Large Mobile (430px) */
+@media (max-width: 430px) {
+    .modal {
+        width: 95vw;
+        max-width: 95vw;
+        margin: 10px;
+        border-radius: 12px;
+    }
+    
+    .modal-header, .modal-body {
+        padding: 20px;
+    }
+    
+    .modal-heading {
+        font-size: 24px;
+    }
+    
+    .calendar-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .calendar-container.show-times .time-selection {
+        width: 100%;
+        opacity: 1;
+    }
+    
+    .form-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .close-btn, .back-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+}
+
+/* iPhone 12 Pro (390px) */
+@media (max-width: 390px) {
+    .modal {
+        width: 96vw;
+        border-radius: 10px;
+    }
+    
+    .modal-header, .modal-body {
+        padding: 18px;
+    }
+    
+    .modal-heading {
+        font-size: 22px;
+    }
+    
+    .consultant-avatar {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+    
+    .calendar-grid {
+        gap: 1px;
+    }
+    
+    .calendar-day {
+        width: 28px;
+        height: 28px;
+        font-size: 13px;
+    }
+    
+    .time-slot {
+        padding: 10px 14px;
+        font-size: 15px;
+    }
+    
+    .form-input, .form-textarea {
+        padding: 10px 14px;
+        font-size: 15px;
+    }
+}
+
+/* iPhone 6/7/8 Plus (414px) */
+@media (max-width: 414px) {
+    .modal {
+        width: 95vw;
+        border-radius: 12px;
+    }
+    
+    .modal-logo {
+        font-size: 22px;
+    }
+    
+    .calendar-header {
+        margin-bottom: 15px;
+    }
+    
+    .calendar-month {
+        font-size: 16px;
+    }
+    
+    .form-title {
+        font-size: 22px;
+        margin-bottom: 25px;
+    }
+    
+    .submit-btn {
+        padding: 12px 28px;
+        font-size: 15px;
+    }
+}
+
+/* iPhone 6/7/8 (375px) */
+@media (max-width: 375px) {
+    .modal {
+        width: 97vw;
+        border-radius: 8px;
+    }
+    
+    .modal-header, .modal-body {
+        padding: 16px;
+    }
+    
+    .modal-heading {
+        font-size: 20px;
+        margin-bottom: 12px;
+    }
+    
+    .consultant-avatar {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+        margin-bottom: 12px;
+    }
+    
+    .calendar-day {
+        width: 26px;
+        height: 26px;
+        font-size: 12px;
+    }
+    
+    .time-slot {
+        padding: 9px 12px;
+        font-size: 14px;
+    }
+    
+    .time-slot.with-next {
+        padding-right: 70px;
+    }
+    
+    .next-button {
+        padding: 5px 10px;
+        font-size: 12px;
+        right: 6px;
+    }
+    
+    .form-input, .form-textarea {
+        padding: 9px 12px;
+        font-size: 14px;
+    }
+    
+    .close-btn, .back-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+        top: 15px;
+    }
+    
+    .close-btn {
+        right: 15px;
+    }
+    
+    .back-btn {
+        left: 15px;
+    }
+}
+
+/* Small Mobile (320px) */
+@media (max-width: 320px) {
+    .modal {
+        width: 98vw;
+        max-height: 95vh;
+        border-radius: 6px;
+    }
+    
+    .modal-header, .modal-body {
+        padding: 14px;
+    }
+    
+    .modal-logo {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+    
+    .modal-heading {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+    
+    .consultant-avatar {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+    
+    .calendar-day {
+        width: 24px;
+        height: 24px;
+        font-size: 11px;
+        margin: 1px auto;
+    }
+    
+    .calendar-day-header {
+        font-size: 10px;
+        padding: 6px 2px;
+    }
+    
+    .time-slot {
+        padding: 8px 10px;
+        font-size: 13px;
+    }
+    
+    .time-slot.with-next {
+        padding-right: 60px;
+    }
+    
+    .next-button {
+        padding: 4px 8px;
+        font-size: 11px;
+        right: 4px;
+    }
+    
+    .form-title {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .form-input, .form-textarea {
+        padding: 8px 10px;
+        font-size: 13px;
+    }
+    
+    .submit-btn {
+        padding: 10px 24px;
+        font-size: 14px;
+    }
+    
+    .close-btn, .back-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+        top: 12px;
+    }
+    
+    .close-btn {
+        right: 12px;
+    }
+    
+    .back-btn {
+        left: 12px;
+    }
+    
+    .appointment-details {
+        padding: 12px;
+        flex-direction: column;
+        gap: 8px;
+        font-size: 12px;
+    }
+    
+    .phone-input-container {
+        flex-direction: column;
+    }
+    
+    .country-flag {
+        border-right: none;
+        border-bottom: 1px solid #e0e0e0;
+        text-align: center;
+    }
+}
+
+/* Pixel 2 XL (412px) */
+@media (max-width: 412px) {
+    .modal {
+        width: 95vw;
+    }
+    
+    .calendar-container {
+        gap: 16px;
+    }
+    
+    .form-group {
+        margin-bottom: 18px;
+    }
+}
+
+/* Galaxy S8+ (360px) */
+@media (max-width: 360px) {
+    .modal {
+        width: 98vw;
+        border-radius: 8px;
+    }
+    
+    .modal-header, .modal-body {
+        padding: 15px;
+    }
+    
+    .modal-heading {
+        font-size: 19px;
+    }
+    
+    .calendar-day {
+        width: 25px;
+        height: 25px;
+        font-size: 12px;
+    }
+    
+    .time-slot {
+        padding: 8px 11px;
+        font-size: 13px;
+    }
+    
+    .form-input, .form-textarea {
+        padding: 8px 11px;
+        font-size: 14px;
+    }
+    
+    .close-btn, .back-btn {
+        width: 34px;
+        height: 34px;
+        font-size: 15px;
+        top: 14px;
+    }
+    
+    .close-btn {
+        right: 14px;
+    }
+    
+    .back-btn {
+        left: 14px;
+    }
+}
+
 
 
 
@@ -1232,7 +2035,8 @@ html {
         /* Call to action section - EXACT positioning from image */
         .mobile-menu-cta {
             margin-top: auto;
-            margin-bottom: 100px;
+            margin-bottom: 200px;
+            left: -50px;
             position: relative;
         }
 
@@ -1250,24 +2054,12 @@ html {
 
         }
 
-        /* Decorative curved arrow - EXACT from image */
-        .mobile-menu-cta::after {
-            content: '';
-            position: absolute;
-            top: -30px;
-            right: -10px;
-            width: 120px;
-            height: 80px;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" fill="none"><path d="M20 60 Q60 20 100 45" stroke="white" stroke-width="2.5" fill="none" opacity="0.8"/><path d="M92 38 L100 45 L95 52" stroke="white" stroke-width="2.5" fill="none" opacity="0.8"/></svg>');
-            background-repeat: no-repeat;
-            background-size: contain;
-        }
-
+      
         /* Social media buttons - EXACT styling from image */
         .mobile-menu-footer {
             display: flex;
             gap: 12px;
-            margin-bottom: 20px;
+            margin-bottom: 60px;
         }
 
         .social-btn {
@@ -1283,6 +2075,7 @@ html {
             justify-content: center;
             font-size: 18px;
             font-weight: bold;
+            margin-top: -130px;
         }
 
         .social-btn.facebook::before {
@@ -1345,6 +2138,60 @@ html {
     }
 }
 
+
+/* Large Mobile (414px) */
+@media (min-width: 414px) {
+     .mobile-menu-cta {
+            margin-bottom: 300px;
+            left: -40px;
+        }
+
+        .mobile-book-call-btn {
+         
+            margin-left: 150px;
+
+        } 
+
+          .social-btn {
+            margin-top: -200px;
+        }
+}
+
+/*  Mobile (390px) */
+@media (max-width: 390px) {
+     .mobile-menu-cta {
+            margin-bottom: 200px;
+            left: -50px;
+        }
+
+        .mobile-book-call-btn {
+         
+            margin-left: 150px;
+
+        } 
+
+          .social-btn {
+            margin-top: -150px;
+        }
+}
+
+/* Large Mobile (430px) */
+@media (min-width: 430px) {
+     .mobile-menu-cta {
+            margin-bottom: 300px;
+            left: -30px;
+        }
+
+        .mobile-book-call-btn {
+         
+            margin-left: 150px;
+
+        } 
+
+          .social-btn {
+            margin-top: -160px;
+        }
+}
 
         
 
