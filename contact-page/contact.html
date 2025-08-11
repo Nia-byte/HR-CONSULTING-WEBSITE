@@ -164,7 +164,7 @@
 
                             <div class="timezone">
                                 <div class="globe-icon"></div>
-                                Central Africa Time (14:20)
+                                Central Africa Time
                             </div>
                         </div>
                         
@@ -332,17 +332,49 @@
                         </div>
 
                         <div class="terms-text">
-                            By proceeding, you confirm that you have read and agree to 
-                            <a href="#" onclick="alert('Terms of Use')">Calendly's Terms of Use</a> and 
+                            By proceeding, you confirm that you have read and agree to the 
                             <a href="#" onclick="alert('Privacy Notice')">Privacy Notice</a>.
                         </div>
 
                         <button type="submit" class="submit-btn">Schedule Event</button>
                     </form>
                 </div>
+
+
             </div>
         </div>
     </div>
+
+    
+<!-- Success Modal HTML - Add this to your existing HTML -->
+<div class="modal-overlay success-modal">
+    <div class="success-modal-content">
+        <div class="success-header">
+             <div class="consultant-avatar"> 
+                    <img src="/images/IMG_8956_PhotoGrid.png" alt="Logo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                </div>
+            <div class="success-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10" fill="#4CAF50"/>
+                    <path d="M9 12l2 2 4-4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <h2>Consultation scheduled</h2>
+            <p class="success-subtitle">Booking details has been sent to your email address.</p>
+            <button class="open-invitation-btn">
+                Open Email
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                    <polyline points="15,3 21,3 21,9"/>
+                    <line x1="10" y1="14" x2="21" y2="3"/>
+                </svg>
+            </button>
+        </div>
+        
+   
+    
+    </div>
+</div>
 
 
 <script src="/contact-page/contact.js"></script>
