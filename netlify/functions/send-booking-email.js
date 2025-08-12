@@ -4,6 +4,14 @@ const sgMail = require('@sendgrid/mail');
 
 exports.handler = async (event, context) => {
 
+    // Add detailed logging at the start
+  console.log('=== FUNCTION CALLED ===');
+  console.log('Method:', event.httpMethod);
+  console.log('Headers:', JSON.stringify(event.headers, null, 2));
+  console.log('Query params:', event.queryStringParameters);
+  console.log('Body:', event.body);
+  console.log('Body type:', typeof event.body);
+
 // Add this temporary code in your function (before the main logic)
 if (event.httpMethod === 'GET' && event.queryStringParameters?.test === 'apikey') {
   try {
@@ -37,7 +45,19 @@ if (event.httpMethod === 'GET' && event.queryStringParameters?.test === 'apikey'
   }
 }
 
-
+// Test POST handling
+if (event.httpMethod === 'GET' && event.queryStringParameters?.test === 'post') {
+  return {
+    statusCode: 200,
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ 
+      message: 'Function is receiving requests correctly',
+      method: event.httpMethod,
+      hasBody: !!event.body,
+      contentType: event.headers['content-type'] || 'not set'
+    })
+  };
+}
 
 
   // Set CORS headers
