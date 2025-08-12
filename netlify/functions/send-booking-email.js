@@ -1,5 +1,9 @@
 const sgMail = require('@sendgrid/mail');
 
+
+
+exports.handler = async (event, context) => {
+
 // Add this temporary code in your function (before the main logic)
 if (event.httpMethod === 'GET' && event.queryStringParameters?.test === 'apikey') {
   try {
@@ -33,7 +37,9 @@ if (event.httpMethod === 'GET' && event.queryStringParameters?.test === 'apikey'
   }
 }
 
-exports.handler = async (event, context) => {
+
+
+
   // Set CORS headers
   const headers = {
     'Access-Control-Allow-Origin': '*',
