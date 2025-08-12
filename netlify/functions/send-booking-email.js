@@ -324,7 +324,7 @@ return {
     if (error.response) {
       console.error('SendGrid response:', error.response.body);
     }
-    
+    console.log('About to return error response:', error.message);
     return {
       statusCode: 500,
       headers,
