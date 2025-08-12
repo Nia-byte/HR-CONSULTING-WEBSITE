@@ -300,18 +300,22 @@ Please follow up with the client to confirm the appointment and send meeting det
     console.log('Attempting to send emails...');
 
     // Send both emails
-    const emailResults = await sgMail.send([userEmail, adminEmail]);
-    
-    console.log('Emails sent successfully:', emailResults);
+   // Send emails individually instead of as an array
+await sgMail.send(userEmail);
+console.log('User email sent successfully');
 
-    return {
-      statusCode: 200,
-      headers,
-      body: JSON.stringify({ 
-        success: true, 
-        message: 'Booking confirmation sent successfully!' 
-      })
-    };
+await sgMail.send(adminEmail);
+console.log('Admin email sent successfully');
+
+console.log('About to return success response');
+return {
+  statusCode: 200,
+  headers,
+  body: JSON.stringify({ 
+    success: true, 
+    message: 'Booking confirmation sent successfully!' 
+  })
+};
 
   } catch (error) {
     console.error('Detailed error sending email:', error);
