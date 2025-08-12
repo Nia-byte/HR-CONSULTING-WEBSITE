@@ -709,6 +709,7 @@ function handleFormCloseButton() {
 }
 
 // Handle form submission with SendGrid integration
+// Handle form submission with improved error handling
 async function handleFormSubmission(e) {
     e.preventDefault();
     
@@ -733,7 +734,7 @@ async function handleFormSubmission(e) {
         const appointmentDateTime = document.getElementById('appointmentDateTime').textContent;
         
         // Validate that appointment time is selected
-        if (!appointmentDateTime || appointmentDateTime.trim() === '') {
+        if (!appointmentDateTime || appointmentDateTime.trim() === '' || appointmentDateTime.includes('00:00')) {
             throw new Error('Please select an appointment date and time');
         }
         
@@ -774,31 +775,55 @@ async function handleFormSubmission(e) {
             body: JSON.stringify(payload)
         });
         
-        // Check if response is JSON
+        console.log('Response status:', response.status);
+        console.log('Response headers:', Object.fromEntries(response.headers));
+        
+        // Always try to get response text first
+        const responseText = await response.text();
+        console.log('Response text:', responseText);
+        
+        // Try to parse as JSON
         let result;
-        const contentType = response.headers.get('content-type');
-        if (contentType && contentType.includes('application/json')) {
-            result = await response.json();
-        } else {
-            const textResult = await response.text();
-            console.error('Non-JSON response:', textResult);
-            throw new Error(`Server returned non-JSON response: ${response.status} ${response.statusText}`);
+        try {
+            result = JSON.parse(responseText);
+        } catch (jsonError) {
+            console.error('Failed to parse response as JSON:', jsonError);
+            console.error('Response was:', responseText);
+            
+            // If we got a successful status but non-JSON response, 
+            // it might still be successful
+            if (response.ok) {
+                // Assume success if we got a 200 response
+                showSuccessMessage();
+                resetFormAndModals(form);
+                return;
+            } else {
+                throw new Error(`Server returned non-JSON response: ${response.status} ${response.statusText}\nResponse: ${responseText}`);
+            }
         }
         
-        if (response.ok && result.success) {
-            // Success - show confirmation and reset everything properly
-            showSuccessMessage();
-            resetFormAndModals(form);
+        // Check the result
+        if (response.ok) {
+            if (result.success !== false) {
+                // Success case - either success is true or undefined but response is ok
+                console.log('Booking submitted successfully');
+                showSuccessMessage();
+                resetFormAndModals(form);
+            } else {
+                // Explicit failure even with 200 status
+                throw new Error(result.error || result.message || 'Booking submission failed');
+            }
         } else {
-            // Error from function
-            throw new Error(result.error || `Server error: ${response.status} ${response.statusText}`);
+            // Non-200 status
+            const errorMessage = result?.error || result?.message || `Server error: ${response.status} ${response.statusText}`;
+            throw new Error(errorMessage);
         }
         
     } catch (error) {
         console.error('Booking submission error:', error);
         
         // Show error message to user
-        alert(`Sorry, there was an error processing your booking: ${error.message}\n\nPlease try again or contact us directly.`);
+        showErrorMessage(error.message);
         
     } finally {
         // Reset button state
@@ -807,8 +832,40 @@ async function handleFormSubmission(e) {
     }
 }
 
+function showErrorMessage(message) {
+    // Create a custom error modal
+    const errorModal = document.createElement('div');
+    errorModal.className = 'modal-overlay error-modal';
+    errorModal.innerHTML = `
+        <div class="modal error-content">
+            <div class="error-header">
+                <div style="color: #f44336; font-size: 48px; margin-bottom: 20px;">⚠</div>
+                <h2>Booking Error</h2>
+            </div>
+            <div class="error-body">
+                <p>Sorry, there was an error processing your booking:</p>
+                <p style="color: #d32f2f; font-weight: 500;">${message}</p>
+                <p>Please try again or contact us directly if the problem persists.</p>
+            </div>
+            <div class="error-footer">
+                <button class="error-close-btn" onclick="closeErrorModal()">Try Again</button>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(errorModal);
+    errorModal.classList.add('show');
+}
+
+function closeErrorModal() {
+    const errorModal = document.querySelector('.error-modal');
+    if (errorModal) {
+        errorModal.remove();
+    }
+}
+
 function showSuccessMessage() {
-    // Create a custom success modal instead of using alert
+    // Create a custom success modal
     const successModal = document.createElement('div');
     successModal.className = 'modal-overlay success-modal';
     successModal.innerHTML = `
@@ -837,6 +894,74 @@ function closeSuccessModal() {
         successModal.remove();
     }
 }
+
+// Add CSS for error modal
+const errorModalCSS = `
+.error-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.error-modal.show {
+    opacity: 1;
+}
+
+.error-content {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 500px;
+    margin: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.error-header h2 {
+    color: #333;
+    margin: 0 0 20px 0;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.error-body p {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.error-close-btn {
+    background: #f44336;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background 0.3s ease;
+}
+
+.error-close-btn:hover {
+    background: #d32f2f;
+}
+`;
+
+// Inject error modal CSS
+const errorStyleSheet = document.createElement('style');
+errorStyleSheet.textContent = errorModalCSS;
+document.head.appendChild(errorStyleSheet);
 
 function resetFormAndModals(form) {
     // Close all modals

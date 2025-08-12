@@ -1,175 +1,175 @@
 const sgMail = require('@sendgrid/mail');
 
-
-
 exports.handler = async (event, context) => {
-
     // Add detailed logging at the start
-  console.log('=== FUNCTION CALLED ===');
-  console.log('Method:', event.httpMethod);
-  console.log('Headers:', JSON.stringify(event.headers, null, 2));
-  console.log('Query params:', event.queryStringParameters);
-  console.log('Body:', event.body);
-  console.log('Body type:', typeof event.body);
+    console.log('=== FUNCTION CALLED ===');
+    console.log('Method:', event.httpMethod);
+    console.log('Headers:', JSON.stringify(event.headers, null, 2));
+    console.log('Query params:', event.queryStringParameters);
+    console.log('Body:', event.body);
+    console.log('Body type:', typeof event.body);
 
-// Add this temporary code in your function (before the main logic)
-if (event.httpMethod === 'GET' && event.queryStringParameters?.test === 'apikey') {
-  try {
-    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-    
-    // Simple test email
-    const testMsg = {
-      to: process.env.ADMIN_EMAIL,
-      from: process.env.ADMIN_EMAIL,
-      subject: 'SendGrid API Test',
-      text: 'This is a test to verify API key permissions.'
+    // Set CORS headers - moved to top for consistency
+    const headers = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Content-Type': 'application/json' // Ensure JSON response
     };
-    
-    await sgMail.send(testMsg);
-    
-    return {
-      statusCode: 200,
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ success: true, message: 'API key works!' })
-    };
-  } catch (error) {
-    return {
-      statusCode: 200,
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ 
-        success: false, 
-        error: error.message,
-        code: error.code 
-      })
-    };
-  }
-}
 
-// Test POST handling
-if (event.httpMethod === 'GET' && event.queryStringParameters?.test === 'post') {
-  return {
-    statusCode: 200,
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ 
-      message: 'Function is receiving requests correctly',
-      method: event.httpMethod,
-      hasBody: !!event.body,
-      contentType: event.headers['content-type'] || 'not set'
-    })
-  };
-}
-
-
-  // Set CORS headers
-  const headers = {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': 'Content-Type',
-    'Access-Control-Allow-Methods': 'POST, OPTIONS',
-  };
-
-  // Handle preflight OPTIONS request
-  if (event.httpMethod === 'OPTIONS') {
-    return {
-      statusCode: 200,
-      headers,
-      body: ''
-    };
-  }
-
-  // Only allow POST requests
-  if (event.httpMethod !== 'POST') {
-    return {
-      statusCode: 405,
-      headers,
-      body: JSON.stringify({ error: 'Method not allowed' })
-    };
-  }
-
-  try {
-    // Validate environment variables
-    if (!process.env.SENDGRID_API_KEY) {
-      console.error('SENDGRID_API_KEY is not set');
-      return {
-        statusCode: 500,
-        headers,
-        body: JSON.stringify({ 
-          error: 'Server configuration error: SENDGRID_API_KEY missing',
-          success: false 
-        })
-      };
+    // Add this temporary code in your function (before the main logic)
+    if (event.httpMethod === 'GET' && event.queryStringParameters?.test === 'apikey') {
+        try {
+            sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+            
+            // Simple test email
+            const testMsg = {
+                to: process.env.ADMIN_EMAIL,
+                from: process.env.ADMIN_EMAIL,
+                subject: 'SendGrid API Test',
+                text: 'This is a test to verify API key permissions.'
+            };
+            
+            await sgMail.send(testMsg);
+            
+            return {
+                statusCode: 200,
+                headers,
+                body: JSON.stringify({ success: true, message: 'API key works!' })
+            };
+        } catch (error) {
+            return {
+                statusCode: 200,
+                headers,
+                body: JSON.stringify({ 
+                    success: false, 
+                    error: error.message,
+                    code: error.code 
+                })
+            };
+        }
     }
 
-    if (!process.env.ADMIN_EMAIL) {
-      console.error('ADMIN_EMAIL is not set');
-      return {
-        statusCode: 500,
-        headers,
-        body: JSON.stringify({ 
-          error: 'Server configuration error: ADMIN_EMAIL missing',
-          success: false 
-        })
-      };
+    // Test POST handling
+    if (event.httpMethod === 'GET' && event.queryStringParameters?.test === 'post') {
+        return {
+            statusCode: 200,
+            headers,
+            body: JSON.stringify({ 
+                message: 'Function is receiving requests correctly',
+                method: event.httpMethod,
+                hasBody: !!event.body,
+                contentType: event.headers['content-type'] || 'not set'
+            })
+        };
     }
 
-    // Set SendGrid API key
-    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+    // Handle preflight OPTIONS request
+    if (event.httpMethod === 'OPTIONS') {
+        return {
+            statusCode: 200,
+            headers,
+            body: JSON.stringify({ message: 'CORS preflight' })
+        };
+    }
 
-    // Parse the request body
-    let requestBody;
+    // Only allow POST requests
+    if (event.httpMethod !== 'POST') {
+        return {
+            statusCode: 405,
+            headers,
+            body: JSON.stringify({ 
+                success: false,
+                error: 'Method not allowed' 
+            })
+        };
+    }
+
     try {
-      requestBody = JSON.parse(event.body);
-    } catch (parseError) {
-      console.error('JSON parse error:', parseError);
-      return {
-        statusCode: 400,
-        headers,
-        body: JSON.stringify({ 
-          error: 'Invalid JSON in request body',
-          success: false 
-        })
-      };
-    }
+        // Validate environment variables
+        if (!process.env.SENDGRID_API_KEY) {
+            console.error('SENDGRID_API_KEY is not set');
+            return {
+                statusCode: 500,
+                headers,
+                body: JSON.stringify({ 
+                    success: false,
+                    error: 'Server configuration error: SENDGRID_API_KEY missing'
+                })
+            };
+        }
 
-    const { 
-      name, 
-      email, 
-      phone, 
-      date, 
-      time, 
-      location, 
-      businessName, 
-      message, 
-      additionalInfo, 
-      referralSource,
-      referralPerson 
-    } = requestBody;
+        if (!process.env.ADMIN_EMAIL) {
+            console.error('ADMIN_EMAIL is not set');
+            return {
+                statusCode: 500,
+                headers,
+                body: JSON.stringify({ 
+                    success: false,
+                    error: 'Server configuration error: ADMIN_EMAIL missing'
+                })
+            };
+        }
 
-    // Validate required fields
-    if (!name || !email || !date || !time) {
-      return {
-        statusCode: 400,
-        headers,
-        body: JSON.stringify({ 
-          error: 'Missing required fields: name, email, date, and time are required',
-          success: false 
-        })
-      };
-    }
+        // Set SendGrid API key
+        sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-    // Basic email validation
-    if (!email.includes('@')) {
-      return {
-        statusCode: 400,
-        headers,
-        body: JSON.stringify({ 
-          error: 'Invalid email address',
-          success: false 
-        })
-      };
-    }
+        // Parse the request body
+        let requestBody;
+        try {
+            requestBody = JSON.parse(event.body);
+        } catch (parseError) {
+            console.error('JSON parse error:', parseError);
+            return {
+                statusCode: 400,
+                headers,
+                body: JSON.stringify({ 
+                    success: false,
+                    error: 'Invalid JSON in request body'
+                })
+            };
+        }
 
-    // Format the booking details for plain text
-    const bookingDetails = `
+        const { 
+            name, 
+            email, 
+            phone, 
+            date, 
+            time, 
+            location, 
+            businessName, 
+            message, 
+            additionalInfo, 
+            referralSource,
+            referralPerson 
+        } = requestBody;
+
+        // Validate required fields
+        if (!name || !email || !date || !time) {
+            return {
+                statusCode: 400,
+                headers,
+                body: JSON.stringify({ 
+                    success: false,
+                    error: 'Missing required fields: name, email, date, and time are required'
+                })
+            };
+        }
+
+        // Basic email validation
+        if (!email.includes('@')) {
+            return {
+                statusCode: 400,
+                headers,
+                body: JSON.stringify({ 
+                    success: false,
+                    error: 'Invalid email address'
+                })
+            };
+        }
+
+        // Format the booking details for plain text
+        const bookingDetails = `
       Name: ${name}
       Email: ${email}
       Phone: ${phone || 'Not provided'}
@@ -183,17 +183,17 @@ if (event.httpMethod === 'GET' && event.queryStringParameters?.test === 'post') 
       Referred by: ${referralPerson || 'Not specified'}
     `;
 
-    console.log('Processing booking for:', email);
+        console.log('Processing booking for:', email);
 
-    // Email to the user (booking confirmation)
-    const userEmail = {
-      to: email,
-      from: {
-        email: process.env.ADMIN_EMAIL,
-        name: 'Velvet & Edge Solutions'
-      },
-      subject: 'Velvet & Edge Solutions - Consultation Booking Confirmation',
-      text: `Dear ${name},
+        // Email to the user (booking confirmation)
+        const userEmail = {
+            to: email,
+            from: {
+                email: process.env.ADMIN_EMAIL,
+                name: 'Velvet & Edge Solutions'
+            },
+            subject: 'Velvet & Edge Solutions - Consultation Booking Confirmation',
+            text: `Dear ${name},
 
 Thank you for booking a consultation with Velvet & Edge Solutions!
 
@@ -206,7 +206,7 @@ If you have any questions before our meeting, please don't hesitate to reach out
 
 Best regards,
 Velvet & Edge Solutions Team`,
-      html: `
+            html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
           <div style="text-align: center; margin-bottom: 30px;">
             <h1 style="color: #dc4c94; margin-bottom: 10px;">Velvet & Edge Solutions</h1>
@@ -237,23 +237,23 @@ Velvet & Edge Solutions Team`,
           </div>
         </div>
       `
-    };
+        };
 
-    // Email to the admin (new booking notification)
-    const adminEmail = {
-      to: process.env.ADMIN_EMAIL,
-      from: {
-        email: process.env.ADMIN_EMAIL,
-        name: 'Velvet & Edge Website'
-      },
-      subject: `New Consultation Booking - ${name}`,
-      text: `New consultation booking received!
+        // Email to the admin (new booking notification)
+        const adminEmail = {
+            to: process.env.ADMIN_EMAIL,
+            from: {
+                email: process.env.ADMIN_EMAIL,
+                name: 'Velvet & Edge Website'
+            },
+            subject: `New Consultation Booking - ${name}`,
+            text: `New consultation booking received!
 
 Client details:
 ${bookingDetails}
 
 Please follow up with the client to confirm the appointment and send meeting details.`,
-      html: `
+            html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
           <div style="background-color: #dc4c94; color: white; padding: 20px; text-align: center; border-radius: 8px 8px 0 0;">
             <h2 style="margin: 0;">New Consultation Booking</h2>
@@ -295,44 +295,58 @@ Please follow up with the client to confirm the appointment and send meeting det
           </div>
         </div>
       `
-    };
+        };
 
-    console.log('Attempting to send emails...');
+        console.log('Attempting to send emails...');
 
-    // Send both emails
-   // Send emails individually instead of as an array
-await sgMail.send(userEmail);
-console.log('User email sent successfully');
+        try {
+            // Send emails individually with proper error handling
+            await sgMail.send(userEmail);
+            console.log('User email sent successfully');
 
-await sgMail.send(adminEmail);
-console.log('Admin email sent successfully');
+            await sgMail.send(adminEmail);
+            console.log('Admin email sent successfully');
 
-console.log('About to return success response');
-return {
-  statusCode: 200,
-  headers,
-  body: JSON.stringify({ 
-    success: true, 
-    message: 'Booking confirmation sent successfully!' 
-  })
-};
+            console.log('About to return success response');
+            return {
+                statusCode: 200,
+                headers,
+                body: JSON.stringify({ 
+                    success: true, 
+                    message: 'Booking confirmation sent successfully!' 
+                })
+            };
 
-  } catch (error) {
-    console.error('Detailed error sending email:', error);
-    
-    // Log more detailed error information
-    if (error.response) {
-      console.error('SendGrid response:', error.response.body);
+        } catch (emailError) {
+            console.error('SendGrid email error:', emailError);
+            
+            // Log more detailed error information
+            if (emailError.response) {
+                console.error('SendGrid response:', emailError.response.body);
+            }
+
+            return {
+                statusCode: 500,
+                headers,
+                body: JSON.stringify({ 
+                    success: false,
+                    error: 'Failed to send booking confirmation',
+                    details: emailError.message
+                })
+            };
+        }
+
+    } catch (error) {
+        console.error('Function execution error:', error);
+        
+        return {
+            statusCode: 500,
+            headers,
+            body: JSON.stringify({ 
+                success: false,
+                error: 'Internal server error',
+                details: error.message
+            })
+        };
     }
-    console.log('About to return error response:', error.message);
-    return {
-      statusCode: 500,
-      headers,
-      body: JSON.stringify({ 
-        error: 'Failed to send booking confirmation',
-        details: error.message,
-        success: false 
-      })
-    };
-  }
 };
