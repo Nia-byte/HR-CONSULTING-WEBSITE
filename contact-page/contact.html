@@ -82,36 +82,36 @@
             </div>
 
             <div class="form-section">
-                <form>
+                <form id="contactForm">
                     <div class="form-row">
                         <div class="form-group">
-                            <input type="text" placeholder="Full Name" required>
+                            <input type="text" name="fullName" placeholder="Full Name" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" placeholder="Email Address" required>
+                            <input type="email" name="email" placeholder="Email Address" required>
                         </div>
                     </div>
 
                     <div class="radio-group">
                         <span style="font-size: 14px; color: #666;">I am an:</span>
                         <div class="radio-item">
-                            <input type="radio" id="individual" name="type" value="individual" checked>
+                            <input type="radio" id="individual" name="contactType" value="Individual" checked>
                             <label for="individual">Individual</label>
                         </div>
                         <div class="radio-item">
-                            <input type="radio" id="organization" name="type" value="organization">
+                            <input type="radio" id="organization" name="contactType" value="Organization">
                             <label for="organization">Organization / Business</label>
                         </div>
                     </div>
 
                     <div class="form-group full-width">
-                        <textarea placeholder="Your Message" required></textarea>
+                        <textarea name="message" placeholder="Your Message" required></textarea>
                     </div>
 
                     <div class="captcha">
-    <div class="captcha-box"></div>
-    <span class="captcha-text">I'm not a robot</span>
-  </div>
+                     <div class="captcha-box"></div>
+                        <span class="captcha-text">I'm not a robot</span>
+                    </div>
                      
 
                     <button type="submit" id="submitBtn" class="submit-btn">Submit</button>
