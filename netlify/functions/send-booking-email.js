@@ -269,21 +269,21 @@ Please follow up with the client to confirm the appointment and send meeting det
               <tr><td style="padding: 12px; font-weight: bold; color: #555; border-bottom: 1px solid #eee;">Phone:</td><td style="padding: 12px; color: #333; border-bottom: 1px solid #eee;">${phone || 'Not provided'}</td></tr>
               <tr><td style="padding: 12px; font-weight: bold; color: #555; border-bottom: 1px solid #eee;">Date:</td><td style="padding: 12px; color: #333; border-bottom: 1px solid #eee;">${date}</td></tr>
               <tr><td style="padding: 12px; font-weight: bold; color: #555; border-bottom: 1px solid #eee;">Time:</td><td style="padding: 12px; color: #333; border-bottom: 1px solid #eee;">${time}</td></tr>
-              <tr><td style="padding: 12px; font-weight: bold; color: #555; border-bottom: 1px solid #eee;">Platform:</td><td style="padding: 12px; color: #333; border-bottom: 1px solid #eee;">${location || 'Not specified'}</td></tr>
+              <tr><td style="padding: 12px; font-weight: bold; color: #555; border-bottom: 1px solid #eee;">Location:</td><td style="padding: 12px; color: #333; border-bottom: 1px solid #eee;">${location || 'Not specified'}</td></tr>
               ${businessName ? `<tr><td style="padding: 12px; font-weight: bold; color: #555; border-bottom: 1px solid #eee;">Business Name:</td><td style="padding: 12px; color: #333; border-bottom: 1px solid #eee;">${businessName}</td></tr>` : ''}
               <tr><td style="padding: 12px; font-weight: bold; color: #555; border-bottom: 1px solid #eee;">Referral Source:</td><td style="padding: 12px; color: #333; border-bottom: 1px solid #eee;">${referralSource || 'Not specified'}</td></tr>
-              ${referralPerson ? `<tr><td style="padding: 12px; font-weight: bold; color: #555; border-bottom: 1px solid #eee;">Referred by:</td><td style="padding: 12px; color: #333; border-bottom: 1px solid #eee;">${referralPerson}</td></tr>` : ''}
+              ${referralPerson ? `<tr><td style="padding: 12px; font-weight: bold; color: #555; border-bottom: 1px solid #eee;">Referred by:</td><td style="padding: 12px; color: #333; border-bottom: 1px solid #eee;">${referralPerson || 'Not specified'}</td></tr>` : ''}
             </table>
             
             ${message ? `
-            <h3 style="color: #dc4c94; margin-top: 25px;">Support Overview:</h3>
+            <h3 style="color: #dc4c94; margin-top: 25px;">Shared Overview Regarding Support Needed:</h3>
             <div style="background: white; padding: 15px; border-radius: 4px; color: #333;">
               ${message.replace(/\n/g, '<br>')}
             </div>
             ` : ''}
             
             ${additionalInfo ? `
-            <h3 style="color: #dc4c94; margin-top: 25px;">Additional Information:</h3>
+            <h3 style="color: #dc4c94; margin-top: 25px;">Additional Information To Help Prepare for meeting:</h3>
             <div style="background: white; padding: 15px; border-radius: 4px; color: #333;">
               ${additionalInfo.replace(/\n/g, '<br>')}
             </div>

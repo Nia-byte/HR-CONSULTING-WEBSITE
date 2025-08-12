@@ -4593,15 +4593,15 @@ height: 900px; /* Increased from 500px */
         }
 
         .teams-icon {
-            background-color: #464EB8;
+            background-color: white;
         }
 
         .zoom-icon {
-            background-color: #2D8CFF;
+            background-color: white;
         }
 
         .phone-icon {
-            background-color: #34C759;
+            background-color: white;
         }
 
         .add-guests-btn {
@@ -5235,7 +5235,75 @@ height: 900px; /* Increased from 500px */
     }
 }
 
+@media (max-width: 390px) {
+   
+.mobile-book-call-btn {
+         
+            margin-left: 150px;
 
+        } 
+
+         .mobile-menu-cta {
+            margin-bottom: 260px;
+            left: -60px;
+        }
+
+             .social-btn {
+            margin-top: -250px;
+        }
+}
+
+@media (min-width: 414px) {
+     .mobile-menu-cta {
+            margin-bottom: 200px;
+            left: -40px;
+        }
+
+        .mobile-book-call-btn {
+         
+            margin-left: 150px;
+
+        } 
+
+          .social-btn {
+            margin-top: -250px;
+        }
+}
+
+@media (max-width: 375px) {
+   
+.mobile-book-call-btn {
+         
+            margin-left: 150px;
+
+        } 
+
+         .mobile-menu-cta {
+            margin-bottom: 60px;
+            left: -60px;
+        }
+
+             .social-btn {
+            margin-top: -110px;
+        }
+}
+
+@media (min-width: 430px) {
+     .mobile-menu-cta {
+            margin-top: 200px;
+            left: -40px;
+        }
+
+        .mobile-book-call-btn {
+         
+            margin-left: 150px;
+
+        } 
+
+          .social-btn {
+            margin-top: -250px;
+        }
+}
 
 
       

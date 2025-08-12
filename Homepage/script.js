@@ -1013,7 +1013,7 @@ const modalCSS = `
 }
 
 .success-close-btn {
-    background: #4CAF50;
+    background: #dc4c94;
     color: white;
     border: none;
     padding: 12px 30px;
@@ -1026,7 +1026,7 @@ const modalCSS = `
 }
 
 .success-close-btn:hover {
-    background: #45a049;
+    background: #dc4c94;
 }
 
 .error-close-btn {
