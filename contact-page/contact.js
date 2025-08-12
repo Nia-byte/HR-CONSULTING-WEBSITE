@@ -121,330 +121,248 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 /*CONTACT FORM EMAIL SYSTEM*/
-const sgMail = require('@sendgrid/mail');
+// Contact Form Handler
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const captchaBox = document.querySelector('.captcha-box');
+    
+    let isCaptchaChecked = false;
+    let isSubmitting = false;
 
-exports.handler = async (event, context) => {
-    // Add detailed logging at the start
-    console.log('=== CONTACT EMAIL FUNCTION CALLED ===');
-    console.log('Method:', event.httpMethod);
-    console.log('Headers:', JSON.stringify(event.headers, null, 2));
-    console.log('Query params:', event.queryStringParameters);
-    console.log('Body:', event.body);
-    console.log('Body type:', typeof event.body);
-
-    // Set CORS headers
-    const headers = {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': 'Content-Type',
-        'Access-Control-Allow-Methods': 'POST, OPTIONS',
-        'Content-Type': 'application/json'
-    };
-
-    // Test API key functionality
-    if (event.httpMethod === 'GET' && event.queryStringParameters?.test === 'apikey') {
-        try {
-            sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+    // Handle captcha click
+    if (captchaBox) {
+        captchaBox.addEventListener('click', function() {
+            isCaptchaChecked = !isCaptchaChecked;
             
-            const testMsg = {
-                to: process.env.ADMIN_EMAIL,
-                from: process.env.ADMIN_EMAIL,
-                subject: 'SendGrid API Test - Contact Form',
-                text: 'This is a test to verify API key permissions for contact form.'
-            };
-            
-            await sgMail.send(testMsg);
-            
-            return {
-                statusCode: 200,
-                headers,
-                body: JSON.stringify({ success: true, message: 'Contact form API key works!' })
-            };
-        } catch (error) {
-            return {
-                statusCode: 200,
-                headers,
-                body: JSON.stringify({ 
-                    success: false, 
-                    error: error.message,
-                    code: error.code 
-                })
-            };
-        }
-    }
-
-    // Test POST handling
-    if (event.httpMethod === 'GET' && event.queryStringParameters?.test === 'post') {
-        return {
-            statusCode: 200,
-            headers,
-            body: JSON.stringify({ 
-                message: 'Contact form function is receiving requests correctly',
-                method: event.httpMethod,
-                hasBody: !!event.body,
-                contentType: event.headers['content-type'] || 'not set'
-            })
-        };
-    }
-
-    // Handle preflight OPTIONS request
-    if (event.httpMethod === 'OPTIONS') {
-        return {
-            statusCode: 200,
-            headers,
-            body: JSON.stringify({ message: 'CORS preflight' })
-        };
-    }
-
-    // Only allow POST requests
-    if (event.httpMethod !== 'POST') {
-        return {
-            statusCode: 405,
-            headers,
-            body: JSON.stringify({ 
-                success: false,
-                error: 'Method not allowed' 
-            })
-        };
-    }
-
-    try {
-        // Validate environment variables
-        if (!process.env.SENDGRID_API_KEY) {
-            console.error('SENDGRID_API_KEY is not set');
-            return {
-                statusCode: 500,
-                headers,
-                body: JSON.stringify({ 
-                    success: false,
-                    error: 'Server configuration error: SENDGRID_API_KEY missing'
-                })
-            };
-        }
-
-        if (!process.env.ADMIN_EMAIL) {
-            console.error('ADMIN_EMAIL is not set');
-            return {
-                statusCode: 500,
-                headers,
-                body: JSON.stringify({ 
-                    success: false,
-                    error: 'Server configuration error: ADMIN_EMAIL missing'
-                })
-            };
-        }
-
-        // Set SendGrid API key
-        sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-
-        // Parse the request body
-        let requestBody;
-        try {
-            requestBody = JSON.parse(event.body);
-        } catch (parseError) {
-            console.error('JSON parse error:', parseError);
-            return {
-                statusCode: 400,
-                headers,
-                body: JSON.stringify({ 
-                    success: false,
-                    error: 'Invalid JSON in request body'
-                })
-            };
-        }
-
-        const { 
-            fullName, 
-            email, 
-            contactType, 
-            message
-        } = requestBody;
-
-        // Validate required fields
-        if (!fullName || !email || !contactType || !message) {
-            return {
-                statusCode: 400,
-                headers,
-                body: JSON.stringify({ 
-                    success: false,
-                    error: 'Missing required fields: fullName, email, contactType, and message are required'
-                })
-            };
-        }
-
-        // Basic email validation
-        if (!email.includes('@')) {
-            return {
-                statusCode: 400,
-                headers,
-                body: JSON.stringify({ 
-                    success: false,
-                    error: 'Invalid email address'
-                })
-            };
-        }
-
-        // Format the contact details for plain text
-        const contactDetails = `
-      Name: ${fullName}
-      Email: ${email}
-      Contact Type: ${contactType}
-      Message: ${message}
-    `;
-
-        console.log('Processing contact form for:', email);
-
-        // Email to the user (contact form confirmation)
-        const userEmail = {
-            to: email,
-            from: {
-                email: process.env.ADMIN_EMAIL,
-                name: 'Velvet & Edge Solutions'
-            },
-            subject: 'Velvet & Edge Solutions - Message Received',
-            text: `Dear ${fullName},
-
-Thank you for reaching out to Velvet & Edge Solutions!
-
-We have received your message and will get back to you as soon as possible.
-
-Your message details:
-${contactDetails}
-
-If you have any urgent questions, please don't hesitate to call us directly.
-
-Best regards,
-Velvet & Edge Solutions Team`,
-            html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-          <div style="text-align: center; margin-bottom: 30px;">
-            <h1 style="color: #dc4c94; margin-bottom: 10px;">Velvet & Edge Solutions</h1>
-            <h2 style="color: #333; font-weight: normal;">Message Received</h2>
-          </div>
-          
-          <p style="font-size: 16px; color: #333;">Dear ${fullName},</p>
-          <p style="font-size: 16px; color: #333;">Thank you for reaching out to Velvet & Edge Solutions!</p>
-          <p style="font-size: 16px; color: #333;">We have received your message and will get back to you as soon as possible.</p>
-          
-          <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <h3 style="color: #dc4c94; margin-top: 0;">Your message details:</h3>
-            <table style="width: 100%; border-collapse: collapse;">
-              <tr><td style="padding: 8px 0; font-weight: bold; color: #555;">Name:</td><td style="padding: 8px 0; color: #333;">${fullName}</td></tr>
-              <tr><td style="padding: 8px 0; font-weight: bold; color: #555;">Email:</td><td style="padding: 8px 0; color: #333;">${email}</td></tr>
-              <tr><td style="padding: 8px 0; font-weight: bold; color: #555;">Contact Type:</td><td style="padding: 8px 0; color: #333;">${contactType}</td></tr>
-            </table>
-            <div style="margin-top: 15px;">
-              <p style="font-weight: bold; color: #555; margin-bottom: 8px;">Message:</p>
-              <div style="background: white; padding: 15px; border-radius: 4px; color: #333;">
-                ${message.replace(/\n/g, '<br>')}
-              </div>
-            </div>
-          </div>
-          
-          <p style="font-size: 16px; color: #333;">If you have any urgent questions, please don't hesitate to call us directly.</p>
-          
-          <div style="margin-top: 30px; text-align: center; border-top: 1px solid #eee; padding-top: 20px;">
-            <p style="color: #666; font-size: 14px;">Best regards,<br><strong>Velvet & Edge Solutions Team</strong></p>
-          </div>
-        </div>
-      `
-        };
-
-        // Email to the admin (new contact form submission)
-        const adminEmail = {
-            to: process.env.ADMIN_EMAIL,
-            from: {
-                email: process.env.ADMIN_EMAIL,
-                name: 'Velvet & Edge Website'
-            },
-            subject: `New Client Query Submission - ${fullName}`,
-            text: `New client query received!
-
-Contact details:
-${contactDetails}
-
-Please follow up with the client as appropriate.`,
-            html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-          <div style="background-color: #dc4c94; color: white; padding: 20px; text-align: center; border-radius: 8px 8px 0 0;">
-            <h2 style="margin: 0;">New Contact Form Submission</h2>
-          </div>
-          
-          <div style="background-color: #f8f9fa; padding: 20px; border-radius: 0 0 8px 8px;">
-            <p style="font-size: 16px; color: #333; margin-top: 0;"><strong>A new contact form submission has been received!</strong></p>
-            
-            <h3 style="color: #dc4c94;">Contact Details:</h3>
-            <table style="width: 100%; border-collapse: collapse; background: white; border-radius: 4px;">
-              <tr><td style="padding: 12px; font-weight: bold; color: #555; border-bottom: 1px solid #eee;">Name:</td><td style="padding: 12px; color: #333; border-bottom: 1px solid #eee;">${fullName}</td></tr>
-              <tr><td style="padding: 12px; font-weight: bold; color: #555; border-bottom: 1px solid #eee;">Email:</td><td style="padding: 12px; color: #333; border-bottom: 1px solid #eee;"><a href="mailto:${email}" style="color: #dc4c94;">${email}</a></td></tr>
-              <tr><td style="padding: 12px; font-weight: bold; color: #555; border-bottom: 1px solid #eee;">Contact Type:</td><td style="padding: 12px; color: #333; border-bottom: 1px solid #eee;">${contactType}</td></tr>
-            </table>
-            
-            <h3 style="color: #dc4c94; margin-top: 25px;">Message:</h3>
-            <div style="background: white; padding: 15px; border-radius: 4px; color: #333;">
-              ${message.replace(/\n/g, '<br>')}
-            </div>
-            
-            <div style="margin-top: 25px; padding: 15px; background: #fff3cd; border-radius: 4px; border-left: 4px solid #ffc107;">
-              <p style="margin: 0; color: #856404;"><strong>Action Required:</strong> Please follow up with the client as appropriate.</p>
-            </div>
-          </div>
-        </div>
-      `
-        };
-
-        console.log('Attempting to send contact form emails...');
-
-        try {
-            // Send emails individually with proper error handling
-            await sgMail.send(userEmail);
-            console.log('User confirmation email sent successfully');
-
-            await sgMail.send(adminEmail);
-            console.log('Admin notification email sent successfully');
-
-            console.log('About to return success response');
-            return {
-                statusCode: 200,
-                headers,
-                body: JSON.stringify({ 
-                    success: true, 
-                    message: 'Message sent successfully! We will get back to you soon.' 
-                })
-            };
-
-        } catch (emailError) {
-            console.error('SendGrid email error:', emailError);
-            
-            // Log more detailed error information
-            if (emailError.response) {
-                console.error('SendGrid response:', emailError.response.body);
+            if (isCaptchaChecked) {
+                this.innerHTML = '<div style="color: #dc4c94; font-weight: bold;">✓</div>';
+                this.style.borderColor = '#dc4c94';
+            } else {
+                this.innerHTML = '';
+                this.style.borderColor = '#ccc';
             }
+        });
+    }
 
-            return {
-                statusCode: 500,
-                headers,
-                body: JSON.stringify({ 
-                    success: false,
-                    error: 'Failed to send message',
-                    details: emailError.message
-                })
+    // Handle form submission
+    if (contactForm) {
+        contactForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Prevent double submission
+            if (isSubmitting) return;
+            
+            // Validate captcha if present
+            if (captchaBox && !isCaptchaChecked) {
+                showNotification('Please complete the captcha verification.', 'error');
+                return;
+            }
+            
+            // Get form data
+            const formData = new FormData(contactForm);
+            const contactData = {
+                fullName: formData.get('fullName') || '',
+                email: formData.get('email') || '',
+                contactType: formData.get('contactType') || 'Individual',
+                message: formData.get('message') || ''
             };
+            
+            // Validate required fields
+            if (!contactData.fullName.trim()) {
+                showNotification('Please enter your full name.', 'error');
+                return;
+            }
+            
+            if (!contactData.email.trim()) {
+                showNotification('Please enter your email address.', 'error');
+                return;
+            }
+            
+            if (!contactData.message.trim()) {
+                showNotification('Please enter your message.', 'error');
+                return;
+            }
+            
+            // Validate email format
+            if (!isValidEmail(contactData.email)) {
+                showNotification('Please enter a valid email address.', 'error');
+                return;
+            }
+            
+            // Set submitting state
+            isSubmitting = true;
+            updateSubmitButton(true);
+            
+            try {
+                console.log('Submitting contact form with data:', contactData);
+                
+                const response = await fetch('/.netlify/functions/send-contact-email', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(contactData)
+                });
+                
+                console.log('Response status:', response.status);
+                
+                let responseData;
+                try {
+                    const responseText = await response.text();
+                    console.log('Raw response:', responseText);
+                    responseData = JSON.parse(responseText);
+                } catch (parseError) {
+                    console.error('Failed to parse response as JSON:', parseError);
+                    throw new Error('Invalid response format from server');
+                }
+                
+                if (response.ok && responseData.success) {
+                    showNotification(responseData.message || 'Message sent successfully! We will get back to you soon.', 'success');
+                    resetForm();
+                } else {
+                    console.error('Contact form submission failed:', responseData);
+                    showNotification(responseData.error || 'Failed to send message. Please try again.', 'error');
+                }
+                
+            } catch (error) {
+                console.error('Contact form submission error:', error);
+                showNotification('Failed to send message. Please check your connection and try again.', 'error');
+            } finally {
+                isSubmitting = false;
+                updateSubmitButton(false);
+            }
+        });
+    }
+
+    // Helper functions
+    function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
+    function updateSubmitButton(loading) {
+        if (loading) {
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.style.opacity = '0.7';
+        } else {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit';
+            submitBtn.style.opacity = '1';
+        }
+    }
+
+    function resetForm() {
+        contactForm.reset();
+        
+        // Reset captcha
+        if (captchaBox) {
+            isCaptchaChecked = false;
+            captchaBox.innerHTML = '';
+            captchaBox.style.borderColor = '#ccc';
+        }
+    }
+
+    function showNotification(message, type) {
+        // Remove any existing notifications
+        const existingNotification = document.querySelector('.notification');
+        if (existingNotification) {
+            existingNotification.remove();
         }
 
-    } catch (error) {
-        console.error('Function execution error:', error);
-        
-        return {
-            statusCode: 500,
-            headers,
-            body: JSON.stringify({ 
-                success: false,
-                error: 'Internal server error',
-                details: error.message
-            })
-        };
+        // Create notification element
+        const notification = document.createElement('div');
+        notification.className = `notification ${type}`;
+        notification.innerHTML = `
+            <div style="
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${type === 'success' ? '#d4edda' : '#f8d7da'};
+                color: ${type === 'success' ? '#155724' : '#721c24'};
+                padding: 15px 20px;
+                border-radius: 8px;
+                border: 1px solid ${type === 'success' ? '#c3e6cb' : '#f5c6cb'};
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+                max-width: 400px;
+                font-weight: 500;
+                animation: slideIn 0.3s ease-out;
+            ">
+                ${message}
+                <button onclick="this.parentElement.remove()" style="
+                    background: none;
+                    border: none;
+                    font-size: 18px;
+                    font-weight: bold;
+                    color: inherit;
+                    cursor: pointer;
+                    float: right;
+                    margin-left: 10px;
+                    margin-top: -2px;
+                ">&times;</button>
+            </div>
+        `;
+
+        // Add CSS animation if not already present
+        if (!document.querySelector('#notification-styles')) {
+            const styles = document.createElement('style');
+            styles.id = 'notification-styles';
+            styles.textContent = `
+                @keyframes slideIn {
+                    from {
+                        transform: translateX(100%);
+                        opacity: 0;
+                    }
+                    to {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
+                }
+            `;
+            document.head.appendChild(styles);
+        }
+
+        document.body.appendChild(notification);
+
+        // Auto remove after 5 seconds
+        setTimeout(() => {
+            if (notification && notification.parentElement) {
+                notification.remove();
+            }
+        }, 5000);
     }
-};
+
+    // Debug function for testing
+    window.testContactForm = function() {
+        console.log('Testing contact form submission...');
+        
+        const testData = {
+            fullName: 'Test User',
+            email: 'test@example.com',
+            contactType: 'Individual',
+            message: 'This is a test message from the contact form.'
+        };
+
+        fetch('/.netlify/functions/send-contact-email', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(testData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Test result:', data);
+            showNotification(data.success ? 'Test successful!' : 'Test failed: ' + data.error, data.success ? 'success' : 'error');
+        })
+        .catch(error => {
+            console.error('Test error:', error);
+            showNotification('Test failed: ' + error.message, 'error');
+        });
+    };
+});
 
 
 
