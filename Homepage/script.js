@@ -710,6 +710,7 @@ function handleFormCloseButton() {
 
 // Handle form submission with SendGrid integration
 // Handle form submission with improved error handling
+// Handle form submission with improved error handling
 async function handleFormSubmission(e) {
     e.preventDefault();
     
@@ -793,9 +794,11 @@ async function handleFormSubmission(e) {
             // If we got a successful status but non-JSON response, 
             // it might still be successful
             if (response.ok) {
-                // Assume success if we got a 200 response
-                showSuccessMessage();
+                // First reset form and modals, then show success
                 resetFormAndModals(form);
+                setTimeout(() => {
+                    showSuccessMessage();
+                }, 100);
                 return;
             } else {
                 throw new Error(`Server returned non-JSON response: ${response.status} ${response.statusText}\nResponse: ${responseText}`);
@@ -805,10 +808,12 @@ async function handleFormSubmission(e) {
         // Check the result
         if (response.ok) {
             if (result.success !== false) {
-                // Success case - either success is true or undefined but response is ok
+                // Success case - first reset, then show success
                 console.log('Booking submitted successfully');
-                showSuccessMessage();
                 resetFormAndModals(form);
+                setTimeout(() => {
+                    showSuccessMessage();
+                }, 100);
             } else {
                 // Explicit failure even with 200 status
                 throw new Error(result.error || result.message || 'Booking submission failed');
@@ -854,13 +859,20 @@ function showErrorMessage(message) {
     `;
     
     document.body.appendChild(errorModal);
-    errorModal.classList.add('show');
+    // Use setTimeout to ensure DOM is updated
+    setTimeout(() => {
+        errorModal.classList.add('show');
+    }, 10);
 }
 
 function closeErrorModal() {
     const errorModal = document.querySelector('.error-modal');
     if (errorModal) {
-        errorModal.remove();
+        errorModal.classList.remove('show');
+        // Remove from DOM after animation
+        setTimeout(() => {
+            errorModal.remove();
+        }, 300);
     }
 }
 
@@ -885,87 +897,26 @@ function showSuccessMessage() {
     `;
     
     document.body.appendChild(successModal);
-    successModal.classList.add('show');
+    // Use setTimeout to ensure DOM is updated before adding show class
+    setTimeout(() => {
+        successModal.classList.add('show');
+    }, 10);
 }
 
 function closeSuccessModal() {
     const successModal = document.querySelector('.success-modal');
     if (successModal) {
-        successModal.remove();
+        successModal.classList.remove('show');
+        // Remove from DOM after animation completes
+        setTimeout(() => {
+            successModal.remove();
+        }, 300);
     }
 }
 
-// Add CSS for error modal
-const errorModalCSS = `
-.error-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 10000;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.error-modal.show {
-    opacity: 1;
-}
-
-.error-content {
-    background: white;
-    padding: 40px;
-    border-radius: 12px;
-    text-align: center;
-    max-width: 500px;
-    margin: 20px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-}
-
-.error-header h2 {
-    color: #333;
-    margin: 0 0 20px 0;
-    font-size: 28px;
-    font-weight: 600;
-}
-
-.error-body p {
-    color: #666;
-    font-size: 16px;
-    line-height: 1.5;
-    margin-bottom: 15px;
-}
-
-.error-close-btn {
-    background: #f44336;
-    color: white;
-    border: none;
-    padding: 12px 30px;
-    border-radius: 6px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    margin-top: 20px;
-    transition: background 0.3s ease;
-}
-
-.error-close-btn:hover {
-    background: #d32f2f;
-}
-`;
-
-// Inject error modal CSS
-const errorStyleSheet = document.createElement('style');
-errorStyleSheet.textContent = errorModalCSS;
-document.head.appendChild(errorStyleSheet);
-
 function resetFormAndModals(form) {
-    // Close all modals
-    document.querySelectorAll('.modal-overlay').forEach(modal => {
+    // Close existing booking modals (but NOT success/error modals)
+    document.querySelectorAll('.modal-overlay:not(.success-modal):not(.error-modal)').forEach(modal => {
         modal.classList.remove('show');
     });
     
@@ -1006,6 +957,106 @@ function resetFormAndModals(form) {
         calendarContainer.classList.remove('show-times');
     }
 }
+
+// Updated CSS for both success and error modals
+const modalCSS = `
+.success-modal, .error-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.success-modal.show, .error-modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.success-content, .error-content {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 500px;
+    margin: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+}
+
+.success-modal.show .success-content,
+.error-modal.show .error-content {
+    transform: translateY(0);
+}
+
+.success-header h2, .error-header h2 {
+    color: #333;
+    margin: 0 0 20px 0;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.success-body p, .error-body p {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.success-close-btn {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background 0.3s ease;
+}
+
+.success-close-btn:hover {
+    background: #45a049;
+}
+
+.error-close-btn {
+    background: #f44336;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background 0.3s ease;
+}
+
+.error-close-btn:hover {
+    background: #d32f2f;
+}
+`;
+
+// Inject the CSS (remove any existing modal styles first)
+const existingModalStyle = document.querySelector('style[data-modal-styles]');
+if (existingModalStyle) {
+    existingModalStyle.remove();
+}
+
+const modalStyleSheet = document.createElement('style');
+modalStyleSheet.setAttribute('data-modal-styles', 'true');
+modalStyleSheet.textContent = modalCSS;
+document.head.appendChild(modalStyleSheet);
 
 // Add form validation helper
 function validateBookingForm(formData) {
