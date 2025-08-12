@@ -373,8 +373,9 @@ document.addEventListener('DOMContentLoaded', function() {
             // Log the collected data (in real implementation, send to server)
             console.log('Form Data:', data);
             
-            // Show success message
-            showSuccessModal();
+             // Show success message
+            alert('Event scheduled successfully!\n\nYou should receive a confirmation email shortly.');
+            
             
             // In real implementation, you would:
             // 1. Send data to your backend
@@ -385,114 +386,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         });
 
-        // Add this to your existing form submission success block:
-function showSuccessModal() {
-    // Hide all other modals
-    document.querySelectorAll('.modal-overlay').forEach(modal => {
-        modal.classList.remove('show');
-    });
-    
-    // Update the appointment time in the success modal
-    const appointmentDateTime = document.getElementById('appointmentDateTime').textContent;
-    const successTimeElement = document.getElementById('successAppointmentTime');
-    if (successTimeElement && appointmentDateTime) {
-        successTimeElement.textContent = appointmentDateTime;
-    }
-    
-    // Show success modal
-    document.querySelector('.modal-overlay.success-modal').classList.add('show');
-
-    // Selective form reset - keep firstName, lastName, email but clear other fields
-    selectiveFormReset();
-}
-
-// Function to selectively reset form fields
-function selectiveFormReset() {
-    const form = document.getElementById('bookingForm');
-    
-    // Get current values we want to keep
-    const firstName = form.querySelector('input[name="firstName"]')?.value || '';
-    const lastName = form.querySelector('input[name="lastName"]')?.value || '';
-    const email = form.querySelector('input[name="email"]')?.value || '';
-    
-    // Reset the entire form
-    form.reset();
-    
-    // Restore the values we want to keep
-    const firstNameInput = form.querySelector('input[name="firstName"]');
-    const lastNameInput = form.querySelector('input[name="lastName"]');
-    const emailInput = form.querySelector('input[name="email"]');
-    
-    if (firstNameInput) firstNameInput.value = firstName;
-    if (lastNameInput) lastNameInput.value = lastName;
-    if (emailInput) emailInput.value = email;
-    
-    // Clear any custom input visibility (for "Other" referral source)
-    const customInput = document.getElementById('customInput');
-    if (customInput) {
-        customInput.classList.remove('show');
-        const customInputField = customInput.querySelector('input');
-        if (customInputField) customInputField.value = '';
-    }
-    
-    // Reset calendar selection
-    document.querySelectorAll('.calendar-day.selected').forEach(cell => {
-        cell.classList.remove('selected');
-        cell.style.backgroundColor = '';
-        cell.style.color = '';
-    });
-    
-    // Reset time slot selections
-    document.querySelectorAll('.time-slot.selected, .time-slot.with-next').forEach(slot => {
-        slot.classList.remove('selected', 'with-next');
-        const originalTime = slot.getAttribute('data-time');
-        if (originalTime) {
-            slot.textContent = originalTime;
-        }
-    });
-    
-    // Reset appointment display
-    const appointmentEl = document.getElementById('appointmentDateTime');
-    if (appointmentEl) {
-        appointmentEl.textContent = '';
-    }
-    
-    // Reset calendar to full width view (hide time slots)
-    const calendarContainer = document.getElementById('calendarContainer');
-    if (calendarContainer) {
-        calendarContainer.classList.add('full-width');
-        calendarContainer.classList.remove('show-times');
-    }
-    
-    // Reset any guest additions
-    const addGuestsBtn = document.querySelector('.add-guests-btn');
-    if (addGuestsBtn) {
-        addGuestsBtn.textContent = 'Add Guests';
-        addGuestsBtn.style.backgroundColor = '';
-        addGuestsBtn.style.color = '';
-    }
-}
-
-// Add event listener for clicking outside the success modal to close it
-document.addEventListener('DOMContentLoaded', function() {
-    const successModal = document.querySelector('.modal-overlay.success-modal');
-    if (successModal) {
-        successModal.addEventListener('click', (e) => {
-            if (e.target.classList.contains('modal-overlay')) {
-                successModal.classList.remove('show');
-            }
-        });
-    }
-    
-    // Handle open invitation button (you can customize this)
-    const openInvitationBtn = document.querySelector('.open-invitation-btn');
-    if (openInvitationBtn) {
-        openInvitationBtn.addEventListener('click', function() {
-            // Add your logic here - could open email client, download .ics file, etc.
-            alert('Opening calendar invitation...');
-        });
-    }
-});
 
 
         // Demo: Set appointment time (in real app, this would come from calendar selection)

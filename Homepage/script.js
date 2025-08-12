@@ -706,8 +706,9 @@ function wrapCharacters() {
             // Log the collected data (in real implementation, send to server)
             console.log('Form Data:', data);
             
-            // Show success message
-            showSuccessModal();
+             // Show success message
+            alert('Event scheduled successfully!\n\nYou should receive a confirmation email shortly.');
+            
             
             // In real implementation, you would:
             // 1. Send data to your backend
@@ -716,49 +717,7 @@ function wrapCharacters() {
             // 4. Redirect or close modal
         });
 
-                // Add this to your existing form submission success block:
-function showSuccessModal() {
-    // Hide all other modals
-    document.querySelectorAll('.modal-overlay').forEach(modal => {
-        modal.classList.remove('show');
-    });
-    
-    // Update the appointment time in the success modal
-    const appointmentDateTime = document.getElementById('appointmentDateTime').textContent;
-    const successTimeElement = document.getElementById('successAppointmentTime');
-    if (successTimeElement && appointmentDateTime) {
-        successTimeElement.textContent = appointmentDateTime;
-    }
-    
-    // Show success modal
-    document.querySelector('.modal-overlay.success-modal').classList.add('show');
 
-    // Selective form reset - keep firstName, lastName, email but clear other fields
-    selectiveFormReset();
-}
-
-
-
-// Add event listener for clicking outside the success modal to close it
-document.addEventListener('DOMContentLoaded', function() {
-    const successModal = document.querySelector('.modal-overlay.success-modal');
-    if (successModal) {
-        successModal.addEventListener('click', (e) => {
-            if (e.target.classList.contains('modal-overlay')) {
-                successModal.classList.remove('show');
-            }
-        });
-    }
-    
-    // Handle open invitation button (you can customize this)
-    const openInvitationBtn = document.querySelector('.open-invitation-btn');
-    if (openInvitationBtn) {
-        openInvitationBtn.addEventListener('click', function() {
-            // Add your logic here - could open email client, download .ics file, etc.
-            alert('Opening calendar invitation...');
-        });
-    }
-});
 
 
         // Demo: Set appointment time (in real app, this would come from calendar selection)
