@@ -1,7 +1,7 @@
 {
   "name": "hr-consultation-booking",
   "version": "1.0.0",
-  "description": "HR consultation booking system with email notifications",
+  "description": "HR consultation booking system with email notifications and contact form",
   "main": "index.js",
   "scripts": {
     "build": "echo 'No build step required'"
@@ -9,7 +9,7 @@
   "dependencies": {
     "@sendgrid/mail": "^7.7.0"
   },
-  "keywords": ["consultation", "booking", "sendgrid", "netlify"],
+  "keywords": ["consultation", "booking", "sendgrid", "netlify", "contact-form"],
   "author": "VelvetEdgeSolutions",
   "license": "MIT"
 }
