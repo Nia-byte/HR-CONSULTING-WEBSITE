@@ -551,6 +551,7 @@ html, body {
 
     /* Button - center under description with proper centering */
     .floating-cta {
+        cursor: pointer;
         position: static;
         display: block;
         margin: 20px auto 0 auto;

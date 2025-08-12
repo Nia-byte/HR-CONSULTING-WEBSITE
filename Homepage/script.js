@@ -473,13 +473,12 @@ function wrapCharacters() {
         
         // Available dates and their time slots
         const availableDates = {
-            11: ['11:00 am', '13:00 pm'],
-            12: ['11:00 am', '13:00 pm'],
-            13: ['11:00 am', '13:00 pm'],
-            14: ['11:00 am', '13:00 pm'],
-            15: ['11:00 am', '13:00 pm'],
+            18: ['11:00 am', '13:00 pm'],
             19: ['11:00 am', '13:00 pm'],
             20: ['11:00 am', '13:00 pm'],
+            21: ['11:00 am', '13:00 pm'],
+            22: ['11:00 am', '13:00 pm'],
+            25: ['11:00 am', '13:00 pm'],
             26: ['11:00 am', '13:00 pm'],
             27: ['11:00 am', '13:00 pm'],
             28: ['11:00 am', '13:00 pm'],
@@ -708,7 +707,7 @@ function wrapCharacters() {
             console.log('Form Data:', data);
             
             // Show success message
-            alert('Event scheduled successfully!\n\nYou should receive a confirmation email shortly.');
+            showSuccessModal();
             
             // In real implementation, you would:
             // 1. Send data to your backend
@@ -716,6 +715,51 @@ function wrapCharacters() {
             // 3. Send confirmation emails
             // 4. Redirect or close modal
         });
+
+                // Add this to your existing form submission success block:
+function showSuccessModal() {
+    // Hide all other modals
+    document.querySelectorAll('.modal-overlay').forEach(modal => {
+        modal.classList.remove('show');
+    });
+    
+    // Update the appointment time in the success modal
+    const appointmentDateTime = document.getElementById('appointmentDateTime').textContent;
+    const successTimeElement = document.getElementById('successAppointmentTime');
+    if (successTimeElement && appointmentDateTime) {
+        successTimeElement.textContent = appointmentDateTime;
+    }
+    
+    // Show success modal
+    document.querySelector('.modal-overlay.success-modal').classList.add('show');
+
+    // Selective form reset - keep firstName, lastName, email but clear other fields
+    selectiveFormReset();
+}
+
+
+
+// Add event listener for clicking outside the success modal to close it
+document.addEventListener('DOMContentLoaded', function() {
+    const successModal = document.querySelector('.modal-overlay.success-modal');
+    if (successModal) {
+        successModal.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal-overlay')) {
+                successModal.classList.remove('show');
+            }
+        });
+    }
+    
+    // Handle open invitation button (you can customize this)
+    const openInvitationBtn = document.querySelector('.open-invitation-btn');
+    if (openInvitationBtn) {
+        openInvitationBtn.addEventListener('click', function() {
+            // Add your logic here - could open email client, download .ics file, etc.
+            alert('Opening calendar invitation...');
+        });
+    }
+});
+
 
         // Demo: Set appointment time (in real app, this would come from calendar selection)
         function setAppointmentTime(time, date) {
