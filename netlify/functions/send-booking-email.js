@@ -1,5 +1,38 @@
 const sgMail = require('@sendgrid/mail');
 
+// Add this temporary code in your function (before the main logic)
+if (event.httpMethod === 'GET' && event.queryStringParameters?.test === 'apikey') {
+  try {
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+    
+    // Simple test email
+    const testMsg = {
+      to: process.env.ADMIN_EMAIL,
+      from: process.env.ADMIN_EMAIL,
+      subject: 'SendGrid API Test',
+      text: 'This is a test to verify API key permissions.'
+    };
+    
+    await sgMail.send(testMsg);
+    
+    return {
+      statusCode: 200,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ success: true, message: 'API key works!' })
+    };
+  } catch (error) {
+    return {
+      statusCode: 200,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ 
+        success: false, 
+        error: error.message,
+        code: error.code 
+      })
+    };
+  }
+}
+
 exports.handler = async (event, context) => {
   // Set CORS headers
   const headers = {
