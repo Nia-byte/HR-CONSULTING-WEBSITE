@@ -177,7 +177,7 @@ exports.handler = async (event, context) => {
                 email: process.env.ADMIN_EMAIL,
                 name: 'Velvet & Edge Solutions'
             },
-            subject: 'Velvet & Edge Solutions - Message Received',
+            subject: 'Velvet & Edge Solutions - Query Received',
             text: `Dear ${fullName},
 
 Thank you for reaching out to Velvet & Edge Solutions!
@@ -233,8 +233,8 @@ Velvet & Edge Solutions Team`,
                 email: process.env.ADMIN_EMAIL,
                 name: 'Velvet & Edge Website'
             },
-            subject: `New Contact Form Submission - ${fullName}`,
-            text: `New contact form submission received!
+            subject: `New Query Form Submission - ${fullName}`,
+            text: `New Query submission received!
 
 Contact details:
 ${contactDetails}

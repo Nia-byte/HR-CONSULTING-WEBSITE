@@ -863,7 +863,7 @@ function showSuccessMessage() {
     successModal.innerHTML = `
         <div class="modal success-content">
             <div class="success-header">
-                <div style="color: #4CAF50; font-size: 48px; margin-bottom: 20px;">✓</div>
+                <div style="color: #dc4c94; font-size: 48px; margin-bottom: 20px;">✓</div>
                 <h2>Booking Confirmed!</h2>
             </div>
             <div class="success-body">
@@ -1154,7 +1154,7 @@ const successModalCSS = `
 }
 
 .success-close-btn {
-    background: #4CAF50;
+    background: #dc4c94;
     color: white;
     border: none;
     padding: 12px 30px;
@@ -1167,7 +1167,7 @@ const successModalCSS = `
 }
 
 .success-close-btn:hover {
-    background: #45a049;
+    background: #dc4c94;
 }
 `;
 

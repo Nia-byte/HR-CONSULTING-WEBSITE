@@ -279,11 +279,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 position: fixed;
                 top: 20px;
                 right: 20px;
-                background: ${type === 'success' ? '#d4edda' : '#f8d7da'};
-                color: ${type === 'success' ? '#155724' : '#721c24'};
+                background: ${type === 'success' ? '#FDF2F8' : '#FDF2F8'};
+                color: ${type === 'success' ? '#dc4c94' : '#dc4c94'};
                 padding: 15px 20px;
                 border-radius: 8px;
-                border: 1px solid ${type === 'success' ? '#c3e6cb' : '#f5c6cb'};
+                border: 1px solid ${type === 'success' ? '#dc4c94' : '#dc4c94'};
                 box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
                 z-index: 1000;
                 max-width: 400px;
@@ -795,7 +795,7 @@ function showSuccessMessage() {
     successModal.innerHTML = `
         <div class="modal success-content">
             <div class="success-header">
-                <div style="color: #4CAF50; font-size: 48px; margin-bottom: 20px;">✓</div>
+                <div style="color: #dc4c94; font-size: 48px; margin-bottom: 20px;">✓</div>
                 <h2>Booking Confirmed!</h2>
             </div>
             <div class="success-body">
@@ -1086,7 +1086,7 @@ const successModalCSS = `
 }
 
 .success-close-btn {
-    background: #4CAF50;
+    background: #dc4c94;
     color: white;
     border: none;
     padding: 12px 30px;
@@ -1099,7 +1099,7 @@ const successModalCSS = `
 }
 
 .success-close-btn:hover {
-    background: #45a049;
+    background: #dc4c94;
 }
 `;
 
