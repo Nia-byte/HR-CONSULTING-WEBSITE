@@ -2064,7 +2064,14 @@ html, body {
 height: 900px; /* Increased from 500px */
   max-width: 1500px;
   object-fit: contain;
-  filter:brightness(0) saturate(100%) invert(69%) sepia(58%) saturate(5158%) hue-rotate(295deg) brightness(101%) contrast(101%) !important;
+ filter: brightness(0) saturate(100%) invert(51%) sepia(40%) saturate(4600%) hue-rotate(302deg) brightness(90%) contrast(90%) !important;
+}
+
+/* Safari-specific fine-tuning */
+@supports (-webkit-appearance: none) {
+  .curly-arrow-img {
+    filter: brightness(0) saturate(100%) invert(51%) sepia(42%) saturate(4800%) hue-rotate(298deg) brightness(92%) contrast(92%) !important;
+  }
 }
         .about-right {
             position: relative;
