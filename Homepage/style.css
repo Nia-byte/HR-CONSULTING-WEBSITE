@@ -2064,7 +2064,7 @@ html, body {
 height: 900px; /* Increased from 500px */
   max-width: 1500px;
   object-fit: contain;
-  filter: brightness(0) saturate(100%) invert(51%) sepia(40%) saturate(4600%) hue-rotate(302deg) brightness(90%) contrast(90%);
+  filter: brightness(0) saturate(100%) invert(51%) sepia(40%) saturate(4600%) hue-rotate(302deg) brightness(90%) contrast(90%) !important;
 }
         .about-right {
             position: relative;
@@ -5244,7 +5244,7 @@ height: 900px; /* Increased from 500px */
         } 
 
          .mobile-menu-cta {
-            margin-bottom: 260px;
+            margin-bottom: 200px !important;
             left: -60px;
         }
 
