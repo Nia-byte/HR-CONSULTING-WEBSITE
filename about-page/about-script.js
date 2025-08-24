@@ -453,11 +453,7 @@ let currentYear = currentDate.getFullYear();
 
 // Available dates and their time slots
 const availableDates = {
-    18: ['11:00 am', '13:00 pm'],
-    19: ['11:00 am', '13:00 pm'],
-    20: ['11:00 am', '13:00 pm'],
-    21: ['11:00 am', '13:00 pm'],
-    22: ['11:00 am', '13:00 pm'],
+    
     25: ['11:00 am', '13:00 pm'],
     26: ['11:00 am', '13:00 pm'],
     27: ['11:00 am', '13:00 pm'],
