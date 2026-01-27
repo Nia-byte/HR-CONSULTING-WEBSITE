@@ -3,455 +3,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Velvet & Edge - HR Solutions</title>
+    <title>Industrial Expertise Scroll</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
-    <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
-    
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --bg-light: #FDF2F8;
+            --text-dark: #333;
+            --accent-red: #e63946;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background: #000;
-            color: white;
-            overflow-x: hidden;
+            margin: 0;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #000;
+            color: var(--text-dark);
         }
 
-        /* --- NAVIGATION --- */
-        nav {
+        /* Container for the whole scroll experience */
+        .parallax-container-deliver {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 60px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            transition: all 0.4s ease;
-        }
-
-        nav.scrolled {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 15px 40px;
-            margin: 10px 20px;
-            border-radius: 50px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .logo-group {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            text-decoration: none;
-        }
-
-        .nav-logo-img {
-            height: 40px;
-            width: auto;
-            border-radius: 4px;
-        }
-
-        .logo-text {
-            color: white;
-            font-size: 22px;
-            font-weight: 600;
-            font-family: "Playfair Display", serif;
-            line-height: 1;
-        }
-
-        nav.scrolled .logo-text { color: black; }
-
-        .logo-text span {
-            display: block;
-            font-size: 10px;
-            letter-spacing: 2px;
-            font-family: 'Inter', sans-serif;
-            opacity: 0.8;
-        }
-
-       /* --- NAVIGATION LINKS --- */
-.nav-links {
-    display: flex;
-    list-style: none;
-    gap: 30px;
-}
-
-.nav-links a {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
-    /* Required for the absolute underline to position itself correctly */
-    position: relative; 
-    /* Creates space for the line so it doesn't touch the letters */
-    padding-bottom: 8px; 
-}
-
-/* Underline effect - positioned BELOW the text */
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: 0; /* Positioned at the bottom of the padding */
-    left: 0;
-    width: 0;
-    height: 3px;
-    background-color: #e05bab;
-    transition: width 0.3s ease;
-}
-
-/* Hover State */
-.nav-links a:hover {
-    color: #e05bab; /* Matches the line color for a cleaner look */
-}
-
-/* When the navbar is scrolled, the text becomes black, but hover stays pink */
-nav.scrolled .nav-links a { 
-    color: black; 
-}
-
-nav.scrolled .nav-links a:hover {
-    color: #e05bab;
-}
-
-.nav-links a:hover::after {
-    width: 100%;
-}
-
-/* Active/current page state */
-.nav-links a.active {
-    color: #e05bab;
-}
-
-.nav-links a.active::after {
-    width: 100%;
-}
-
-        .book-call-btn {
-            background: linear-gradient(135deg, #e05bab 0%, #be4a8d 100%);
-            color: white;
-            padding: 12px 25px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: transform 0.3s;
-        }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            height: 100vh;
-            width: 100%;
             position: relative;
+        }
+
+        /* Left Side: Sticky Image */
+        .image-section-deliver {
+            width: 150% !important;
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            overflow: hidden;
-            background: linear-gradient(rgba(0, 0, 0, 0.653), rgba(0,0,0,0.6)), 
-                        url('/group-people-working-out-business-plan-office.jpg'); 
-            background-size: cover;
-            background-position: center;
         }
 
-        .hero-content {
-            max-width: 900px;
-            padding: 0 20px;
-            margin-top: 70px !important;
-            z-index: 10;
+        .image-section-deliver img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
-        .location-tag {
-            background: rgba(224, 91, 171, 0.2);
-            color: #ff9edb;
-            padding: 8px 20px;
-            border-radius: 20px;
-            display: inline-block;
-            margin-bottom: 30px;
-            font-size: 14px;
-            letter-spacing: 1px;
-            border: 1px solid rgba(224, 91, 171, 0.3);
-            backdrop-filter: blur(5px);
+        /* Overlay Text on Image */
+        .image-overlay-deliver {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.429); /* Slight darkening for text readability */
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* FIXED: Added height to prevent text jumping */
-        .typewriter-container {
-            min-height: 280px; 
-            margin-bottom: -10px;
-            text-align: center;
+        .image-overlay-deliver h2 {
+            color: white;
+            font-size: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            font-family: "Playfair Display", serif;
+            font-weight: 600;
         }
 
-        .main-heading {
-            display: block; /* Ensures words stack vertically */
-            font-size: clamp(40px, 8vw, 80px);
-            font-weight: 900;
-            line-height: 1.1;
-            font-family: 'Playfair Display', serif;
-            min-height: 1.1em; /* Reserves line height */
+        /* Right Side: Scrolling Content */
+        .content-section-deliver {
+            width: 50%;
+            background-color: var(--bg-light);
+            padding: 0 5%;
         }
 
-        .cursor {
-            display: inline-block;
-            width: 4px;
-            height: 0.8em;
-            background: #e05bab;
-            margin-left: 5px;
-            vertical-align: middle;
+        .content-block-deliver {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+            padding: 40px 0;
         }
 
-        .description {
-            font-size: clamp(18px, 2vw, 24px);
+        .content-block-deliver.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .content-block-deliver h2 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: #ef009f;
+            font-family: "Playfair Display", serif;
+        }
+
+        .content-block-deliver p {
+            font-size: 1.2rem;
             line-height: 1.6;
-            margin-bottom: 30px;
-            opacity: 0.9;
-            color: #f0f0f0;
+            color: #555;
+            max-width: 500px;
         }
 
-        .highlight {
-            color: #e05bab;
-            font-weight: 700;
-        }
+     
 
-       .floating-cta {
-    display: inline-block;
-    background: rgba(255, 255, 255, 0.05); /* Subtle dark fill */
-    color: white;
-    padding: 10px 28px; /* Smaller sizing */
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 15px; /* Smaller font */
-    border: 1px solid rgba(224, 91, 171, 0.5); /* Secondary pink border */
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
-    margin-top: 10px;
-    opacity: 1 !important; /* Forces visibility */
-}
-
-.floating-cta:hover {
-    background: rgba(224, 91, 171, 0.2);
-    border-color: #e05bab;
-    transform: translateY(-2px);
-}
-
-
-/*MENU FOR MOBILE DEVICES STYLE*/
-/* --- MOBILE MENU STYLES --- */
-.menu-toggle {
-    display: none; /* Hidden on desktop */
-    flex-direction: column;
-    gap: 6px;
-    cursor: pointer;
-    z-index: 2000;
-}
-
-.menu-toggle span {
-    display: block;
-    width: 28px;
-    height: 2px;
-    background: white;
-    transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Scrolled state for toggle */
-nav.scrolled .menu-toggle span { background: black; }
-
-/* Hamburger Transform to X */
-.menu-toggle.active span:nth-child(1) { transform: translateY(4px) rotate(45deg); background: black !important; }
-.menu-toggle.active span:nth-child(2) { transform: translateY(-4px) rotate(-45deg); background: black !important; }
-
-/* Fullscreen Overlay */
-.mobile-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(15px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transform: translateX(100%);
-    transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
-    z-index: 1500;
-}
-
-.mobile-overlay.active { transform: translateX(0); }
-
-.mobile-nav-links {
-    list-style: none;
-    text-align: center;
-}
-
-.mobile-nav-links li { margin: 25px 0; opacity: 0; transform: translateY(20px); transition: 0.4s; }
-.mobile-overlay.active .mobile-nav-links li { opacity: 1; transform: translateY(0); }
-
-.mobile-nav-links a {
-    color: black;
-    text-decoration: none;
-    font-size: 32px;
-    font-family: 'Playfair Display', serif;
-    font-weight: 600;
-}
-
-.mobile-cta {
-    font-family: 'Inter', sans-serif !important;
-    font-size: 18px !important;
-    color: #e05bab !important;
-    border: 1px solid #e05bab;
-    padding: 10px 30px;
-    border-radius: 50px;
-}
-
-/* Mobile Media Query Update */
-@media (max-width: 768px) {
-    .nav-links, .book-call-btn { display: none; }
-    .menu-toggle { display: flex; }
-    nav.scrolled { padding: 10px 20px; margin: 10px; }
-}
-
-
+        /* Mobile Optimization */
         @media (max-width: 768px) {
-            nav { padding: 90px 30px; }
-            .nav-links, .book-call-btn { display: none; }
-            .typewriter-container { min-height: 180px; }
+            .parallax-container-deliver { flex-direction: column; }
+            .image-section-deliver, .content-section-deliver { width: 100%; }
+            .image-section-deliver { height: 50vh; }
+            .content-block-deliver h2 { font-size: 2.5rem; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <nav id="navbar">
-            <a href="#" class="logo-group">
-                <img src="/images/favicon.ico" alt="Logo" class="nav-logo-img">
-                <div class="logo-text">
-                    VELVET & EDGE
-                    <span>SOLUTIONS</span>
-                </div>
-            </a>
-            <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-
-            <!--MENU FOR MOBILES-->
-            <div class="menu-toggle" id="mobile-menu">
-               <span></span>
-               <span></span>
+    <div class="parallax-container-deliver">
+        <div class="image-section-deliver">
+            <img src="/business-women-talking-near-desk-coffee-break-hallway-big-corporation.jpg" alt="Machining">
+            <div class="image-overlay-deliver">
+               <!--  <h2>What We Deliver</h2> --> 
             </div>
-
-            <div class="mobile-overlay" id="overlay">
-              <ul class="mobile-nav-links">
-                     <li><a href="#">Home</a></li>
-                     <li><a href="#">About</a></li>
-                     <li><a href="#">Contact</a></li>
-                     <li><a href="#" class="mobile-cta">Get in Touch</a></li>
-              </ul>
-            </div>
-
-            <a href="#" class="book-call-btn">Get in Touch</a>
-        </nav>
-    </header>
-
-    <section class="hero">
-        <div class="hero-content">
-            <div class="typewriter-container">
-                <span class="main-heading" id="line1"></span>
-                <span class="main-heading" id="line2"></span>
-                <span class="main-heading" id="line3"></span>
-                
-            </div>
-
-            <p class="description">
-             We provide the <span class="highlight">HR infrastructure</span> that allows tech teams to build a talent first ecosystem that leads the market.
-            </p>
-            <a href="/about-page/about.html" class="floating-cta">Learn More</a>
         </div>
-    </section>
+
+        <div class="content-section-deliver">
+            <div class="content-block-deliver">
+                <h2>Strategic Recruitment & Workforce Planning</h2>
+                <p>Since 2017, we’ve helped organisations scale through effective recruitment strategies. We  specialise in diversity-focused hiring, succession planning, and provide pre-vetted, certified talent for both short- and long-term engagements.</p>
+            </div>
+
+            <div class="content-block-deliver">
+                <h2>Comprehensive HR Consulting <br>Services</h2>
+                <p> Our experts provide, HR strategy development, Job profiling, Evaluation, Salary structuring, Equity reports, Training reports, and HR audits, Policy creation aligned with Labour Law and market benchmarks
+                          HRIS design and process automation for long-term scalability</p>
+            </div>
+
+            <div class="content-block-deliver">
+                <h2>CETA-Accredited Skills Development & Training</h2>
+                <p> As a CETA-accredited provider, we offer industry-aligned training in SAP, Microsoft, Oracle, ICT, and Health & Safety. Our training is modular, based on NQF standards, and facilitated by certified assessors and moderators who contextualise content to your team’s real-world challenges.</p>
+            </div>
+        </div>
+    </div>
+
+    
 
     <script>
-        // 1. Initialize Lenis Smooth Scroll
-        const lenis = new Lenis();
-        function raf(time) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
-        }
-        requestAnimationFrame(raf);
+        // Use Intersection Observer for the fade-in effect on scroll
+        const observerOptions = {
+            threshold: 0.3
+        };
 
-        // 2. Navbar Scroll Effect
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 50) nav.classList.add('scrolled');
-            else nav.classList.remove('scrolled');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.content-block-deliver').forEach(block => {
+            observer.observe(block);
         });
-
-        // 3. GSAP Typewriter Animation
-        gsap.registerPlugin(TextPlugin);
-
-        const tl = gsap.timeline({ repeat: -1, repeatDelay: 3 });
-
-        // Clear content before start
-        tl.set("#line1, #line2, #line3", { text: "" });
-
-        tl.to("#line1", { duration: 1, text: "Empower.", ease: "none" })
-          .to("#line2", { duration: 1, text: "Transform.", ease: "none" }, "+=0.3")
-          .to("#line3", { duration: 1, text: "Succeed.", ease: "none" }, "+=0.3");
-
-        // Blink cursor constantly
-        gsap.to(".cursor", { opacity: 0, duration: 0.5, repeat: -1, yoyo: true, ease: "power2.inOut" });
-
-        // 4. Entrance Animations
-        gsap.from(".description, .floating-cta", {
-          y: 20,
-          opacity: 0,
-          duration: 1,
-          stagger: 0.2,
-          ease: "power3.out",
-          delay: 0.5,
-          clearProps: "all" // This line ensures GSAP doesn't leave the button hidden
-       });
-
-
-       /*MENU FOR MOB*/
-       const menuToggle = document.getElementById('mobile-menu');
-const overlay = document.getElementById('overlay');
-const body = document.body;
-
-menuToggle.addEventListener('click', () => {
-    menuToggle.classList.toggle('active');
-    overlay.classList.toggle('active');
-    
-    // Prevent scrolling when menu is open
-    if (overlay.classList.contains('active')) {
-        body.style.overflow = 'hidden';
-    } else {
-        body.style.overflow = 'auto';
-    }
-});
-
-// Close menu when a link is clicked
-document.querySelectorAll('.mobile-nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-        menuToggle.classList.remove('active');
-        overlay.classList.remove('active');
-        body.style.overflow = 'auto';
-    });
-});
-   /*
+    </script>
+<!--
 https://www.freepik.com/free-video/american-man-sitting-desk-office-while-talking-about-graphics-stadistics-with-two-female-coworkers-who-are-standing_175739#fromView=resource_detail&position=0&from_element=cross_selling__photo
 https://www.freepik.com/free-video/diverse-business-group-talking_2809215#fromView=resource_detail&position=3&from_element=cross_selling__photo
 https://www.freepik.com/free-video/young-business-people-meeting-modern-office_1901498#fromView=image_search_similar&page=1&position=19&uuid=f106192e-8f02-4718-a6aa-cb9b9d2ac773
-*/
-    </script>
+-->
+   
 </body>
 </html>
 

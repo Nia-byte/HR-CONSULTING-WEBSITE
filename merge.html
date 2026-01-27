@@ -11,13 +11,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
 </head>
 <body>
     <!--NAV BAR-->
     <header>
         <nav id="navbar">
             <a href="/merge.html" class="logo-group">
-                <img src="/images/favicon.ico" alt="Logo" class="nav-logo-img">
+                <img src="/images/V&E LOGO.PNG" alt="Logo" class="nav-logo-img">
                 <div class="logo-text">
                     VELVET & EDGE
                     <span>SOLUTIONS</span>
@@ -556,6 +558,68 @@
     </div>
 </div>
 
+<!--OUR VALUES SECTION-->
+ <section class="values-section">
+        <div class="values-container">
+            <h2 class="values-title">OUR<br>VALUES</h2>
+            
+            <div class="cards-wrapper-values">
+                <div class="value-card" data-index="0">
+                    <div class="card-tab-values">V</div>
+                    <div class="card-content-values">
+                        <h3 class="value-title-text">Integrity and Ethical Standards</h3>
+                        <p class="value-description">We believe that communicating ethically and morally towards our customers is essential to corporate growth and strength.</p>
+                    </div>
+                </div>
+
+                <div class="value-card" data-index="1">
+                    <div class="card-tab-values">&</div>
+                    <div class="card-content-values">
+                        <h3 class="value-title-text">Professional and Timely Delivery</h3>
+                        <p class="value-description">Professional and timely application of target specific objectives helps us to consistently deliver to the satisfaction of our clientele.</p>
+                    </div>
+                </div>
+
+                <div class="value-card" data-index="2">
+                    <div class="card-tab-values">E</div>
+                    <div class="card-content-values">
+                        <h3 class="value-title-text">Sustainable and Innovative Solutions</h3>
+                        <p class="value-description">We focus on providing sustainable and innovative solutions to the built environment, optimizing our clients' fixed capital investment.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!--WHAT WE DELIVER-->
+ <div class="parallax-container-deliver">
+        <div class="image-section-deliver">
+            <img src="/business-women-talking-near-desk-coffee-break-hallway-big-corporation.jpg" alt="Machining">
+            <div class="image-overlay-deliver">
+               <!--  <h2>What We Deliver</h2> --> 
+            </div>
+        </div>
+
+        <div class="content-section-deliver">
+            <div class="content-block-deliver">
+                <h2>Strategic Recruitment & Workforce Planning</h2>
+                <p>Since 2017, we’ve helped organisations scale through effective recruitment strategies. We  specialise in diversity-focused hiring, succession planning, and provide pre-vetted, certified talent for both short- and long-term engagements.</p>
+            </div>
+
+            <div class="content-block-deliver">
+                <h2>Comprehensive HR Consulting <br>Services</h2>
+                <p> Our experts provide, HR strategy development, Job profiling, Evaluation, Salary structuring, Equity reports, Training reports, and HR audits, Policy creation aligned with Labour Law and market benchmarks
+                          HRIS design and process automation for long-term scalability</p>
+            </div>
+
+            <div class="content-block-deliver">
+                <h2>CETA-Accredited Skills Development & Training</h2>
+                <p> As a CETA-accredited provider, we offer industry-aligned training in SAP, Microsoft, Oracle, ICT, and Health & Safety. Our training is modular, based on NQF standards, and facilitated by certified assessors and moderators who contextualise content to your team’s real-world challenges.</p>
+            </div>
+        </div>
+    </div>
+
     <script>
         // 1. Initialize Lenis Smooth Scroll
         const lenis = new Lenis();
@@ -838,6 +902,7 @@ document.querySelectorAll('.mobile-nav-links a').forEach(link => {
 
       
     /*ABOUT SECTION*/
+    function setupAboutAnimations() {
 // Animate heading characters
 const heading = document.getElementById('mainHeading');
 if (heading) {
@@ -887,6 +952,128 @@ if (heading) {
         }
     );
 }
+}
+
+/*OUR VALUES SECTION*/
+// Get responsive values
+        function getResponsiveValues() {
+            const width = window.innerWidth;
+            
+            if (width <= 375) {
+                return {
+                    dockPosition: '15vw',
+                    tabWidth: 35,
+                    cardWidth: '75vw'
+                };
+            } else if (width <= 480) {
+                return {
+                    dockPosition: '18vw',
+                    tabWidth: 40,
+                    cardWidth: '72vw'
+                };
+            } else if (width <= 768) {
+                return {
+                    dockPosition: '20vw',
+                    tabWidth: 50,
+                    cardWidth: '65vw'
+                };
+            } else if (width <= 1024) {
+                return {
+                    dockPosition: '23vw',
+                    tabWidth: 70,
+                    cardWidth: '55vw'
+                };
+            } else {
+                return {
+                    dockPosition: '25vw',
+                    tabWidth: 80,
+                    cardWidth: '50vw'
+                };
+            }
+        }
+
+        function initAnimation() {
+    // 1. Clean up existing triggers
+    ScrollTrigger.getAll().forEach(t => t.kill());
+    
+    const cards = gsap.utils.toArray('.value-card');
+    const totalCards = cards.length;
+    
+    // 2. Determine tab width based on screen size
+    const isMobile = window.innerWidth <= 768;
+    const tabWidth = isMobile ? 50 : 80; 
+    
+    // The "Our Values" title takes up about 25% of the width on desktop
+    const leftOffset = isMobile ? 20 : 300; 
+
+    // 3. Create the Master Timeline
+    const mainTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".values-section",
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 1, // Smoothness of the scrub
+            invalidateOnRefresh: true
+        }
+    });
+
+    cards.forEach((card, i) => {
+        // Calculate the "Dock" position
+        // This ensures Card 0 stops at 300px, Card 1 at 380px, etc.
+        const dockPosition = leftOffset + (i * tabWidth);
+        
+        // Initial state: Off-screen to the right
+        gsap.set(card, { left: "100%" });
+
+        // Add the slide-in animation to the timeline
+        // The 'i / totalCards' ensures they start one after another
+        mainTl.to(card, {
+            left: dockPosition + "px",
+            ease: "power2.out",
+            duration: 1 / totalCards // Each card takes an equal portion of the scroll
+        }, i / totalCards); 
+
+        // If you want the content to fade slightly when covered, uncomment below:
+        /*
+        if (i < totalCards - 1) {
+            mainTl.to(card.querySelector('.card-content'), {
+                opacity: 0.4,
+                duration: 0.5 / totalCards
+            }, (i + 1) / totalCards);
+        }
+        */
+    });
+    setupAboutAnimations();
+}
+
+// 3. Keep your Listeners
+window.addEventListener('load', initAnimation);
+window.addEventListener('resize', () => {
+    clearTimeout(window.resizeTimer);
+    window.resizeTimer = setTimeout(initAnimation, 250);
+});
+
+
+/*WHAT WE DELIVER*/
+ // Use Intersection Observer for the fade-in effect on scroll
+        const observerOptionsDeliver = {
+            threshold: 0.3
+        };
+
+        const observerDeliver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptionsDeliver);
+
+        document.querySelectorAll('.content-block-deliver').forEach(block => {
+            observerDeliver.observe(block);
+        });
+
+
+
 
 
    /*
