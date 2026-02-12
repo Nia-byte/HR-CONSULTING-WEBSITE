@@ -4,7 +4,7 @@
   "description": "HR consultation booking system with email notifications and contact form",
   "main": "index.js",
   "scripts": {
-    "build": "echo 'No build step required'"
+    "build": "mkdir -p public && cp -r *.html *.css *.js images public/"
   },
   "dependencies": {
     "@sendgrid/mail": "^7.7.0"
