@@ -4,15 +4,20 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(rgba(118, 117, 117, 0.653), rgba(0,0,0,0.6));
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
+      body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: linear-gradient(rgba(118, 117, 117, 0.653), rgba(0, 0, 0, 0.6)), 
+                url("/images/medium-shot-people-learning-together.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
 
     
 
@@ -223,7 +228,7 @@ nav.scrolled .menu-toggle span { background: black; }
 
 
         .hero-container {
-            background: linear-gradient(135deg, #faf7f7 0%, #f5f0f0 100%);
+            background: linear-gradient(135deg, #faf7f7 0%, #f5f0f0 100%), url("/images/medium-shot-people-learning-together.jpg");
             border-radius: 24px;
             padding: 50px;
             max-width: 900px;
@@ -232,6 +237,9 @@ nav.scrolled .menu-toggle span { background: black; }
             position: relative;
             overflow: hidden;
             margin-top: 60px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
         .hero-container::before {
@@ -241,8 +249,11 @@ nav.scrolled .menu-toggle span { background: black; }
             left: 0;
             right: 0;
             height: 40%;
-            background: linear-gradient(135deg, #FDF2F8 0%, #FDF2F8 100%);
+            background: linear-gradient(135deg, #FDF2F8 0%, #FDF2F8 100%), url("/images/medium-shot-people-learning-together.jpg");
             border-radius: 0 0 24px 24px;
+               background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
         .content-wrapper {
