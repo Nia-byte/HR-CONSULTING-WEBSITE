@@ -1,5 +1,3 @@
-/*NAVBAR AND HERO*/
-
 /*NAVBAR AND HERO SECTION*/
 document.addEventListener('DOMContentLoaded', function() {
             // Stagger animation delays for text elements
@@ -122,321 +120,282 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+/*MENU FOR MOB*/
+const menuToggle = document.getElementById('mobile-menu');
+const overlay = document.getElementById('overlay');
+const body = document.body;
 
-  function bookCall() {
-            // Add your booking functionality here
-            alert('Booking system would be integrated here!');
-        }
+menuToggle.addEventListener('click', () => {
+    menuToggle.classList.toggle('active');
+    overlay.classList.toggle('active');
+    
+    // Prevent scrolling when menu is open
+    if (overlay.classList.contains('active')) {
+        body.style.overflow = 'hidden';
+    } else {
+        body.style.overflow = 'auto';
+    }
+});
 
-        // Add subtle hover effects to geometric shapes
-        document.addEventListener('DOMContentLoaded', function() {
-            const shapes = document.querySelectorAll('.geo-shape');
+// Close menu when a link is clicked
+document.querySelectorAll('.mobile-nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+        menuToggle.classList.remove('active');
+        overlay.classList.remove('active');
+        body.style.overflow = 'auto';
+    });
+});
+
+
+/*CONTACT FORM EMAIL SYSTEM*/
+// Contact Form Handler
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const captchaBox = document.querySelector('.captcha-box');
+    
+    let isCaptchaChecked = false;
+    let isSubmitting = false;
+
+    // Handle captcha click
+    if (captchaBox) {
+        captchaBox.addEventListener('click', function() {
+            isCaptchaChecked = !isCaptchaChecked;
             
-            shapes.forEach(shape => {
-                shape.addEventListener('mouseenter', function() {
-                    this.style.transform = 'scale(1.02) rotate(0.5deg)';
+            if (isCaptchaChecked) {
+                this.innerHTML = '<div style="color: #dc4c94; font-weight: bold;">✓</div>';
+                this.style.borderColor = '#dc4c94';
+            } else {
+                this.innerHTML = '';
+                this.style.borderColor = '#ccc';
+            }
+        });
+    }
+
+    // Handle form submission
+    if (contactForm) {
+        contactForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Prevent double submission
+            if (isSubmitting) return;
+            
+            // Validate captcha if present
+            if (captchaBox && !isCaptchaChecked) {
+                showNotification('Please complete the captcha verification.', 'error');
+                return;
+            }
+            
+            // Get form data
+            const formData = new FormData(contactForm);
+            const contactData = {
+                fullName: formData.get('fullName') || '',
+                email: formData.get('email') || '',
+                contactType: formData.get('contactType') || 'Individual',
+                message: formData.get('message') || ''
+            };
+            
+            // Validate required fields
+            if (!contactData.fullName.trim()) {
+                showNotification('Please enter your full name.', 'error');
+                return;
+            }
+            
+            if (!contactData.email.trim()) {
+                showNotification('Please enter your email address.', 'error');
+                return;
+            }
+            
+            if (!contactData.message.trim()) {
+                showNotification('Please enter your message.', 'error');
+                return;
+            }
+            
+            // Validate email format
+            if (!isValidEmail(contactData.email)) {
+                showNotification('Please enter a valid email address.', 'error');
+                return;
+            }
+            
+            // Set submitting state
+            isSubmitting = true;
+            updateSubmitButton(true);
+            
+            try {
+                console.log('Submitting contact form with data:', contactData);
+                
+                const response = await fetch('/.netlify/functions/send-contact-email', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(contactData)
                 });
                 
-                shape.addEventListener('mouseleave', function() {
-                    this.style.transform = 'scale(1) rotate(0deg)';
-                });
-            });
-
-            // Add floating animation to dots with random movement
-            const dots = document.querySelectorAll('[class*="floating-dot"]');
-            dots.forEach((dot, index) => {
-                setInterval(() => {
-                    const randomX = Math.random() * 6 - 3;
-                    const randomY = Math.random() * 6 - 3;
-                    dot.style.transform = `translate(${randomX}px, ${randomY}px)`;
-                }, 3000 + index * 500);
-            });
-        });
-
-
-
-        /*SECTION UNDER HERO*/
-         function bookCall() {
-            // Add smooth animation to button
-            const button = event.target;
-            button.style.transform = 'scale(0.95)';
-            
-            setTimeout(() => {
-                button.style.transform = 'scale(1.05)';
-            }, 100);
-            
-            setTimeout(() => {
-                button.style.transform = 'scale(1)';
-            }, 200);
-            
-            // You can replace this with actual booking functionality
-            alert('Thank you for your interest! Please contact us at:\n\nPhone: (+27) 73 843 9365\nEmail: info@velvetandedge.co.za\nAddress: 1126 Blue Hills, Cnr. Madrill & Drill Street, Midrand');
-        }
-
-        // Add hover effects to service cards
-        document.querySelectorAll('.service-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-5px) scale(1.02)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-
-        // Add subtle floating animation
-        function addFloatingAnimation() {
-            const cards = document.querySelectorAll('.service-card');
-            cards.forEach((card, index) => {
-                card.style.animation = `float ${3 + index * 0.5}s ease-in-out infinite`;
-            });
-        }
-
-        // CSS animation for floating effect
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes float {
-                0%, 100% { transform: translateY(0px); }
-                50% { transform: translateY(-10px); }
-            }
-        `;
-        document.head.appendChild(style);
-
-        // Initialize floating animation after page load
-        window.addEventListener('load', addFloatingAnimation);
-
-
-
-
-
-        /*ABOUT US SECOND SECTION*/
-      document.addEventListener('DOMContentLoaded', function () {
-    // Animate numbers when they come into view
-    const observerOptions = {
-        threshold: 0.5,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver(function (entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const numberElement = entry.target.querySelector('.milestone-number');
-                if (numberElement && !numberElement.classList.contains('animated')) {
-                    numberElement.classList.add('animated');
-                    animateNumber(numberElement);
+                console.log('Response status:', response.status);
+                
+                let responseData;
+                try {
+                    const responseText = await response.text();
+                    console.log('Raw response:', responseText);
+                    responseData = JSON.parse(responseText);
+                } catch (parseError) {
+                    console.error('Failed to parse response as JSON:', parseError);
+                    throw new Error('Invalid response format from server');
                 }
+                
+                if (response.ok && responseData.success) {
+                    showNotification(responseData.message || 'Message sent successfully! We will get back to you soon.', 'success');
+                    resetForm();
+                } else {
+                    console.error('Contact form submission failed:', responseData);
+                    showNotification(responseData.error || 'Failed to send message. Please try again.', 'error');
+                }
+                
+            } catch (error) {
+                console.error('Contact form submission error:', error);
+                showNotification('Failed to send message. Please check your connection and try again.', 'error');
+            } finally {
+                isSubmitting = false;
+                updateSubmitButton(false);
             }
         });
-    }, observerOptions);
-
-    // Observe all milestone cards
-    document.querySelectorAll('.milestone-card').forEach(card => {
-        observer.observe(card);
-    });
-
-    function animateNumber(element) {
-        const text = element.textContent;
-        const hasPlus = text.includes('+');
-        const hasPercent = text.includes('%');
-        const number = parseInt(text.replace(/[^0-9]/g, ''));
-
-        if (isNaN(number)) return;
-
-        let current = 0;
-        const increment = number / 50;
-        const timer = setInterval(() => {
-            current += increment;
-            if (current >= number) {
-                current = number;
-                clearInterval(timer);
-            }
-
-            let displayText = Math.floor(current).toString();
-            if (hasPlus) displayText += '+';
-            if (hasPercent) displayText += '%';
-
-            element.textContent = displayText;
-        }, 30);
     }
+
+    // Helper functions
+    function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
+    function updateSubmitButton(loading) {
+        if (loading) {
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.style.opacity = '0.7';
+        } else {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit';
+            submitBtn.style.opacity = '1';
+        }
+    }
+
+    function resetForm() {
+        contactForm.reset();
+        
+        // Reset captcha
+        if (captchaBox) {
+            isCaptchaChecked = false;
+            captchaBox.innerHTML = '';
+            captchaBox.style.borderColor = '#ccc';
+        }
+    }
+
+    function showNotification(message, type) {
+        // Remove any existing notifications
+        const existingNotification = document.querySelector('.notification');
+        if (existingNotification) {
+            existingNotification.remove();
+        }
+
+        // Create notification element
+        const notification = document.createElement('div');
+        notification.className = `notification ${type}`;
+        notification.innerHTML = `
+            <div style="
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${type === 'success' ? '#FDF2F8' : '#FDF2F8'};
+                color: ${type === 'success' ? '#dc4c94' : '#dc4c94'};
+                padding: 15px 20px;
+                border-radius: 8px;
+                border: 1px solid ${type === 'success' ? '#dc4c94' : '#dc4c94'};
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+                max-width: 400px;
+                font-weight: 500;
+                animation: slideIn 0.3s ease-out;
+            ">
+                ${message}
+                <button onclick="this.parentElement.remove()" style="
+                    background: none;
+                    border: none;
+                    font-size: 18px;
+                    font-weight: bold;
+                    color: inherit;
+                    cursor: pointer;
+                    float: right;
+                    margin-left: 10px;
+                    margin-top: -2px;
+                ">&times;</button>
+            </div>
+        `;
+
+        // Add CSS animation if not already present
+        if (!document.querySelector('#notification-styles')) {
+            const styles = document.createElement('style');
+            styles.id = 'notification-styles';
+            styles.textContent = `
+                @keyframes slideIn {
+                    from {
+                        transform: translateX(100%);
+                        opacity: 0;
+                    }
+                    to {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
+                }
+            `;
+            document.head.appendChild(styles);
+        }
+
+        document.body.appendChild(notification);
+
+        // Auto remove after 5 seconds
+        setTimeout(() => {
+            if (notification && notification.parentElement) {
+                notification.remove();
+            }
+        }, 5000);
+    }
+
+    // Debug function for testing
+    window.testContactForm = function() {
+        console.log('Testing contact form submission...');
+        
+        const testData = {
+            fullName: 'Test User',
+            email: 'test@example.com',
+            contactType: 'Individual',
+            message: 'This is a test message from the contact form.'
+        };
+
+        fetch('/.netlify/functions/send-contact-email', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(testData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Test result:', data);
+            showNotification(data.success ? 'Test successful!' : 'Test failed: ' + data.error, data.success ? 'success' : 'error');
+        })
+        .catch(error => {
+            console.error('Test error:', error);
+            showNotification('Test failed: ' + error.message, 'error');
+        });
+    };
 });
 
 
 
 
 
-/*ABOUT US THIRD SECTION*/
-// Intersection Observer for scroll animations
-        const observerOptions = {
-            threshold: 0.2,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate');
-                }
-            });
-        }, observerOptions);
-
-        // Observe all content blocks
-        document.addEventListener('DOMContentLoaded', () => {
-            const contentBlocks = document.querySelectorAll('.content-block');
-            contentBlocks.forEach(block => {
-                observer.observe(block);
-            });
-        });
-
-        // Add smooth hover effects for the CTA button
-        const ctaButton = document.querySelector('.cta-button-3');
-        ctaButton.addEventListener('mouseenter', () => {
-            ctaButton.style.transform = 'translateY(-2px) scale(1.02)';
-        });
-
-        ctaButton.addEventListener('mouseleave', () => {
-            ctaButton.style.transform = 'translateY(0) scale(1)';
-        });
-
-        // Optional: Add click handler for demonstration
-        ctaButton.addEventListener('click', (e) => {
-            e.preventDefault();
-            // Add your actual click functionality here
-            console.log('Get Support clicked');
-        });
-
-
-/*ABOUT US SIXTH SECTION*/
-function exploreOpportunities() {
-            // Add a subtle animation effect
-            const button = document.querySelector('.cta-button-6');
-            button.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                button.style.transform = 'scale(1)';
-            }, 150);
-
-            // You can add actual navigation logic here
-            alert('Exploring opportunities... This would typically navigate to a careers page.');
-        }
-
-        // Add some interactive hover effects
-        document.addEventListener('DOMContentLoaded', function() {
-            const cards = document.querySelectorAll('.card-6');
-            
-            cards.forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-8px) scale(1.02)';
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0) scale(1)';
-                });
-            });
-
-            // Add a subtle parallax effect to the background
-            document.addEventListener('mousemove', function(e) {
-                const mouseX = e.clientX / window.innerWidth;
-                const mouseY = e.clientY / window.innerHeight;
-                
-               
-            });
-        });
-
-
-
-        /*ABOUT SECTION SEVENTH*/
-    (function() {
-            'use strict';
-            
-            // Namespace to avoid conflicts
-            const HRConsultingAnimations = {
-                
-                // Check if element is in viewport
-                isElementInViewport: function(el) {
-                    const rect = el.getBoundingClientRect();
-                    return (
-                        rect.top >= 0 &&
-                        rect.left >= 0 &&
-                        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-                        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-                    );
-                },
-
-                // Check if element is partially in viewport
-                isElementPartiallyInViewport: function(el) {
-                    const rect = el.getBoundingClientRect();
-                    return (
-                        rect.bottom >= 0 &&
-                        rect.right >= 0 &&
-                        rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
-                        rect.left <= (window.innerWidth || document.documentElement.clientWidth)
-                    );
-                },
-
-                // Animate cards function
-                animateCards: function() {
-                    const cards = document.querySelectorAll('.hr-card');
-                    
-                    cards.forEach(function(card) {
-                        if (HRConsultingAnimations.isElementPartiallyInViewport(card) && !card.classList.contains('animate-in')) {
-                            const delay = parseInt(card.getAttribute('data-hr-delay')) || 0;
-                            
-                            setTimeout(function() {
-                                card.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-                                card.classList.add('animate-in');
-                            }, delay);
-                        }
-                    });
-                },
-
-                // Throttle function to limit scroll event frequency
-                throttle: function(func, wait) {
-                    let timeout;
-                    return function executedFunction(...args) {
-                        const later = function() {
-                            clearTimeout(timeout);
-                            func(...args);
-                        };
-                        clearTimeout(timeout);
-                        timeout = setTimeout(later, wait);
-                    };
-                },
-
-                // Initialize animations
-                init: function() {
-                    // Initial check
-                    this.animateCards();
-                    
-                    // Throttled scroll event
-                    const throttledAnimate = this.throttle(this.animateCards.bind(this), 100);
-                    
-                    // Add scroll event listener
-                    window.addEventListener('scroll', throttledAnimate, { passive: true });
-                    
-                    // Add resize event listener
-                    window.addEventListener('resize', throttledAnimate, { passive: true });
-                    
-                    // Trigger animation on load
-                    window.addEventListener('load', this.animateCards.bind(this));
-                }
-            };
-
-            // Initialize when DOM is ready
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', function() {
-                    HRConsultingAnimations.init();
-                });
-            } else {
-                HRConsultingAnimations.init();
-            }
-
-        })();
-
-
-
-
-
-        
-      
+   
       /*MODAL ANIMATIONS*/
 // Calendar functionality
 const months = [
@@ -453,7 +412,6 @@ let currentYear = currentDate.getFullYear();
 
 // Available dates and their time slots
 const availableDates = {
-    
     25: ['11:00 am', '13:00 pm'],
     26: ['11:00 am', '13:00 pm'],
     27: ['11:00 am', '13:00 pm'],
@@ -1179,8 +1137,6 @@ document.head.appendChild(styleSheet);
 
 
 
-
-       
 /*FOOTER SECTION */
  document.getElementById('current-year').textContent = new Date().getFullYear();
         
@@ -1208,7 +1164,8 @@ document.head.appendChild(styleSheet);
 
 
 
-         /*MENU FUNCTION*/
+        /*MENU SECTION*/
+               /*MENU FUNCTION*/
          function toggleMobileMenu() {
             const mobileMenu = document.getElementById('mobileMenu');
             mobileMenu.classList.toggle('active');
@@ -1237,55 +1194,3 @@ document.head.appendChild(styleSheet);
                 }
             }
         });
-
-
-
-        /*FAQS SECTION*/
-   // Simple, reliable approach using inline onclick
-        var currentOpen = 0; // Track which FAQ is currently open
-
-        // Open first FAQ by default when page loads
-        setTimeout(function() {
-            var firstAnswer = document.getElementById('answer-0');
-            var firstChevron = document.getElementById('chevron-0');
-            if (firstAnswer && firstChevron) {
-                firstAnswer.classList.add('active');
-                firstChevron.classList.add('active');
-            }
-        }, 100);
-
-        function toggleFAQ(index) {
-            var clickedAnswer = document.getElementById('answer-' + index);
-            var clickedChevron = document.getElementById('chevron-' + index);
-            
-            // If the clicked item is already open, close it
-            if (currentOpen === index && clickedAnswer.classList.contains('active')) {
-                clickedAnswer.classList.remove('active');
-                clickedChevron.classList.remove('active');
-                currentOpen = -1;
-                return;
-            }
-            
-            // Close currently open item
-            if (currentOpen >= 0) {
-                var openAnswer = document.getElementById('answer-' + currentOpen);
-                var openChevron = document.getElementById('chevron-' + currentOpen);
-                if (openAnswer && openChevron) {
-                    openAnswer.classList.remove('active');
-                    openChevron.classList.remove('active');
-                }
-            }
-            
-            // Open clicked item
-            if (clickedAnswer && clickedChevron) {
-                clickedAnswer.classList.add('active');
-                clickedChevron.classList.add('active');
-                currentOpen = index;
-            }
-        }
-
-
-
-
-        /*SECOND SECTION ANIMATION*/
-        

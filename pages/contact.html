@@ -5,61 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Velvet & Edge - Contact </title>
      <link rel="icon" type="image/png" href="/images/favicon.ico">
-     <link rel="stylesheet" href="/contact-page/contact.css" />
+     <link rel="stylesheet" href="/css/contact.css" />
+     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+
     </head>
 <body>
-<!--  NavBar-->
- <header>
-         <nav>
-             <div class="logo" href="/Homepage/index.html">
-                      VELVET & EDGE<span>SOLUTIONS</span>
-             </div>
-                  <ul class="nav-links">
-                      <li><a href="/index.html">Home</a></li>
-                      <li><a href="/about-page/about.html">About</a></li>
-                      <li><a href="/contact-page/contact.html">Contact</a></li>
-                  </ul>
-                  <a  class="book-call-btn" id="bookCallBtn">Book a Call</a>
-                  <div class="loading-dots" id="loadingDots">
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                    <div class="dot"></div>
+    <!--NAV BAR-->
+    <header>
+        <nav id="navbar">
+            <a href="/index.html" class="logo-group">
+                <img src="/images/V&E LOGO.PNG" alt="Logo" class="nav-logo-img">
+                <div class="logo-text">
+                    VELVET & EDGE
+                    <span>SOLUTIONS</span>
                 </div>
-                  <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
-           </nav>
+            </a>
+            <ul class="nav-links">
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="./about.html" >About</a></li>
+                <li><a href="./contact.html" class="active">Contact</a></li>
+            </ul>
 
-<!-- Mobile Menu Overlay - EXACT recreation -->
-    <div class="mobile-menu-overlay" id="mobileMenu">
-        <div class="mobile-menu-header">
-            <div class="mobile-menu-logo">
-                VELVET & EDGE
-                <small>SOLUTIONS</small>
+            <!--MENU FOR MOBILES-->
+            <div class="menu-toggle" id="mobile-menu">
+               <span></span>
+               <span></span>
             </div>
-            <button class="close-btn-2" onclick="toggleMobileMenu()">×</button>
-        </div>
 
-        <nav class="mobile-menu-nav">
-            <a href="/index.html" onclick="toggleMobileMenu()">Home</a>
-            <a href="/about-page/about.html" onclick="toggleMobileMenu()">About</a>
-            <a href="/contact-page/contact.html" onclick="toggleMobileMenu()">Contact</a>
+            <div class="mobile-overlay" id="overlay">
+              <ul class="mobile-nav-links">
+                     <li><a href="/index.html">Home</a></li>
+                     <li><a href="./about.html" >About</a></li>
+                     <li><a href="./contact.html" class="active">Contact</a></li>
+              </ul>
+            </div>
+
+            <a href="#" class="book-call-btn">Get in Touch</a>
         </nav>
-
-        <div class="mobile-menu-cta">
-            <button class="mobile-book-call-btn" onclick="document.getElementById('bookCallBtn').click()">Book a Call</button>
-        </div>
-
-      <div class="mobile-menu-footer">
-  <a href="https://www.linkedin.com/in/ndivhuho-mathagu-56852226b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
-     class="social-btn linkedin"
-     target="_blank"
-     rel="noopener noreferrer">
-  </a>
-</div>
-    </div>
-
-
-
-       </header>
+    </header>
 
        <!--  HEROSECTION-->
     <div class="hero-container">
@@ -350,7 +333,7 @@
 
 
 
-<script src="/contact-page/contact.js"></script>
+<script src="/js/contact.js"></script>
 
     
 </body>

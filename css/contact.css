@@ -6,7 +6,7 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: white;
+            background: linear-gradient(rgba(118, 117, 117, 0.653), rgba(0,0,0,0.6));
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -14,203 +14,211 @@
             padding: 20px;
         }
 
-          /* Header */
-        header {
-            padding: 20px 0;
-            position: relative;
-            z-index: 100;
-        }
+    
 
      /* Base navbar styles (Image 1 - initial state) */
 nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 40px;
-    position: fixed; /* Changed to fixed for scroll effect */
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    
-    /* Initial state - transparent/blurred */
-    background: white; /* Very transparent teal */
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 0; /* No border radius initially */
-    box-shadow: none; /* No shadow initially */
-    
-    /* Smooth transition for all changes */
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    margin: 0; /* No margin initially */
-}
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+             padding: 20px 40px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: all 0.4s ease;  
+            width: 100%;
+             background: transparent;
+        }
 
-/* Scrolled state (Image 2 - after scroll) */
-nav.scrolled {
-    background:white; /* More opaque teal background */
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border-radius: 25px; /* Rounded corners when scrolled */
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); /* Shadow when scrolled */
-    margin: 10px 20px 0 20px; /* Add margin to create the "card" effect */
-    padding: 15px 35px; /* Slightly reduce padding when scrolled */
-}
+    nav.scrolled {
+            background: rgba(255, 255, 255, 0.498);
+            backdrop-filter: blur(10px);
+            padding: 15px 32px;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin: 0;
+        }
+        .logo-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
 
-/* Logo styles */
-.logo {
-    color: black;
-    font-size: 29px;
-    font-weight: 600;
-    font-style: italic;
-    font-family: "Playfair Display", "Didot", "Bodoni MT", "Times New Roman", serif;
-    flex: 0 0 auto;
-    transition: all 0.3s ease;
-    margin-left: 55px; /* Adjusted for better alignment */
-}
-.logo span {
-    font-size: 14px;
-    display: block;
-    margin-top: -2px;
-    font-weight: 400;
-    letter-spacing: 1px;
-    font-family: "Playfair Display", "Didot", "Bodoni MT", "Times New Roman", serif;
-}
+        .nav-logo-img {
+            height: 40px;
+            width: auto;
+            border-radius: 4px;
+        }
 
-/* Navigation links */
+        .logo-text {
+            color: white;
+            font-size: 22px;
+            font-weight: 600;
+            font-family: "Playfair Display", serif;
+            line-height: 1;
+        }
+
+        nav.scrolled .logo-text { color: black; }
+
+        .logo-text span {
+            display: block;
+            font-size: 10px;
+            letter-spacing: 2px;
+            font-family: 'Inter', sans-serif;
+            opacity: 0.8;
+        }
+
+       /* --- NAVIGATION LINKS --- */
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 35px;
-    justify-content: center;
-    flex: 1;
-    padding: 0;
-    margin: 0;
-    margin-left: -50px; /* Adjusted for better alignment */
+    gap: 30px;
 }
 
 .nav-links a {
-     color: black;
+    color: white;
     text-decoration: none;
-    font-size: 22px;
-    font-weight: 600;
-    opacity: 0.9;
-    position: relative;
-    padding: 8px 0 12px 0; /* Extra bottom padding for underline space */
-    transition: all 0.3s ease;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    /* Required for the absolute underline to position itself correctly */
+    position: relative; 
+    /* Creates space for the line so it doesn't touch the letters */
+    padding-bottom: 8px; 
 }
 
-/* Underline effect on hover - positioned BELOW the text */
+/* Underline effect - positioned BELOW the text */
 .nav-links a::after {
     content: '';
     position: absolute;
-    bottom: 0; /* At the very bottom */
+    bottom: 0; /* Positioned at the bottom of the padding */
     left: 0;
     width: 0;
-    height: 3px; /* Thicker underline */
-    background-color: #e05bab; /* Yellow underline */
+    height: 3px;
+    background-color: #e05bab;
     transition: width 0.3s ease;
 }
 
+/* Hover State */
 .nav-links a:hover {
-    opacity: 1;
-    color: black; /* Yellow text color on hover */
+    color: #e05bab; /* Matches the line color for a cleaner look */
+}
 
+/* When the navbar is scrolled, the text becomes black, but hover stays pink */
+nav.scrolled .nav-links a { 
+    color: black; 
+}
+
+nav.scrolled .nav-links a:hover {
+    color: #e05bab;
 }
 
 .nav-links a:hover::after {
-    width: 100%; /* Expand underline to full width */
+    width: 100%;
 }
 
-/* Active/current page state (optional) */
+/* Active/current page state */
 .nav-links a.active {
     color: #e05bab;
 }
 
 .nav-links a.active::after {
     width: 100%;
-    background-color: #e05bab;
 }
 
-
-/* Book call button */
-.book-call-btn {
-   background: linear-gradient(135deg, hsl(330 65% 58%) 0%, hsl(330 65% 52%) 100%);
-    color: white;
-    padding: 12px 24px;
-    border-radius: 15px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 17px;
-    transition: all 0.3s ease;
-    flex: 0 0 auto;
-    border: none;
-    cursor: pointer;
-    margin-right: 50px;
-}
-
-.book-call-btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 15px 40px -10px hsl(330 65% 58% / 0.4);
-}
-
- .highlight {
-            color: hsl(330 65% 58%);
+        .book-call-btn {
+            background: linear-gradient(135deg, #e05bab 0%, #be4a8d 100%);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.3s;
         }
 
-/* Ensure body has top padding to account for fixed navbar */
-body {
-    padding-top: 80px; /* Adjust based on your navbar height */
+/*MENU FOR MOBILE DEVICES STYLE*/
+/* --- MOBILE MENU STYLES --- */
+.menu-toggle {
+    display: none; /* Hidden on desktop */
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+    z-index: 2000;
 }
 
-/* Optional: Smooth scroll behavior */
-html {
-    scroll-behavior: smooth;
+.menu-toggle span {
+    display: block;
+    width: 28px;
+    height: 2px;
+    background: white;
+    transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Responsive adjustments */
+/* Scrolled state for toggle */
+nav.scrolled .menu-toggle span { background: black; }
+
+/* Hamburger Transform to X */
+.menu-toggle.active span:nth-child(1) { transform: translateY(4px) rotate(45deg); background: black !important; }
+.menu-toggle.active span:nth-child(2) { transform: translateY(-4px) rotate(-45deg); background: black !important; }
+
+/* Fullscreen Overlay */
+.mobile-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(15px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(100%);
+    transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+    z-index: 1500;
+}
+
+.mobile-overlay.active { transform: translateX(0); }
+
+.mobile-nav-links {
+    list-style: none;
+    text-align: center;
+}
+
+.mobile-nav-links li { margin: 25px 0; opacity: 0; transform: translateY(20px); transition: 0.4s; }
+.mobile-overlay.active .mobile-nav-links li { opacity: 1; transform: translateY(0); }
+
+.mobile-nav-links a {
+    color: black;
+    text-decoration: none;
+    font-size: 32px;
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+}
+
+.mobile-cta {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 18px !important;
+    color: #e05bab !important;
+    border: 1px solid #e05bab;
+    padding: 10px 30px;
+    border-radius: 50px;
+}
+
+/* Mobile Media Query Update */
 @media (max-width: 768px) {
-    nav {
-        padding: 15px 20px;
-        margin: 0; /* Remove margin on mobile */
-    }
-    
-    nav.scrolled {
-        margin: 5px 10px 0 10px;
-        padding: 12px 20px;
-    }
-    
-    .nav-links {
-        gap: 20px;
-    }
-    
-    .nav-links a {
-        font-size: 14px;
-    }
+    .nav-links, .book-call-btn { display: none; }
+    .menu-toggle { display: flex; }
+    nav.scrolled { padding: 10px 20px; margin: 0px; margin-top: 30px; }
 }
 
-@media (max-width: 480px) {
-    .nav-links {
-        display: none; /* Hide nav links on very small screens */
-    }
-    
-    nav.scrolled {
-        margin: 5px;
-    }
-}
-.mobile-menu-btn {
-    display: none; /* Hide by default, show on mobile */
-}
 
-        /* Mobile Menu Button */
-        .mobile-menu-btn {
-          display: none;
-          border: 20px ;
-          color: #e05bab;
-          background: #FDF2F8;
-          font-size: 24px;
-          cursor: pointer;
-          padding: 8px;
-          margin-right: 20px;
+        @media (max-width: 768px) {
+            nav { padding: 90px 30px; width: 100%; }
+            .nav-links, .book-call-btn { display: none; }
+            .typewriter-container { min-height: 180px; }
         }
 
 
@@ -223,6 +231,7 @@ html {
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
             position: relative;
             overflow: hidden;
+            margin-top: 60px;
         }
 
         .hero-container::before {
