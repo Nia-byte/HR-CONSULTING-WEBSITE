@@ -388,4 +388,5 @@ t2.from(".brand-anchor", {
     stagger: 0.2,
     ease: "power3.out"
 }, "-=0.8");
+
         
