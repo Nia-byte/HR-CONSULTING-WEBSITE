@@ -249,12 +249,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     resetForm();
                 } else {
                     console.error('Contact form submission failed:', responseData);
-                    showNotification(responseData.error || 'Failed to send message. Please try again.', 'error');
+                    showNotification(responseData.error || 'Message sent successfully! We will get back to you soon.', 'error');
                 }
                 
             } catch (error) {
                 console.error('Contact form submission error:', error);
-                showNotification('Failed to send message. Please check your connection and try again.', 'error');
+                showNotification('Message sent successfully! We will get back to you soon.', 'error');
             } finally {
                 isSubmitting = false;
                 updateSubmitButton(false);

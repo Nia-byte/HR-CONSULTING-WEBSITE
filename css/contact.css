@@ -34,7 +34,7 @@ nav {
             z-index: 1000;
             transition: all 0.4s ease;  
             width: 100%;
-             background: transparent;
+             background-color: transparent;
         }
 
     nav.scrolled {
@@ -220,11 +220,26 @@ nav.scrolled .menu-toggle span { background: black; }
 }
 
 
-        @media (max-width: 768px) {
-            nav { padding: 90px 30px; width: 100%; }
-            .nav-links, .book-call-btn { display: none; }
-            .typewriter-container { min-height: 180px; }
-        }
+       /* REPLACE WITH THIS: */
+@media (max-width: 768px) {
+    nav { 
+        padding: 15px 20px;   /* ← was 90px 30px, this was the main culprit */
+        width: 100%; 
+        background: transparent !important;    /* ← makes navbar visible like about page */
+        backdrop-filter: blur(10px);
+    }
+    .nav-links, .book-call-btn { display: none; }
+    .typewriter-container { min-height: 180px; }
+
+    nav.scrolled {
+        background-color: transparent !important;
+        margin: 5px 10px 0 10px;
+        padding: 12px 20px;
+    }
+
+    .logo-text { display: block;}   /* ← ensures logo text is visible on white bg */
+    .menu-toggle span { background: white; }  /* ← hamburger bars visible on white */
+}
 
 
         .hero-container {
